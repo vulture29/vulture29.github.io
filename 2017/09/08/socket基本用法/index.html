@@ -1,0 +1,620 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>socket基本用法 | Xingyao Huang&#39;s 博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Xingyao Huang">
+    
+
+    
+    <meta name="description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="socket基本用法">
+<meta property="og:url" content="http://vulture29.github.io/2017/09/08/socket基本用法/index.html">
+<meta property="og:site_name" content="Xingyao Huang&#39;s 博客">
+<meta property="og:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
+<meta property="og:updated_time" content="2017-09-10T04:08:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="socket基本用法">
+<meta name="twitter:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s 博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/1.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/1.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/1.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s 博客">Xingyao Huang&#39;s 博客</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:vulture29.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/08/socket基本用法/" title="socket基本用法" itemprop="url">socket基本用法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-09T02:32:14.000Z" itemprop="datePublished"> Published 2017-09-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端（Client）-服务端（Server-模型"><span class="toc-number">1.</span> <span class="toc-text">客户端（Client）/服务端（Server)模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket的类型"><span class="toc-number">2.</span> <span class="toc-text">Socket的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">3.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端代码的改进"><span class="toc-number">4.</span> <span class="toc-text">服务端代码的改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#僵尸进程问题"><span class="toc-number">4.1.</span> <span class="toc-text">僵尸进程问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他类型的socket"><span class="toc-number">4.2.</span> <span class="toc-text">其他类型的socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix域下的socket"><span class="toc-number">4.3.</span> <span class="toc-text">Unix域下的socket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原始代码参考解释"><span class="toc-number">5.</span> <span class="toc-text">原始代码参考解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Server-code"><span class="toc-number">5.1.</span> <span class="toc-text">Server code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Client-code"><span class="toc-number">5.2.</span> <span class="toc-text">Client code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket服务端的设计"><span class="toc-number">6.</span> <span class="toc-text">Socket服务端的设计</span></a></li></ol>
+		
+		</div>
+		
+		<p>本文参考: <a href="http://www.linuxhowtos.org/C_C++/socket.htm" target="_blank" rel="external">http://www.linuxhowtos.org/C_C++/socket.htm</a></p>
+<h2 id="客户端（Client）-服务端（Server-模型"><a href="#客户端（Client）-服务端（Server-模型" class="headerlink" title="客户端（Client）/服务端（Server)模型"></a>客户端（Client）/服务端（Server)模型</h2><p>客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而服务端在连接建立之前是不需要知道客户端地址的，客户端和服务端之间可以互相发送消息。</p>
+<p>在客户端建立socket的步骤如下：</p>
+<ul>
+<li>使用系统调用socket()创建一个socket</li>
+<li>使用系统调用connect()连接至指定地址的服务器</li>
+<li>发送和接收数据，有许多发送和接收的方法，最简单的是系统调用read()和write()</li>
+</ul>
+<p>在服务端建立socket的步骤如下：</p>
+<ul>
+<li>使用系统调用socket()创建一个socket</li>
+<li>使用bind()绑定一个地址到socket上，对网络上的socket来说，地址包括了地址名和端口号</li>
+<li>使用listen()监听连接</li>
+<li>使用accept()接受连接，此调用通常会阻塞知道有客户端连接值服务器</li>
+<li>发送和接收数据</li>
+</ul>
+<h2 id="Socket的类型"><a href="#Socket的类型" class="headerlink" title="Socket的类型"></a>Socket的类型</h2><p>Socket在创建时需要指定地址域和类型。只有当两个进程的地址和类型都相同时他们才可能进行通信。</p>
+<p>两种常见的地址域包括Unix域和Internet域，Unix域将socket当做文件系统下的一个文件，而Internet域适用于不同主机中的进程通信。</p>
+<p>需要注意的是，在Internet域下，socket需要指定地址和端口号，而在Unix下一些低数量的端口号是被Unix系统所占用了的，我们必须避免这种冲突，一般来说，2000以上的端口号是可以用的。</p>
+<p>有两种十分常见的Socket类型，他们就是流类型(stream sockets)和数据报类型(datagram socekts)。流类型用于可以实现连续信息的传递，使用TCP连接，而数据报类型用于单个信息的传递，使用UDP连接。</p>
+<p>本文的代码使用的是流类型的socket，使用tcp协议。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>本文使用的代码包括两个文件:</p>
+<ul>
+<li><a href="/content/code/2017/09/server.c">server.c</a></li>
+<li><a href="/content/code/2017/09/client.c">client.c</a></li>
+</ul>
+<p>使用：</p>
+<ul>
+<li>编译后首先运行服务端程序<code>./server 51717</code></li>
+<li>使用客户端进行连接<code>./client localhost 51717</code></li>
+<li>客户端可以发送文字消息至服务端</li>
+</ul>
+<h2 id="服务端代码的改进"><a href="#服务端代码的改进" class="headerlink" title="服务端代码的改进"></a>服务端代码的改进</h2><p>示例中的服务器段代码仅仅接收一次消息程序便将退出，而在实际中，通常服务器将接收多个消息，并且针对接收到的消息会做一些事情，所以我们有必要对此做出一些改进。</p>
+<p>改进如下:</p>
+<ul>
+<li>讲accept()语句放入一个无限循环中</li>
+<li>当连接建立后，使用fork()新建一个进程</li>
+<li>子进程将关闭sock的文件描述符，并且完成指定任务，然后退出</li>
+<li>父进程也关闭sock的文件描述符，执行下一个循环开始监听消息</li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><div class="line"><span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">&#123;</div><div class="line">  newsockfd = accept(sockfd,</div><div class="line">              (struct sockaddr *) &amp;cli_addr, &amp;clilen);</div><div class="line">  <span class="keyword">if</span> (newsockfd &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR on accept"</span>);</div><div class="line">  pid = fork();</div><div class="line">  <span class="keyword">if</span> (pid &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR on fork"</span>);</div><div class="line">  <span class="keyword">if</span> (pid == <span class="number">0</span>)</div><div class="line">  &#123;</div><div class="line">    close(sockfd);</div><div class="line">    dostuff(newsockfd);</div><div class="line">    <span class="keyword">exit</span>(<span class="number">0</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    close(newsockfd);</div><div class="line">&#125; <span class="regexp">/* end of while */</span></div></pre></td></tr></table></figure>
+<p><a href="/content/code/2017/09/server2.c">查看</a>改进后的服务器端代码。</p>
+<h3 id="僵尸进程问题"><a href="#僵尸进程问题" class="headerlink" title="僵尸进程问题"></a>僵尸进程问题</h3><p>上述程序有一个问题，当父进程运行一段时间并接受到很多连接请求后，每个连接请求都会创建一个子进程，而当子进程结束后，由于父进程没有是用wait对子进程信息进行捕获处理，子进程的进程描述符将仍然保存在系统里，并变成了僵尸进程。僵尸进程对系统有许多坏处，我们必须避免这种情况。但是如果在每个循环中都加一个wait()，这将是循环变得堵塞，程序在没处理完当前请求对应的任务之前不能开始下一个消息的接收。一个可行的解决方案是，当子进程结束时，它将发送一个SIGCHLD信号至父进程，我们可以捕获这个信号，并执行我们自定义的信号处理函数，在此函数中对子进程进行处理，设置自定义信号处理函数的代码如下：</p>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">signal(<span class="name">SIGCHLD</span>, sig_chld)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>此段代码意为每次接收到SIGCHLD信号时将触发sig_chld函数。其他代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sig_chld</span><span class="params">(<span class="keyword">int</span> signo)</span><span class="comment">//信号处理函数必须要有一个int 型的参数，并且返回值为void</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">pid_t</span> pid;</div><div class="line">    <span class="keyword">int</span> stat;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>((pid = waitpid(<span class="number">-1</span>, &amp;stat, WNOHANG)) &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"child %d terminated\n"</span>, pid);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  ...</div><div class="line">  signal(SIGCHLD, sig_chld);</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>此时每次父进程接受到SIGCHLD信号时，将会触发sig_chld函数，函数中将使用waitpid()对子程序进行清理。WNOHANG标志位的设定代表这个wait是无堵塞的。</p>
+<h3 id="其他类型的socket"><a href="#其他类型的socket" class="headerlink" title="其他类型的socket"></a>其他类型的socket</h3><p>除了使用流类型的socket，socekt还支持数据报类型，它使用UDP协议进行通信，他与流类型的socket的差别主要包括:</p>
+<ul>
+<li>数据报类型的socekt是不可靠的，协议并不保证接收方能接受到来自发送方的消息</li>
+<li>消息被保存在数据报内，这意味这如果发送方发送的是一个100比特的数据报，接受方收到的也会是100比特的数据报。而在流类型的socket中，如果发送方发送了100比特的数据，接收方可能收到两个50比特的消息块或者1个100比特的消息块</li>
+<li>通信使用的系统调用是<code>sendto()</code>和<code>receivefrom()</code>，而不是通常的<code>read()</code>和<code>write()</code></li>
+<li>由于数据报socket不需要建立持续性的连接，他的开销会小很多，这也是数据报socket在一些要求相应速度快的地方得到了广泛应用</li>
+<li>使用数据报socekt实现的服务端<a href="/content/code/2017/09/server_udp.c">代码</a></li>
+<li>使用数据报socekt实现的客户端<a href="/content/code/2017/09/client_udp.c">代码</a></li>
+</ul>
+<h3 id="Unix域下的socket"><a href="#Unix域下的socket" class="headerlink" title="Unix域下的socket"></a>Unix域下的socket</h3><p>Unix域下的socket与Internet域下唯一的不同是地址的形式。以下是Unix域地址格式:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span>	<span class="title">sockaddr_un</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line"> <span class="keyword">short</span>	sun_family;	<span class="comment">/* AF_UNIX */</span></div><div class="line"> <span class="keyword">char</span>	sun_path[<span class="number">108</span>];	<span class="comment">/* path name (gag) */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>sun_path是unix文件系统的路径名，显然客户端和服务端必须在同一主机下。当socket建立后，将会在文件系统中创建一个这样的文件，Unix域下的Socket和命名管道(FIFOs)是基本等价的。</p>
+<p>示例代码如下:</p>
+<ul>
+<li>Unix域下的socket服务端<a href="/content/code/2017/09/server_unix.c">代码</a>)</li>
+<li>Unix域下的socket客户端<a href="/content/code/2017/09/client_unix.c">代码</a>)</li>
+</ul>
+<h2 id="原始代码参考解释"><a href="#原始代码参考解释" class="headerlink" title="原始代码参考解释"></a>原始代码参考解释</h2><h3 id="Server-code"><a href="#Server-code" class="headerlink" title="Server code"></a>Server code</h3><figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>This header file contains declarations used in most input and output and is typically included in all C programs.</p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>This header file contains definitions of a number of data types used in system calls. These types are used in the next two include files.</p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>The header file socket.h includes a number of definitions of structures needed for sockets.</p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>The header file in.h contains constants and structures needed for internet domain addresses.</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">void error(char *msg)</div><div class="line">&#123;</div><div class="line">  perror(msg);</div><div class="line">  <span class="keyword">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>This function is called when a system call fails. It displays a message about the error on stderr and then aborts the program. The perror man page gives more information.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">int</span> sockfd, newsockfd, portno, clilen, n;</div></pre></td></tr></table></figure>
+<p>sockfd and newsockfd are file descriptors, i.e. array subscripts into the file descriptor table . These two variables store the values returned by the socket system call and the accept system call.<br>portno stores the port number on which the server accepts connections.</p>
+<p>clilen stores the size of the address of the client. This is needed for the accept system call.</p>
+<p>n is the return value for the read() and write() calls; i.e. it contains the number of characters read or written.</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><div class="line"><span class="keyword">char</span> <span class="built_in">buffer</span>[<span class="number">256</span>];</div></pre></td></tr></table></figure>
+<p>The server reads characters from the socket connection into this buffer.<br>struct sockaddr_in serv_addr, cli_addr;</p>
+<p>A sockaddr_in is a structure containing an internet address. This structure is defined in netinet/in.h.</p>
+<p>Here is the definition:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">short</span>   sin_family; <span class="comment">/* must be AF_INET */</span></div><div class="line">  u_short sin_port;</div><div class="line">  <span class="class"><span class="keyword">struct</span>  <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span></div><div class="line">  <span class="keyword">char</span>    sin_zero[<span class="number">8</span>]; <span class="comment">/* Not used, must be zero */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>An in_addr structure, defined in the same header file, contains only one field, a unsigned long called s_addr.<br>The variable serv_addr will contain the address of the server, and cli_addr will contain the address of the client which connects to the server.</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">if</span> (argc &lt; 2)</div><div class="line"> &#123;</div><div class="line">   fprintf(stderr,"<span class="keyword">ERROR</span>, <span class="keyword">no</span> port provided</div><div class="line">");</div><div class="line">   <span class="keyword">exit</span>(1);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>The user needs to pass in the port number on which the server will accept connections as an argument. This code displays an error message if the user fails to do this.</p>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">sockfd = socket(<span class="name">AF_INET</span>, SOCK_STREAM, <span class="number">0</span>)<span class="comment">;</span></div><div class="line">if (<span class="name">sockfd</span> &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR opening socket"</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The socket() system call creates a new socket. It takes three arguments. The first is the address domain of the socket.<br>Recall that there are two possible address domains, the unix domain for two processes which share a common file system, and the Internet domain for any two hosts on the Internet. The symbol constant AF_UNIX is used for the former, and AF_INET for the latter (there are actually many other options which can be used here for specialized purposes).</p>
+<p>The second argument is the type of socket. Recall that there are two choices here, a stream socket in which characters are read in a continuous stream as if from a file or pipe, and a datagram socket, in which messages are read in chunks. The two symbolic constants are SOCK_STREAM and SOCK_DGRAM.</p>
+<p>The third argument is the protocol. If this argument is zero (and it always should be except for unusual circumstances), the operating system will choose the most appropriate protocol. It will choose TCP for stream sockets and UDP for datagram sockets.</p>
+<p>The socket system call returns an entry into the file descriptor table (i.e. a small integer). This value is used for all subsequent references to this socket. If the socket call fails, it returns -1.</p>
+<p>In this case the program displays and error message and exits. However, this system call is unlikely to fail.</p>
+<p>This is a simplified description of the socket call; there are numerous other choices for domains and types, but these are the most common. The socket() man page has more information.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line">bzero((<span class="keyword">char</span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr));</div></pre></td></tr></table></figure>
+<p>The function bzero() sets all values in a buffer to zero. It takes two arguments, the first is a pointer to the buffer and the second is the size of the buffer. Thus, this line initializes serv_addr to zeros. —-</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">portno</span> = atoi(argv[<span class="number">1</span>])<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The port number on which the server will listen for connections is passed in as an argument, and this statement uses the atoi() function to convert this from a string of digits to an integer.</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><div class="line">serv_addr.sin_family = AF_INET<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The variable serv_addr is a structure of type struct sockaddr_in. This structure has four fields. The first field is short sin_family, which contains a code for the address family. It should always be set to the symbolic constant AF_INET.</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><div class="line">serv_addr.sin_port = htons(portno)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The second field of serv_addr is unsigned short sin_port, which contain the port number. However, instead of simply copying the port number to this field, it is necessary to convert this to network byte order using the function htons() which converts a port number in host byte order to a port number in network byte order.</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><div class="line">serv_addr.sin_addr.s_addr = INADDR_ANY<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The third field of sockaddr_in is a structure of type struct in_addr which contains only a single field unsigned long s_addr. This field contains the IP address of the host. For server code, this will always be the IP address of the machine on which the server is running, and there is a symbolic constant INADDR_ANY which gets this address.<br><figure class="highlight rust"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (bind(sockfd, (<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span></span> *) &amp;serv_addr,                   <span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR on binding"</span>);</div></pre></td></tr></table></figure></p>
+<p>The bind() system call binds a socket to an address, in this case the address of the current host and port number on which the server will run. It takes three arguments, the socket file descriptor, the address to which is bound, and the size of the address to which it is bound. The second argument is a pointer to a structure of type sockaddr, but what is passed in is a structure of type sockaddr_in, and so this must be cast to the correct type. This can fail for a number of reasons, the most obvious being that this socket is already in use on this machine. The bind() manual has more information.</p>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">listen(<span class="name">sockfd</span>,<span class="number">5</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The listen system call allows the process to listen on the socket for connections. The first argument is the socket file descriptor, and the second is the size of the backlog queue, i.e., the number of connections that can be waiting while the process is handling a particular connection. This should be set to 5, the maximum size permitted by most systems. If the first argument is a valid socket, this call cannot fail, and so the code doesn’t check for errors. The listen() man page has more information.</p>
+<figure class="highlight haxe"><table><tr><td class="code"><pre><div class="line">clilen = sizeof(cli_addr);</div><div class="line"><span class="keyword">new</span><span class="type">sockfd</span> = accept(sockfd, (struct sockaddr *) &amp;cli_addr, &amp;clilen);</div><div class="line"><span class="keyword">if</span> (<span class="keyword">new</span><span class="type">sockfd</span> &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR on accept"</span>);</div></pre></td></tr></table></figure>
+<p>The accept() system call causes the process to block until a client connects to the server. Thus, it wakes up the process when a connection from a client has been successfully established. It returns a new file descriptor, and all communication on this connection should be done using the new file descriptor. The second argument is a reference pointer to the address of the client on the other end of the connection, and the third argument is the size of this structure. The accept() man page has more information.</p>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">bzero(<span class="name">buffer</span>,<span class="number">256</span>)<span class="comment">;</span></div><div class="line">n = read(<span class="name">newsockfd</span>,buffer,<span class="number">255</span>)<span class="comment">;</span></div><div class="line">if (<span class="name">n</span> &lt; <span class="number">0</span>) error(<span class="string">"ERROR reading from socket"</span>)<span class="comment">;</span></div><div class="line">printf(<span class="string">"Here is the message: %s</span></div><div class="line"><span class="string">"</span>,buffer)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>Note that we would only get to this point after a client has successfully connected to our server. This code initializes the buffer using the bzero() function, and then reads from the socket. Note that the read call uses the new file descriptor, the one returned by accept(), not the original file descriptor returned by socket(). Note also that the read() will block until there is something for it to read in the socket, i.e. after the client has executed a write().<br>It will read either the total number of characters in the socket or 255, whichever is less, and return the number of characters read. The read() man page has more information.</p>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">n = write(<span class="name">newsockfd</span>,<span class="string">"I got your message"</span>,<span class="number">18</span>)<span class="comment">;</span></div><div class="line">if (<span class="name">n</span> &lt; <span class="number">0</span>) error(<span class="string">"ERROR writing to socket"</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>Once a connection has been established, both ends can both read and write to the connection. Naturally, everything written by the client will be read by the server, and everything written by the server will be read by the client. This code simply writes a short message to the client. The last argument of write is the size of the message. The write() man page has more information.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>This terminates main and thus the program. Since main was declared to be of type int as specified by the ascii standard, some compilers complain if it does not return anything.</p>
+<h3 id="Client-code"><a href="#Client-code" class="headerlink" title="Client code"></a>Client code</h3><p>As before, we will go through the program client.c line by line.</p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netdb.h&gt;</span></span></div></pre></td></tr></table></figure>
+<p>The header files are the same as for the server with one addition. The file netdb.h defines the structure hostent, which will be used below.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">char</span> *msg)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  perror(msg);</div><div class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">int</span> sockfd, portno, n;</div><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></div><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">hostent</span> *<span class="title">server</span>;</span></div></pre></td></tr></table></figure>
+<p>The error() function is identical to that in the server, as are the variables sockfd, portno, and n. The variable serv_addr will contain the address of the server to which we want to connect. It is of type struct sockaddr_in.<br>The variable server is a pointer to a structure of type hostent. This structure is defined in the header file netdb.h as follows:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">hostent</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">char</span>    *h_name;        <span class="comment">/* official name of host */</span></div><div class="line">  <span class="keyword">char</span>    **h_aliases;    <span class="comment">/* alias list */</span></div><div class="line">  <span class="keyword">int</span>     h_addrtype;     <span class="comment">/* host address type */</span></div><div class="line">  <span class="keyword">int</span>     h_length;       <span class="comment">/* length of address */</span></div><div class="line">  <span class="keyword">char</span>    **h_addr_list;  <span class="comment">/* list of addresses from name server */</span></div><div class="line">  <span class="meta">#<span class="meta-keyword">define</span> h_addr  h_addr_list[0]  <span class="comment">/* address, for backward compatiblity */</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>It defines a host computer on the Internet. The members of this structure are:</p>
+<ul>
+<li>h_name:       Official name of the host.</li>
+<li>h_aliases:    A zero  terminated  array  of  alternate<pre><code>names for the host.
+</code></pre></li>
+<li>h_addrtype:   The  type  of  address  being  returned;<pre><code>currently always AF_INET.
+</code></pre></li>
+<li>h_length:     The length, in bytes, of the address.</li>
+<li>h_addr_list:  A pointer to a list of network addresses<pre><code>for the named host.  Host addresses are
+returned in network byte order.
+</code></pre></li>
+</ul>
+<p>Note that h_addr is an alias for the first address in the array of network addresses.</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">char buffer[<span class="number">256</span>];</div><div class="line">if (argc &lt; <span class="number">3</span>)</div><div class="line">&#123;</div><div class="line">  fprintf(stderr,<span class="string">"usage %s hostname port</span></div><div class="line"><span class="string">"</span>, argv[<span class="number">0</span>]);</div><div class="line">  exit(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line">portno = atoi(argv[<span class="number">2</span>]);</div><div class="line">sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line">if (sockfd &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR opening socket"</span>);</div></pre></td></tr></table></figure>
+<p>All of this code is the same as that in the server.</p>
+<figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line">server = gethostbyname(argv[<span class="number">1</span>])<span class="comment">;</span></div><div class="line"><span class="keyword">if</span> (server == <span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line">  fprintf(stderr,<span class="string">"ERROR, no such host</span></div><div class="line"><span class="string">"</span>)<span class="comment">;</span></div><div class="line">  <span class="keyword">exit</span>(<span class="number">0</span>)<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The variable argv[1] contains the name of a host on the Internet, e.g. cs.rpi.edu. The function:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hostent</span></span> *gethostbyname(<span class="built_in">char</span> *name)</div></pre></td></tr></table></figure>
+<p>Takes such a name as an argument and returns a pointer to a hostent containing information about that host.<br>The field char *h_addr contains the IP address.</p>
+<p>If this structure is NULL, the system could not locate a host with this name.</p>
+<p>In the old days, this function worked by searching a system file called /etc/hosts but with the explosive growth of the Internet, it became impossible for system administrators to keep this file current. Thus, the mechanism by which this function works is complex, often involves querying large databases all around the country. The gethostbyname() man page has more information.</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><div class="line"><span class="keyword">bzero((char </span>*) &amp;serv_addr, sizeof(serv_addr))<span class="comment">;</span></div><div class="line">serv_addr.sin_family = AF_INET<span class="comment">;</span></div><div class="line"><span class="keyword">bcopy((char </span>*)server-&gt;h_addr,</div><div class="line">      (char *)&amp;serv_addr.sin_addr.s_addr,</div><div class="line">      server-&gt;h_length)<span class="comment">;</span></div><div class="line">serv_addr.sin_port = htons(portno)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>This code sets the fields in serv_addr. Much of it is the same as in the server. However, because the field server-&gt;h_addr is a character string, we use the function:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bcopy</span><span class="params">(<span class="keyword">char</span> *s1, <span class="keyword">char</span> *s2, <span class="keyword">int</span> length)</span></span></div></pre></td></tr></table></figure>
+<p>which copies length bytes from s1 to s2. —-</p>
+<figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">if (<span class="name">connect</span>(<span class="name">sockfd</span>,<span class="symbol">&amp;serv_addr</span>,sizeof(<span class="name">serv_addr</span>)) &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR connecting"</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>The connect function is called by the client to establish a connection to the server. It takes three arguments, the socket file descriptor, the address of the host to which it wants to connect (including the port number), and the size of this address. This function returns 0 on success and -1 if it fails. The connect() man page has more information.<br>Notice that the client needs to know the port number of the server, but it does not need to know its own port number. This is typically assigned by the system when connect is called.</p>
+<figure class="highlight perl"><table><tr><td class="code"><pre><div class="line">  <span class="keyword">printf</span>(<span class="string">"Please enter the message: "</span>);</div><div class="line">  bzero(buffer,<span class="number">256</span>);</div><div class="line">  fgets(buffer,<span class="number">255</span>,stdin);</div><div class="line">  n = <span class="keyword">write</span>(sockfd,buffer,strlen(buffer));</div><div class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR writing to socket"</span>);</div><div class="line">  bzero(buffer,<span class="number">256</span>);</div><div class="line">  n = <span class="keyword">read</span>(sockfd,buffer,<span class="number">255</span>);</div><div class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span>)</div><div class="line">    error(<span class="string">"ERROR reading from socket"</span>);</div><div class="line">  <span class="keyword">printf</span>(<span class="string">"%s</span></div><div class="line"><span class="string">"</span>,buffer);</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The remaining code should be fairly clear. It prompts the user to enter a message, uses fgets to read the message from stdin, writes the message to the socket, reads the reply from the socket, and displays this reply on the screen.</p>
+<h2 id="Socket服务端的设计"><a href="#Socket服务端的设计" class="headerlink" title="Socket服务端的设计"></a>Socket服务端的设计</h2><ul>
+<li><p><strong>Designing servers</strong><br><br>There are a number of different ways to design servers. These models are discussed in detail in a book by Douglas E. Comer and David L. Stevens entiteld Internetworking with TCP/IP Volume III:Client Server Programming and Applications published by Prentice Hall in 1996. These are summarized here.</p>
+</li>
+<li><p><strong>Concurrent, connection oriented servers</strong><br><br>The typical server in the Internet domain creates a stream socket and forks off a process to handle each new connection that it receives. This model is appropriate for services which will do a good deal of reading and writing over an extended period of time, such as a telnet server or an ftp server. This model has relatively high overhead, because forking off a new process is a time consuming operation, and because a stream socket which uses the TCP protocol has high kernel overhead, not only in establishing the connection but also in transmitting information. However, once the connection has been established, data transmission is reliable in both directions.</p>
+</li>
+<li><p><strong>Iterative, connectionless servers</strong><br><br>Servers which provide only a single message to the client often do not involve forking, and often use a datagram socket rather than a stream socket. Examples include a finger daemon or a timeofday server or an echo server (a server which merely echoes a message sent by the client). These servers handle each message as it receives them in the same process. There is much less overhead with this type of server, but the communication is unreliable. A request or a reply may get lost in the Internet, and there is no built-in mechanism to detect and handle this.</p>
+</li>
+<li><p><strong>Single Process concurrent servers</strong><br><br>A server which needs the capability of handling several clients simultaneous, but where each connection is I/O dominated (i.e. the server spends most of its time blocked waiting for a message from the client) is a candidate for a single process, concurrent server. In this model, one process maintains a number of open connections, and listens at each for a message. Whenever it gets a message from a client, it replies quickly and then listens for the next one. This type of service can be done with the select system call.</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/network/">network</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://vulture29.github.io/2017/09/08/socket基本用法/" data-title="socket基本用法 | Xingyao Huang&#39;s 博客" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/09/06/算法1/"  title="算法 ---- 位操作小结">
+ <strong>下一篇：</strong><br/> 
+ <span>算法 ---- 位操作小结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.huihuiloves.me" target="_blank" title="我的">我的</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Xingyao Huang. <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5981969306" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/vulture29" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/in/xingyaohuang" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+		<a href="mailto:huangyy1995@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Xingyao Huang">Xingyao Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'vulture29-github-io';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
