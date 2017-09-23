@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="本篇将介绍一个很简单的MPI程序。程序的要求是:  程序将统计一个信息经过一个由处理器组成的环所需要的时间（比如说，讲一个消息从一个处理器节点发送至下一个处理器节点，直到最后一个节点发送返回第一个节点） 统计不同大小的消息的发送时间（包括32B, 64B, 128B, …, 2M） 统计不同处理器数量所需的时间（2个，4个，8个） 作图表示不同消息大小对应的往返时间以及标准差  程序的核心代码如下">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2017/09/loop_time.png">
-<meta property="og:updated_time" content="2017-09-07T01:11:44.000Z">
+<meta property="og:updated_time" content="2017-09-22T18:45:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="并行系统学习之路（二） ---- MPI热身">
 <meta name="twitter:description" content="本篇将介绍一个很简单的MPI程序。程序的要求是:  程序将统计一个信息经过一个由处理器组成的环所需要的时间（比如说，讲一个消息从一个处理器节点发送至下一个处理器节点，直到最后一个节点发送返回第一个节点） 统计不同大小的消息的发送时间（包括32B, 64B, 128B, …, 2M） 统计不同处理器数量所需的时间（2个，4个，8个） 作图表示不同消息大小对应的往返时间以及标准差  程序的核心代码如下">
@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -85,14 +85,14 @@
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-05T19:54:29.000Z" itemprop="datePublished"> 發表於 2017-09-05</time>
+    <time datetime="2017-09-05T19:54:29.000Z" itemprop="datePublished"> Published 2017-09-05</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			
 		
@@ -186,21 +186,21 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>2</sup></a></li>
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>3</sup></a></li>
 			
 		
 			
@@ -220,12 +220,18 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
             
             	<a href="http://www.huihuiloves.me" target="_blank" title="我的">我的</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://xingyaohuang.com/prog1/" target="_blank" title="看个球">看个球</a>
             
           </li>
         
@@ -477,7 +483,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://vulture29.github.io/2017/09/08/socket基本用法/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
-<meta property="og:updated_time" content="2017-09-10T04:32:26.000Z">
+<meta property="og:updated_time" content="2017-09-22T21:45:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="socket基本用法">
 <meta name="twitter:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
@@ -45,7 +45,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -61,7 +61,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -83,14 +83,14 @@
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-09T02:32:14.000Z" itemprop="datePublished"> 發表於 2017-09-08</time>
+    <time datetime="2017-09-09T02:32:14.000Z" itemprop="datePublished"> Published 2017-09-08</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端（Client）-服务端（Server-模型"><span class="toc-number">1.</span> <span class="toc-text">客户端（Client）/服务端（Server)模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket的类型"><span class="toc-number">2.</span> <span class="toc-text">Socket的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">3.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端代码的改进"><span class="toc-number">4.</span> <span class="toc-text">服务端代码的改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#僵尸进程问题"><span class="toc-number">4.1.</span> <span class="toc-text">僵尸进程问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他类型的socket"><span class="toc-number">4.2.</span> <span class="toc-text">其他类型的socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix域下的socket"><span class="toc-number">4.3.</span> <span class="toc-text">Unix域下的socket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原始代码参考解释"><span class="toc-number">5.</span> <span class="toc-text">原始代码参考解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Server-code"><span class="toc-number">5.1.</span> <span class="toc-text">Server code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Client-code"><span class="toc-number">5.2.</span> <span class="toc-text">Client code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket服务端的设计"><span class="toc-number">6.</span> <span class="toc-text">Socket服务端的设计</span></a></li></ol>
 		
@@ -158,8 +158,8 @@
 <p>sun_path是unix文件系统的路径名，显然客户端和服务端必须在同一主机下。当socket建立后，将会在文件系统中创建一个这样的文件，Unix域下的Socket和命名管道(FIFOs)是基本等价的。</p>
 <p>示例代码如下:</p>
 <ul>
-<li>Unix域下的socket服务端<a href="/content/code/2017/09/server_unix.c">代码</a>)</li>
-<li>Unix域下的socket客户端<a href="/content/code/2017/09/client_unix.c">代码</a>)</li>
+<li>Unix域下的socket服务端<a href="/content/code/2017/09/server_unix.c">代码</a></li>
+<li>Unix域下的socket客户端<a href="/content/code/2017/09/client_unix.c">代码</a></li>
 </ul>
 <h2 id="原始代码参考解释"><a href="#原始代码参考解释" class="headerlink" title="原始代码参考解释"></a>原始代码参考解释</h2><h3 id="Server-code"><a href="#Server-code" class="headerlink" title="Server code"></a>Server code</h3><figure class="highlight autoit"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div></pre></td></tr></table></figure>
 <p>This header file contains declarations used in most input and output and is typically included in all C programs.</p>
@@ -176,12 +176,13 @@
 <p>clilen stores the size of the address of the client. This is needed for the accept system call.</p>
 <p>n is the return value for the read() and write() calls; i.e. it contains the number of characters read or written.</p>
 <figure class="highlight arduino"><table><tr><td class="code"><pre><div class="line"><span class="keyword">char</span> <span class="built_in">buffer</span>[<span class="number">256</span>];</div></pre></td></tr></table></figure>
-<p>The server reads characters from the socket connection into this buffer.<br>struct sockaddr_in serv_addr, cli_addr;</p>
+<p>The server reads characters from the socket connection into this buffer.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>, <span class="title">cli_addr</span>;</span></div></pre></td></tr></table></figure>
 <p>A sockaddr_in is a structure containing an internet address. This structure is defined in netinet/in.h.</p>
 <p>Here is the definition:</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">short</span>   sin_family; <span class="comment">/* must be AF_INET */</span></div><div class="line">  u_short sin_port;</div><div class="line">  <span class="class"><span class="keyword">struct</span>  <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span></div><div class="line">  <span class="keyword">char</span>    sin_zero[<span class="number">8</span>]; <span class="comment">/* Not used, must be zero */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>An in_addr structure, defined in the same header file, contains only one field, a unsigned long called s_addr.<br>The variable serv_addr will contain the address of the server, and cli_addr will contain the address of the client which connects to the server.</p>
-<figure class="highlight stata"><table><tr><td class="code"><pre><div class="line"> <span class="keyword">if</span> (argc &lt; 2)</div><div class="line"> &#123;</div><div class="line">   fprintf(stderr,"<span class="keyword">ERROR</span>, <span class="keyword">no</span> port provided</div><div class="line">");</div><div class="line">   <span class="keyword">exit</span>(1);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (argc &lt; <span class="number">2</span>)</div><div class="line">&#123;</div><div class="line">  fprintf(stderr,<span class="string">"ERROR, no port provided"</span>);</div><div class="line">  <span class="keyword">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>The user needs to pass in the port number on which the server will accept connections as an argument. This code displays an error message if the user fails to do this.</p>
 <figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">sockfd = socket(<span class="name">AF_INET</span>, SOCK_STREAM, <span class="number">0</span>)<span class="comment">;</span></div><div class="line">if (<span class="name">sockfd</span> &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR opening socket"</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>The socket() system call creates a new socket. It takes three arguments. The first is the address domain of the socket.<br>Recall that there are two possible address domains, the unix domain for two processes which share a common file system, and the Internet domain for any two hosts on the Internet. The symbol constant AF_UNIX is used for the former, and AF_INET for the latter (there are actually many other options which can be used here for specialized purposes).</p>
@@ -199,7 +200,8 @@
 <figure class="highlight abnf"><table><tr><td class="code"><pre><div class="line">serv_addr.sin_port = htons(portno)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>The second field of serv_addr is unsigned short sin_port, which contain the port number. However, instead of simply copying the port number to this field, it is necessary to convert this to network byte order using the function htons() which converts a port number in host byte order to a port number in network byte order.</p>
 <figure class="highlight abnf"><table><tr><td class="code"><pre><div class="line">serv_addr.sin_addr.s_addr = INADDR_ANY<span class="comment">;</span></div></pre></td></tr></table></figure>
-<p>The third field of sockaddr_in is a structure of type struct in_addr which contains only a single field unsigned long s_addr. This field contains the IP address of the host. For server code, this will always be the IP address of the machine on which the server is running, and there is a symbolic constant INADDR_ANY which gets this address.<br><figure class="highlight rust"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (bind(sockfd, (<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span></span> *) &amp;serv_addr,                   <span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR on binding"</span>);</div></pre></td></tr></table></figure></p>
+<p>The third field of sockaddr_in is a structure of type struct in_addr which contains only a single field unsigned long s_addr. This field contains the IP address of the host. For server code, this will always be the IP address of the machine on which the server is running, and there is a symbolic constant INADDR_ANY which gets this address.</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (bind(sockfd, (<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr</span></span> *) &amp;serv_addr, <span class="keyword">sizeof</span>(serv_addr)) &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR on binding"</span>);</div></pre></td></tr></table></figure>
 <p>The bind() system call binds a socket to an address, in this case the address of the current host and port number on which the server will run. It takes three arguments, the socket file descriptor, the address to which is bound, and the size of the address to which it is bound. The second argument is a pointer to a structure of type sockaddr, but what is passed in is a structure of type sockaddr_in, and so this must be cast to the correct type. This can fail for a number of reasons, the most obvious being that this socket is already in use on this machine. The bind() manual has more information.</p>
 <figure class="highlight lisp"><table><tr><td class="code"><pre><div class="line">listen(<span class="name">sockfd</span>,<span class="number">5</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>The listen system call allows the process to listen on the socket for connections. The first argument is the socket file descriptor, and the second is the size of the backlog queue, i.e., the number of connections that can be waiting while the process is handling a particular connection. This should be set to 5, the maximum size permitted by most systems. If the first argument is a valid socket, this call cannot fail, and so the code doesn’t check for errors. The listen() man page has more information.</p>
@@ -219,15 +221,11 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">hostent</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">char</span>    *h_name;        <span class="comment">/* official name of host */</span></div><div class="line">  <span class="keyword">char</span>    **h_aliases;    <span class="comment">/* alias list */</span></div><div class="line">  <span class="keyword">int</span>     h_addrtype;     <span class="comment">/* host address type */</span></div><div class="line">  <span class="keyword">int</span>     h_length;       <span class="comment">/* length of address */</span></div><div class="line">  <span class="keyword">char</span>    **h_addr_list;  <span class="comment">/* list of addresses from name server */</span></div><div class="line">  <span class="meta">#<span class="meta-keyword">define</span> h_addr  h_addr_list[0]  <span class="comment">/* address, for backward compatiblity */</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>It defines a host computer on the Internet. The members of this structure are:</p>
 <ul>
-<li>h_name:       Official name of the host.</li>
-<li>h_aliases:    A zero  terminated  array  of  alternate<pre><code>names for the host.
-</code></pre></li>
-<li>h_addrtype:   The  type  of  address  being  returned;<pre><code>currently always AF_INET.
-</code></pre></li>
-<li>h_length:     The length, in bytes, of the address.</li>
-<li>h_addr_list:  A pointer to a list of network addresses<pre><code>for the named host.  Host addresses are
-returned in network byte order.
-</code></pre></li>
+<li>h_name: Official name of the host.</li>
+<li>h_aliases: A zero terminated  array  of  alternate names for the host.</li>
+<li>h_addrtype: The type of address being returned; currently always AF_INET.</li>
+<li>h_length: The length, in bytes, of the address.</li>
+<li>h_addr_list: A pointer to a list of network addresses for the named host. Host addresses are returned in network byte order.</li>
 </ul>
 <p>Note that h_addr is an alias for the first address in the array of network addresses.</p>
 <figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">char buffer[<span class="number">256</span>];</div><div class="line">if (argc &lt; <span class="number">3</span>)</div><div class="line">&#123;</div><div class="line">  fprintf(stderr,<span class="string">"usage %s hostname port</span></div><div class="line"><span class="string">"</span>, argv[<span class="number">0</span>]);</div><div class="line">  exit(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line">portno = atoi(argv[<span class="number">2</span>]);</div><div class="line">sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line">if (sockfd &lt; <span class="number">0</span>)</div><div class="line">  error(<span class="string">"ERROR opening socket"</span>);</div></pre></td></tr></table></figure>
@@ -286,6 +284,14 @@ returned in network byte order.
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/09/22/并行系统学习之路3/" title="并行系统学习之路（三） ---- CUDA学习">
+  <strong>上一篇：</strong><br/>
+  <span>
+  并行系统学习之路（三） ---- CUDA学习</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/09/06/算法1/"  title="算法 ---- 位操作小结">
@@ -307,21 +313,21 @@ returned in network byte order.
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>2</sup></a></li>
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>3</sup></a></li>
 			
 		
 			
@@ -341,12 +347,18 @@ returned in network byte order.
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
             
             	<a href="http://www.huihuiloves.me" target="_blank" title="我的">我的</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://xingyaohuang.com/prog1/" target="_blank" title="看个球">看个球</a>
             
           </li>
         
@@ -598,7 +610,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
