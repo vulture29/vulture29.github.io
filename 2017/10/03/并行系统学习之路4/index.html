@@ -1,0 +1,617 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>并行系统学习之路（四） ---- OpenMP学习 | Xingyao Huang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Xingyao Huang">
+    
+
+    
+    <meta name="description" content="OpenMP 编程学习本周的主题是Shared Memory Programming，也就是共享内存编程。首先，我们需要明确一下共享内存编程的基本概念。  上图说明了单处理器和共享内存处理器的基本结构差异，我们可以看到共享内存处理器的最大特点就是CPU数量比单处理器多的多。很明显，利用这个特点，我们可以让一些特定程序运行的更快。这其实也是并行系统解决的基本问题。 共享内存编程的标准 使用线程库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并行系统学习之路（四） ---- OpenMP学习">
+<meta property="og:url" content="http://vulture29.github.io/2017/10/03/并行系统学习之路4/index.html">
+<meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
+<meta property="og:description" content="OpenMP 编程学习本周的主题是Shared Memory Programming，也就是共享内存编程。首先，我们需要明确一下共享内存编程的基本概念。  上图说明了单处理器和共享内存处理器的基本结构差异，我们可以看到共享内存处理器的最大特点就是CPU数量比单处理器多的多。很明显，利用这个特点，我们可以让一些特定程序运行的更快。这其实也是并行系统解决的基本问题。 共享内存编程的标准 使用线程库">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/10/smp.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/10/openmp_model.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/10/openmp_layer.png">
+<meta property="og:updated_time" content="2017-10-14T03:08:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="并行系统学习之路（四） ---- OpenMP学习">
+<meta name="twitter:description" content="OpenMP 编程学习本周的主题是Shared Memory Programming，也就是共享内存编程。首先，我们需要明确一下共享内存编程的基本概念。  上图说明了单处理器和共享内存处理器的基本结构差异，我们可以看到共享内存处理器的最大特点就是CPU数量比单处理器多的多。很明显，利用这个特点，我们可以让一些特定程序运行的更快。这其实也是并行系统解决的基本问题。 共享内存编程的标准 使用线程库">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/10/smp.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/1.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/1.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/1.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/03/并行系统学习之路4/" title="并行系统学习之路（四） ---- OpenMP学习" itemprop="url">并行系统学习之路（四） ---- OpenMP学习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-03T19:47:17.000Z" itemprop="datePublished"> 發表於 2017-10-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenMP-编程学习"><span class="toc-number">1.</span> <span class="toc-text">OpenMP 编程学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#共享内存编程的标准"><span class="toc-number">2.</span> <span class="toc-text">共享内存编程的标准</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenMP介绍"><span class="toc-number">3.</span> <span class="toc-text">OpenMP介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#编程模型"><span class="toc-number">3.1.</span> <span class="toc-text">编程模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C下的OpenMP"><span class="toc-number">3.2.</span> <span class="toc-text">C下的OpenMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程间的通信"><span class="toc-number">3.3.</span> <span class="toc-text">线程间的通信</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenMP探索"><span class="toc-number">4.</span> <span class="toc-text">OpenMP探索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenMP基本用法"><span class="toc-number">4.1.</span> <span class="toc-text">OpenMP基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenMP组成"><span class="toc-number">4.2.</span> <span class="toc-text">OpenMP组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Regions-并行区域"><span class="toc-number">4.2.1.</span> <span class="toc-text">Parallel Regions(并行区域)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Work-Sharing-Constructs"><span class="toc-number">4.2.2.</span> <span class="toc-text">Work-Sharing Constructs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-Sharing-Constructs-Example"><span class="toc-number">4.2.2.1.</span> <span class="toc-text">Work-Sharing Constructs Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#schedule子句"><span class="toc-number">4.2.2.2.</span> <span class="toc-text">schedule子句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Environment"><span class="toc-number">4.2.3.</span> <span class="toc-text">Data Environment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronization"><span class="toc-number">4.2.4.</span> <span class="toc-text">Synchronization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runtime-functions-environment-variables"><span class="toc-number">4.2.5.</span> <span class="toc-text">Runtime functions/environment variables</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Runtime-environment-routines"><span class="toc-number">4.2.5.1.</span> <span class="toc-text">Runtime environment routines:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Environment-Variable"><span class="toc-number">4.2.5.2.</span> <span class="toc-text">Environment Variable</span></a></li></ol></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="OpenMP-编程学习"><a href="#OpenMP-编程学习" class="headerlink" title="OpenMP 编程学习"></a>OpenMP 编程学习</h1><p>本周的主题是Shared Memory Programming，也就是共享内存编程。首先，我们需要明确一下共享内存编程的基本概念。</p>
+<p><img src="/content/images/2017/10/smp.png" alt=""></p>
+<p>上图说明了单处理器和共享内存处理器的基本结构差异，我们可以看到共享内存处理器的最大特点就是CPU数量比单处理器多的多。很明显，利用这个特点，我们可以让一些特定程序运行的更快。这其实也是并行系统解决的基本问题。</p>
+<h1 id="共享内存编程的标准"><a href="#共享内存编程的标准" class="headerlink" title="共享内存编程的标准"></a>共享内存编程的标准</h1><ul>
+<li><p>使用线程库</p>
+<ul>
+<li>Win32 API</li>
+<li>POSIX线程库</li>
+</ul>
+</li>
+<li><p>编译器导向</p>
+<ul>
+<li>OpenMP(本篇重点）</li>
+</ul>
+</li>
+<li><p>信息传输库</p>
+<ul>
+<li>MPI</li>
+</ul>
+</li>
+<li><p>并行语言</p>
+<ul>
+<li>存在许多语言但是没有任何一种是业界通用的</li>
+</ul>
+</li>
+</ul>
+<h1 id="OpenMP介绍"><a href="#OpenMP介绍" class="headerlink" title="OpenMP介绍"></a>OpenMP介绍</h1><ul>
+<li>编译器导向</li>
+<li>library routines</li>
+<li>可以轻松编写多线程程序</li>
+<li>支持Fortran, C, C++</li>
+<li>面世20年，稳定</li>
+</ul>
+<h2 id="编程模型"><a href="#编程模型" class="headerlink" title="编程模型"></a>编程模型</h2><ul>
+<li>Fork-Join Parallelism:<ul>
+<li>Master线程将根据需求产生多个子线程</li>
+<li>由顺序执行的程序演变而来，并行化是可增加的</li>
+</ul>
+</li>
+</ul>
+<p><img src="/content/images/2017/10/openmp_model.png" alt=""></p>
+<h2 id="C下的OpenMP"><a href="#C下的OpenMP" class="headerlink" title="C下的OpenMP"></a>C下的OpenMP</h2><ul>
+<li>OpenMP通常运用于并行循环：<ul>
+<li>找出时间花费最多的循环</li>
+<li>将循环用线程分离</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程间的通信"><a href="#线程间的通信" class="headerlink" title="线程间的通信"></a>线程间的通信</h2><ul>
+<li><p>OpenMP是一个共享内存的模型</p>
+<ul>
+<li>可以通过共享变量通信</li>
+</ul>
+</li>
+<li><p>注意防止竞争条件的出现</p>
+<ul>
+<li>使用锁保护数据</li>
+</ul>
+</li>
+<li><p>加锁操作的代价很昂贵所以要尽可能改变数据访问形式以减少锁的使用</p>
+</li>
+</ul>
+<h1 id="OpenMP探索"><a href="#OpenMP探索" class="headerlink" title="OpenMP探索"></a>OpenMP探索</h1><p>OpenMP在系统中的层次如下图所示：<br><img src="/content/images/2017/10/openmp_layer.png" alt=""></p>
+<h2 id="OpenMP基本用法"><a href="#OpenMP基本用法" class="headerlink" title="OpenMP基本用法"></a>OpenMP基本用法</h2><pre><code>- 多数OpenMP结构与结构block共同出现
+- 结构block中允许出现exit()(C++)
+</code></pre><p>例：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> id = omp_get_thread_num();</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"Hello world from %d\n"</span>, id);</div><div class="line">&#125;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"all done\n"</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="OpenMP组成"><a href="#OpenMP组成" class="headerlink" title="OpenMP组成"></a>OpenMP组成</h2><p>OpenMP的组成有5个大类：</p>
+<ul>
+<li>Parallel Regions</li>
+<li>Worksharing</li>
+<li>Data Environment</li>
+<li>Synchronization</li>
+<li>Runtime functions/environment variables</li>
+</ul>
+<h3 id="Parallel-Regions-并行区域"><a href="#Parallel-Regions-并行区域" class="headerlink" title="Parallel Regions(并行区域)"></a>Parallel Regions(并行区域)</h3><p>对于以下代码:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="keyword">double</span> A[<span class="number">1000</span>];</div><div class="line">omp_set_num_threads(<span class="number">4</span>); 	 		<span class="comment">//要求openmp将产生确定的线程数</span></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> ID = omp_get_thread_num();  <span class="comment">//返回当前线程ID</span></div><div class="line">	pooh(ID,A);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>语句<code>#pragma omp parallel</code>后的block即为并行区域。所有4个线程都将执行block中的代码。其中A被所有4个线程共享</p>
+<h3 id="Work-Sharing-Constructs"><a href="#Work-Sharing-Constructs" class="headerlink" title="Work-Sharing Constructs"></a>Work-Sharing Constructs</h3><p>对于以下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; n; i++)</div><div class="line">		neat_stuff(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>for</code>将循环根据线程分组执行</li>
+<li>在<code>omp for</code>后默认会有一个同步符号(barrier)</li>
+<li>可以使用<code>nowait</code>来关闭barrier<ul>
+<li><code>#pragma omp for nowait</code></li>
+<li>当有两个连续而且不相关的循环的时候很有用</li>
+</ul>
+</li>
+</ul>
+<h4 id="Work-Sharing-Constructs-Example"><a href="#Work-Sharing-Constructs-Example" class="headerlink" title="Work-Sharing Constructs Example"></a>Work-Sharing Constructs Example</h4><figure class="highlight objectivec"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Sequential code</span></div><div class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;I&lt;N;i++)</div><div class="line">&#123;</div><div class="line">	a[i] = a[i] + b[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Parallel Region</span></div><div class="line"><span class="meta">#pragma omp parallel</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> <span class="keyword">id</span>, i, Nthrds, istart, iend;</div><div class="line">	<span class="keyword">id</span> = omp_get_thread_num();</div><div class="line">	Nthrds = omp_get_num_threads();</div><div class="line">	istart = <span class="keyword">id</span> * N / Nthrds;</div><div class="line">	iend = (<span class="keyword">id</span>+<span class="number">1</span>) * N / Nthrds;</div><div class="line">	<span class="keyword">for</span>(i=istart;I&lt;iend;i++)</div><div class="line">	a[i] = a[i] + b[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Parallel Region + Work-Sharing</span></div><div class="line"><span class="meta">#pragma omp parallel</span></div><div class="line"><span class="meta">#pragma omp for schedule(static)</span></div><div class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">	a[i] = a[i] + b[i];</div></pre></td></tr></table></figure>
+<h4 id="schedule子句"><a href="#schedule子句" class="headerlink" title="schedule子句"></a>schedule子句</h4><ul>
+<li>决定了循环将怎么样映射到线程上去</li>
+<li>schedule(static [,chunk])<ul>
+<li>预先按顺序分好线程，尽量使得每个线程执行的循环数相等(可能相差1因为循环数不一定可以被线程数整除)</li>
+</ul>
+</li>
+<li>schedule(dynamic [,chunk])<ul>
+<li>实时动态分配任务，哪个线程之前的任务做完就为它分配下一个循环</li>
+<li>动态分配，但是开销会变高</li>
+</ul>
+</li>
+</ul>
+<h3 id="Data-Environment"><a href="#Data-Environment" class="headerlink" title="Data Environment"></a>Data Environment</h3><ul>
+<li>共享内存模型<ul>
+<li>多数变量默认是shared类型的</li>
+<li>全局变量: 在C里，文件域的变量和static变量是shared类型的</li>
+<li>通过PRIVATE子句关闭shared</li>
+</ul>
+</li>
+</ul>
+<p>当变量是shared类型时，变量会存在Shared memory中，所有线程会共享改变量，对改变量的修改在其他线程中也可以得到体现。而当变量是private的时候，每个线程会在线程的local存在一个变量，这个变量是各个线程独有的。在一个线程中改变变量并不会改变其他线程中的该变量。</p>
+<p>private有一个潜在的问题就是变量必须在block重新赋值，不管变量在block外是否已经初始化过，如下：<br><figure class="highlight ada"><table><tr><td class="code"><pre><div class="line">void wrong() &#123;</div><div class="line">  int <span class="keyword">IS</span> = <span class="number">0</span>;</div><div class="line">	#<span class="keyword">pragma</span> omp parallel <span class="keyword">for</span> <span class="keyword">private</span>(<span class="keyword">IS</span>)</div><div class="line">	<span class="keyword">for</span> (j=<span class="number">0</span>; j &lt; <span class="number">1000</span>; j++)</div><div class="line">		<span class="keyword">IS</span> += a[j]; 			// <span class="keyword">IS</span>没有初始化</div><div class="line">  printf(<span class="string">""</span>%d<span class="string">", IS);</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h3><ul>
+<li><p>Critical Sections: 一次只有一个线程可以访问critical sections</p>
+  <figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="keyword">float</span> res;</div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">float</span> B; <span class="keyword">int</span> i;</div><div class="line">	<span class="meta">#<span class="meta-keyword">pragma</span> omp for</span></div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;niters;i++)&#123;</div><div class="line">		B = big_job(i);</div><div class="line">		<span class="comment">// Threads wait their turn – only one at a time calls consume()</span></div><div class="line">		<span class="meta">#<span class="meta-keyword">pragma</span> omp critical</span></div><div class="line">		consum (B, RES);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Atomic: Atomic is a special case of a critical section that can be used for certain simple statements.</p>
+  <figure class="highlight mipsasm"><table><tr><td class="code"><pre><div class="line"><span class="comment">#pragma omp parallel private(B)</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">B </span>= DOIT(I)<span class="comment">;</span></div><div class="line">	tmp = <span class="keyword">big_ugly();</span></div><div class="line"><span class="keyword">	</span><span class="comment">#pragma omp atomic</span></div><div class="line">	X = X + temp<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Barrier: 所有线程会在此等待直到所有线程到达</p>
+</li>
+<li><p>Ordered: 可以保证每个block按顺序被执行</p>
+  <figure class="highlight julia"><table><tr><td class="code"><pre><div class="line"><span class="comment">#pragma omp parallel private (tmp)</span></div><div class="line"><span class="comment">#pragma omp for ordered</span></div><div class="line"><span class="keyword">for</span> (<span class="literal">I</span>=<span class="number">0</span>;<span class="literal">I</span>&lt;N;<span class="literal">I</span>++)&#123;</div><div class="line">	tmp = NEAT_STUFF(<span class="literal">I</span>);</div><div class="line">	<span class="comment">#pragma omp ordered</span></div><div class="line">	res += consum(tmp);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Master: Master线程会执行block，其他线程将会跳过此block</p>
+</li>
+</ul>
+<h3 id="Runtime-functions-environment-variables"><a href="#Runtime-functions-environment-variables" class="headerlink" title="Runtime functions/environment variables"></a>Runtime functions/environment variables</h3><h4 id="Runtime-environment-routines"><a href="#Runtime-environment-routines" class="headerlink" title="Runtime environment routines:"></a>Runtime environment routines:</h4><ul>
+<li>Modify/Check the number of threads<ul>
+<li>omp_set_num_threads(),<ul>
+<li>omp_get_num_threads(),</li>
+<li>omp_get_thread_num(),</li>
+<li>omp_get_max_threads()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Are we in a parallel region?<ul>
+<li>omp_in_parallel()</li>
+</ul>
+</li>
+<li>How many processors in the system?<ul>
+<li>omp_get_num_procs()</li>
+</ul>
+</li>
+</ul>
+<h4 id="Environment-Variable"><a href="#Environment-Variable" class="headerlink" title="Environment Variable"></a>Environment Variable</h4><ul>
+<li>Control how “omp for schedule(RUNTIME)” loop iterations are scheduled.<ul>
+<li>OMP_SCHEDULE “schedule[, chunk_size]”</li>
+</ul>
+</li>
+<li>Set the default number of threads to use.<ul>
+<li>OMP_NUM_THREADS int_literal</li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://vulture29.github.io/2017/10/03/并行系统学习之路4/" data-title="并行系统学习之路（四） ---- OpenMP学习 | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/09/22/并行系统学习之路3/"  title="并行系统学习之路（三） ---- CUDA学习">
+ <strong>下一篇：</strong><br/> 
+ <span>并行系统学习之路（三） ---- CUDA学习
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.huihuiloves.me" target="_blank" title="我的">我的</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://xingyaohuang.com/prog1/" target="_blank" title="看个球">看个球</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Xingyao Huang. <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5981969306" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/vulture29" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xingyaohuang" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+		<a href="mailto:huangyy1995@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Xingyao Huang">Xingyao Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'vulture29-github-io';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-106199480-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
