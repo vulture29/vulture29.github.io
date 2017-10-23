@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>effective c++读书笔记（一） | Xingyao Huang&#39;s Blog</title>
+    <title>Effective C++读书笔记（一） | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
@@ -14,13 +14,13 @@
     <meta name="description" content="条款1： 视C++为一个联邦 把C++看成4部分 C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能 Template C++ STL：STL包括containers, iterators, algorithms，他们为编程提供了很">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="effective c++读书笔记（一）">
+<meta property="og:title" content="Effective C++读书笔记（一）">
 <meta property="og:url" content="http://vulture29.github.io/2017/10/22/eff-cpp1/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款1： 视C++为一个联邦 把C++看成4部分 C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能 Template C++ STL：STL包括containers, iterators, algorithms，他们为编程提供了很">
-<meta property="og:updated_time" content="2017-10-23T04:00:58.000Z">
+<meta property="og:updated_time" content="2017-10-23T04:02:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="effective c++读书笔记（一）">
+<meta name="twitter:title" content="Effective C++读书笔记（一）">
 <meta name="twitter:description" content="条款1： 视C++为一个联邦 把C++看成4部分 C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能 Template C++ STL：STL包括containers, iterators, algorithms，他们为编程提供了很">
 
     
@@ -76,7 +76,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/22/eff-cpp1/" title="effective c++读书笔记（一）" itemprop="url">effective c++读书笔记（一）</a>
+      <a href="/2017/10/22/eff-cpp1/" title="Effective C++读书笔记（一）" itemprop="url">Effective C++读书笔记（一）</a>
   </h1>
   <p class="article-author">By
        
@@ -92,7 +92,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款1：-视C-为一个联邦"><span class="toc-number">1.</span> <span class="toc-text">条款1： 视C++为一个联邦</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款2：-尽量以const-enum-inline替换-define"><span class="toc-number">2.</span> <span class="toc-text">条款2： 尽量以const, enum, inline替换#define</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款三：-尽可能多的使用const"><span class="toc-number">3.</span> <span class="toc-text">条款三： 尽可能多的使用const</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款四：-确定对象被使用前已先被初始化"><span class="toc-number">4.</span> <span class="toc-text">条款四： 确定对象被使用前已先被初始化</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款1：-视C-为一个联邦"><span class="toc-number">1.</span> <span class="toc-text">条款1： 视C++为一个联邦</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款2：-尽量以const-enum-inline替换-define"><span class="toc-number">2.</span> <span class="toc-text">条款2： 尽量以const, enum, inline替换#define</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款3：-尽可能多的使用const"><span class="toc-number">3.</span> <span class="toc-text">条款3： 尽可能多的使用const</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款4：-确定对象被使用前已先被初始化"><span class="toc-number">4.</span> <span class="toc-text">条款4： 确定对象被使用前已先被初始化</span></a></li></ol>
 		
 		</div>
 		
@@ -107,9 +107,9 @@
 </ul>
 <h1 id="条款2：-尽量以const-enum-inline替换-define"><a href="#条款2：-尽量以const-enum-inline替换-define" class="headerlink" title="条款2： 尽量以const, enum, inline替换#define"></a>条款2： 尽量以const, enum, inline替换#define</h1><ul>
 <li>#define直接替换代码，如果define的是常数，debug时只能看到这个常数而不能看到具体对应的变量，用const可以避免此问题</li>
-<li>#defien直接替换代码，有些时候会引起难以察觉的错误。例如优先级问题等。</li>
+<li>#define直接替换代码，有些时候会引起难以察觉的错误。例如优先级问题等。</li>
 </ul>
-<h1 id="条款三：-尽可能多的使用const"><a href="#条款三：-尽可能多的使用const" class="headerlink" title="条款三： 尽可能多的使用const"></a>条款三： 尽可能多的使用const</h1><ul>
+<h1 id="条款3：-尽可能多的使用const"><a href="#条款3：-尽可能多的使用const" class="headerlink" title="条款3： 尽可能多的使用const"></a>条款3： 尽可能多的使用const</h1><ul>
 <li>在函数声明内使用const可以防止参数（指针）被修改<ul>
 <li>const在星号左边代表被指物是常量</li>
 <li>const在星号右边代表指针是常量</li>
@@ -122,7 +122,7 @@
 <li>编译器实现bitwise const，即成员函数不改变对象内任何non-static成员变量，编写程序时亦应注意逻辑上保证正确</li>
 <li>当const和non-const版本有实质等价的实现时，可以让non-const版本转型并调用const版本成员函数</li>
 </ul>
-<h1 id="条款四：-确定对象被使用前已先被初始化"><a href="#条款四：-确定对象被使用前已先被初始化" class="headerlink" title="条款四： 确定对象被使用前已先被初始化"></a>条款四： 确定对象被使用前已先被初始化</h1><ul>
+<h1 id="条款4：-确定对象被使用前已先被初始化"><a href="#条款4：-确定对象被使用前已先被初始化" class="headerlink" title="条款4： 确定对象被使用前已先被初始化"></a>条款4： 确定对象被使用前已先被初始化</h1><ul>
 <li>简单<code>int x</code>并不保证x一定会被初始化为0</li>
 <li>确保每一个构造函数都将对象的每一个成员初始化<ul>
 <li>带参数的构造函数</li>
@@ -157,7 +157,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/10/22/eff-cpp1/" data-title="effective c++读书笔记（一） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/22/eff-cpp1/" data-title="Effective C++读书笔记（一） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -213,11 +213,11 @@
 			
 		
 			
-				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
 			
 		
 			
