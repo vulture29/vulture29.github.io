@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Effective C++读书笔记（一） | Xingyao Huang&#39;s Blog</title>
+    <title>Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
     
 
     
-    <meta name="description" content="条款1： 视C++为一个联邦 把C++看成4部分 C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能 Template C++ STL：STL包括containers, iterators, algorithms，他们为编程提供了很">
+    <meta name="description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++读书笔记（一）">
-<meta property="og:url" content="http://vulture29.github.io/2017/10/22/eff-cpp1/index.html">
+<meta property="og:title" content="Effective C++读书笔记（二）">
+<meta property="og:url" content="http://vulture29.github.io/2017/10/23/eff-cpp2/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="条款1： 视C++为一个联邦 把C++看成4部分 C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能 Template C++ STL：STL包括containers, iterators, algorithms，他们为编程提供了很">
-<meta property="og:updated_time" content="2017-10-23T04:02:03.000Z">
+<meta property="og:description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
+<meta property="og:updated_time" content="2017-10-24T04:11:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++读书笔记（一）">
-<meta name="twitter:description" content="条款1： 视C++为一个联邦 把C++看成4部分 C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能 Template C++ STL：STL包括containers, iterators, algorithms，他们为编程提供了很">
+<meta name="twitter:title" content="Effective C++读书笔记（二）">
+<meta name="twitter:description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
 
     
     <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
@@ -76,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/22/eff-cpp1/" title="Effective C++读书笔记（一）" itemprop="url">Effective C++读书笔记（一）</a>
+      <a href="/2017/10/23/eff-cpp2/" title="Effective C++读书笔记（二）" itemprop="url">Effective C++读书笔记（二）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-23T03:07:44.000Z" itemprop="datePublished"> 發表於 2017-10-22</time>
+    <time datetime="2017-10-24T03:05:35.000Z" itemprop="datePublished"> 發表於 2017-10-23</time>
     
   </p>
 </header>
@@ -92,53 +92,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款1：-视C-为一个联邦"><span class="toc-number">1.</span> <span class="toc-text">条款1： 视C++为一个联邦</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款2：-尽量以const-enum-inline替换-define"><span class="toc-number">2.</span> <span class="toc-text">条款2： 尽量以const, enum, inline替换#define</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款3：-尽可能多的使用const"><span class="toc-number">3.</span> <span class="toc-text">条款3： 尽可能多的使用const</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款4：-确定对象被使用前已先被初始化"><span class="toc-number">4.</span> <span class="toc-text">条款4： 确定对象被使用前已先被初始化</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款5：-了解C-默默编写并调用了哪些函数"><span class="toc-number">1.</span> <span class="toc-text">条款5： 了解C++默默编写并调用了哪些函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款6：-若不想使用编译器自动生成的函数，就该明确拒绝"><span class="toc-number">2.</span> <span class="toc-text">条款6： 若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款7：-为多态基类声明virtual析构函数"><span class="toc-number">3.</span> <span class="toc-text">条款7： 为多态基类声明virtual析构函数</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="条款1：-视C-为一个联邦"><a href="#条款1：-视C-为一个联邦" class="headerlink" title="条款1： 视C++为一个联邦"></a>条款1： 视C++为一个联邦</h1><ul>
-<li>把C++看成4部分<ul>
-<li>C： 以后当有人问C和C++之间的关系时我们可以回答，C++是以C为基础的，多数语法，基本数据类型，预处理器等统统来自于C</li>
-<li>Object-Oriented C++: C++是可以面向对象的，这部分让C++有了这样的功能</li>
-<li>Template C++</li>
-<li>STL：STL包括containers, iterators, algorithms，他们为编程提供了很大的便利</li>
+		<h1 id="条款5：-了解C-默默编写并调用了哪些函数"><a href="#条款5：-了解C-默默编写并调用了哪些函数" class="headerlink" title="条款5： 了解C++默默编写并调用了哪些函数"></a>条款5： 了解C++默默编写并调用了哪些函数</h1><ul>
+<li>对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数</li>
+</ul>
+<h1 id="条款6：-若不想使用编译器自动生成的函数，就该明确拒绝"><a href="#条款6：-若不想使用编译器自动生成的函数，就该明确拒绝" class="headerlink" title="条款6： 若不想使用编译器自动生成的函数，就该明确拒绝"></a>条款6： 若不想使用编译器自动生成的函数，就该明确拒绝</h1><ul>
+<li>有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现</li>
+</ul>
+<h1 id="条款7：-为多态基类声明virtual析构函数"><a href="#条款7：-为多态基类声明virtual析构函数" class="headerlink" title="条款7： 为多态基类声明virtual析构函数"></a>条款7： 为多态基类声明virtual析构函数</h1><ul>
+<li>如果多态类有任何virtual函数，他就应该拥有一个virtual析构函数，这样对象在最后的回收时才能调用正确的析构函数</li>
+<li>为抽象类构造一个纯虚析构函数</li>
+<li>如果类的设计目的不是为了具备多态性，就不该声明析构函数</li>
+</ul>
+<p>#条款8： 别让异常逃离析构函数</p>
+<ul>
+<li>析构函数吐出异常是不确定的行为，两个办法<ul>
+<li>捕捉任何异常并吞下（不传播）</li>
+<li>结束程序</li>
 </ul>
 </li>
-</ul>
-<h1 id="条款2：-尽量以const-enum-inline替换-define"><a href="#条款2：-尽量以const-enum-inline替换-define" class="headerlink" title="条款2： 尽量以const, enum, inline替换#define"></a>条款2： 尽量以const, enum, inline替换#define</h1><ul>
-<li>#define直接替换代码，如果define的是常数，debug时只能看到这个常数而不能看到具体对应的变量，用const可以避免此问题</li>
-<li>#define直接替换代码，有些时候会引起难以察觉的错误。例如优先级问题等。</li>
-</ul>
-<h1 id="条款3：-尽可能多的使用const"><a href="#条款3：-尽可能多的使用const" class="headerlink" title="条款3： 尽可能多的使用const"></a>条款3： 尽可能多的使用const</h1><ul>
-<li>在函数声明内使用const可以防止参数（指针）被修改<ul>
-<li>const在星号左边代表被指物是常量</li>
-<li>const在星号右边代表指针是常量</li>
-<li>出现在星号两边代表都是常量</li>
-</ul>
-</li>
-<li>令函数返回一个常量值可以降低函数使用者因错误使用造成的意外</li>
-<li>类中两个函数如果只是常量性不同，可以被重载（可以设置两个相同名字的函数处理const对象和非const对象）</li>
-<li>在C++中，只有被声明为const的成员函数才能被一个const类对象调用</li>
-<li>编译器实现bitwise const，即成员函数不改变对象内任何non-static成员变量，编写程序时亦应注意逻辑上保证正确</li>
-<li>当const和non-const版本有实质等价的实现时，可以让non-const版本转型并调用const版本成员函数</li>
-</ul>
-<h1 id="条款4：-确定对象被使用前已先被初始化"><a href="#条款4：-确定对象被使用前已先被初始化" class="headerlink" title="条款4： 确定对象被使用前已先被初始化"></a>条款4： 确定对象被使用前已先被初始化</h1><ul>
-<li>简单<code>int x</code>并不保证x一定会被初始化为0</li>
-<li>确保每一个构造函数都将对象的每一个成员初始化<ul>
-<li>带参数的构造函数</li>
-<li>注意赋值和初始化的区别</li>
-<li>初始化动作发生在进入构造函数本体之前</li>
-<li>使用member initialization list替换赋值动作（否则会调用default构造函数初始化，是一种浪费）</li>
-<li>最好以声明次序作为成员初值列顺序（条款12）</li>
-</ul>
-</li>
-<li>不同编译单元内定义之non-local static对象<ul>
-<li>函数内的static对象称为local static对象，其余为non-local</li>
-<li>编译单元(translation unit)指产出单一目标文件的源码</li>
-<li>Singleton模式的get()可解决这一问题</li>
-<li>加强设计</li>
-</ul>
-</li>
+<li>如果析构函数一定需要做出反应，class应该在普通函数中处理（设计问题）</li>
 </ul>
   
 	</div>
@@ -157,7 +133,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/10/22/eff-cpp1/" data-title="Effective C++读书笔记（一） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/23/eff-cpp2/" data-title="Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -170,19 +146,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/10/23/eff-cpp2/" title="Effective C++读书笔记（二）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Effective C++读书笔记（二）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/10/03/并行系统学习之路4/"  title="并行系统学习之路（四） ---- OpenMP学习">
+<a href="/2017/10/22/eff-cpp1/"  title="Effective C++读书笔记（一）">
  <strong>下一篇：</strong><br/> 
- <span>并行系统学习之路（四） ---- OpenMP学习
+ <span>Effective C++读书笔记（一）
 </span>
 </a>
 </div>
