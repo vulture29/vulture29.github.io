@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://vulture29.github.io/2017/10/23/eff-cpp2/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
-<meta property="og:updated_time" content="2017-10-24T04:11:58.000Z">
+<meta property="og:updated_time" content="2017-10-26T03:32:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective C++读书笔记（二）">
 <meta name="twitter:description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
@@ -92,7 +92,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款5：-了解C-默默编写并调用了哪些函数"><span class="toc-number">1.</span> <span class="toc-text">条款5： 了解C++默默编写并调用了哪些函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款6：-若不想使用编译器自动生成的函数，就该明确拒绝"><span class="toc-number">2.</span> <span class="toc-text">条款6： 若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款7：-为多态基类声明virtual析构函数"><span class="toc-number">3.</span> <span class="toc-text">条款7： 为多态基类声明virtual析构函数</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款5：-了解C-默默编写并调用了哪些函数"><span class="toc-number">1.</span> <span class="toc-text">条款5： 了解C++默默编写并调用了哪些函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款6：-若不想使用编译器自动生成的函数，就该明确拒绝"><span class="toc-number">2.</span> <span class="toc-text">条款6： 若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款7：-为多态基类声明virtual析构函数"><span class="toc-number">3.</span> <span class="toc-text">条款7： 为多态基类声明virtual析构函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款8：-别让异常逃离析构函数"><span class="toc-number">4.</span> <span class="toc-text">条款8： 别让异常逃离析构函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款9：-绝不在构造和析构过程中调用virtual函数"><span class="toc-number">5.</span> <span class="toc-text">条款9： 绝不在构造和析构过程中调用virtual函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款10：-另-operator-返回一个对-this-的引用"><span class="toc-number">6.</span> <span class="toc-text">条款10： 另 operator= 返回一个对 *this 的引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款11：-在-operator-中处理”自我赋值”"><span class="toc-number">7.</span> <span class="toc-text">条款11： 在 operator= 中处理”自我赋值”</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款12：-复制对象时勿忘记其每一个成分"><span class="toc-number">8.</span> <span class="toc-text">条款12： 复制对象时勿忘记其每一个成分</span></a></li></ol>
 		
 		</div>
 		
@@ -107,14 +107,34 @@
 <li>为抽象类构造一个纯虚析构函数</li>
 <li>如果类的设计目的不是为了具备多态性，就不该声明析构函数</li>
 </ul>
-<p>#条款8： 别让异常逃离析构函数</p>
-<ul>
+<h1 id="条款8：-别让异常逃离析构函数"><a href="#条款8：-别让异常逃离析构函数" class="headerlink" title="条款8： 别让异常逃离析构函数"></a>条款8： 别让异常逃离析构函数</h1><ul>
 <li>析构函数吐出异常是不确定的行为，两个办法<ul>
 <li>捕捉任何异常并吞下（不传播）</li>
 <li>结束程序</li>
 </ul>
 </li>
-<li>如果析构函数一定需要做出反应，class应该在普通函数中处理（设计问题）</li>
+<li>如果析构函数一定需要做出反应，class应该在普通函数中处理（设计问题)</li>
+</ul>
+<h1 id="条款9：-绝不在构造和析构过程中调用virtual函数"><a href="#条款9：-绝不在构造和析构过程中调用virtual函数" class="headerlink" title="条款9： 绝不在构造和析构过程中调用virtual函数"></a>条款9： 绝不在构造和析构过程中调用virtual函数</h1><ul>
+<li>此过程中的调用姜不会下降至derived class</li>
+</ul>
+<h1 id="条款10：-另-operator-返回一个对-this-的引用"><a href="#条款10：-另-operator-返回一个对-this-的引用" class="headerlink" title="条款10： 另 operator= 返回一个对 *this 的引用"></a>条款10： 另 operator= 返回一个对 *this 的引用</h1><ul>
+<li>可以实现连续赋值</li>
+</ul>
+<h1 id="条款11：-在-operator-中处理”自我赋值”"><a href="#条款11：-在-operator-中处理”自我赋值”" class="headerlink" title="条款11： 在 operator= 中处理”自我赋值”"></a>条款11： 在 operator= 中处理”自我赋值”</h1><ul>
+<li>确保对象在自我赋值时有良好行为<ul>
+<li>可以在在函数起始处加入证同测试</li>
+<li>或者是operator具备异常安全性</li>
+</ul>
+</li>
+</ul>
+<h1 id="条款12：-复制对象时勿忘记其每一个成分"><a href="#条款12：-复制对象时勿忘记其每一个成分" class="headerlink" title="条款12： 复制对象时勿忘记其每一个成分"></a>条款12： 复制对象时勿忘记其每一个成分</h1><ul>
+<li>copying函数应该确保复制<ul>
+<li>对象内所有成员变量</li>
+<li>所有base成分</li>
+</ul>
+</li>
+<li>不应该在某个copy函数中调用另一个copy函数</li>
 </ul>
   
 	</div>
@@ -189,11 +209,11 @@
 			
 		
 			
-				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
 			
 		
 			
