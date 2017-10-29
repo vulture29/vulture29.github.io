@@ -11,18 +11,18 @@
     
 
     
-    <meta name="description" content="这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。 基本概念并行机器的基本分类：  SISD(无并行性) SIMD(ARC使用该架构) MIMD其中I指的是Instruction, D指的是Data。  本系列博客将使用NCSU的arc系统做为程序运行的环境，该结构的架构图如下： 用户可以通过ssh连接到head node，head node可">
+    <meta name="description" content="这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。 基本概念并行机器的基本分类 SISD(无并行性) SIMD(ARC使用该架构) MIMD其中I指的是Instruction, D指的是Data。  Moore’s Law电路上可容纳的晶体管数目，约每隔两年就会增长一倍（可扩展至各种事物） Amdahl’s law系统十分庞大，我们需要把各个影">
 <meta name="keywords" content="parallel system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并行系统学习之路（一）---- 介绍">
 <meta property="og:url" content="http://vulture29.github.io/2017/09/04/并行系统学习之路1/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。 基本概念并行机器的基本分类：  SISD(无并行性) SIMD(ARC使用该架构) MIMD其中I指的是Instruction, D指的是Data。  本系列博客将使用NCSU的arc系统做为程序运行的环境，该结构的架构图如下： 用户可以通过ssh连接到head node，head node可">
+<meta property="og:description" content="这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。 基本概念并行机器的基本分类 SISD(无并行性) SIMD(ARC使用该架构) MIMD其中I指的是Instruction, D指的是Data。  Moore’s Law电路上可容纳的晶体管数目，约每隔两年就会增长一倍（可扩展至各种事物） Amdahl’s law系统十分庞大，我们需要把各个影">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2017/09/arc_arch.png">
-<meta property="og:updated_time" content="2017-09-05T19:30:43.000Z">
+<meta property="og:updated_time" content="2017-10-29T19:07:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="并行系统学习之路（一）---- 介绍">
-<meta name="twitter:description" content="这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。 基本概念并行机器的基本分类：  SISD(无并行性) SIMD(ARC使用该架构) MIMD其中I指的是Instruction, D指的是Data。  本系列博客将使用NCSU的arc系统做为程序运行的环境，该结构的架构图如下： 用户可以通过ssh连接到head node，head node可">
+<meta name="twitter:description" content="这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。 基本概念并行机器的基本分类 SISD(无并行性) SIMD(ARC使用该架构) MIMD其中I指的是Instruction, D指的是Data。  Moore’s Law电路上可容纳的晶体管数目，约每隔两年就会增长一倍（可扩展至各种事物） Amdahl’s law系统十分庞大，我们需要把各个影">
 <meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/09/arc_arch.png">
 
     
@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -85,27 +85,30 @@
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-05T03:25:14.000Z" itemprop="datePublished"> Published 2017-09-04</time>
+    <time datetime="2017-09-05T03:25:14.000Z" itemprop="datePublished"> 發表於 2017-09-04</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#并行机器的基本分类"><span class="toc-number">1.1.</span> <span class="toc-text">并行机器的基本分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moore’s-Law"><span class="toc-number">1.2.</span> <span class="toc-text">Moore’s Law</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Amdahl’s-law"><span class="toc-number">1.3.</span> <span class="toc-text">Amdahl’s law</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gustafson’s-Law"><span class="toc-number">1.4.</span> <span class="toc-text">Gustafson’s Law</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little’s-law"><span class="toc-number">1.5.</span> <span class="toc-text">Little’s law</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编程架构"><span class="toc-number">2.</span> <span class="toc-text">编程架构</span></a></li></ol>
 		
 		</div>
 		
 		<p>这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。</p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>并行机器的基本分类：</p>
-<ul>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="并行机器的基本分类"><a href="#并行机器的基本分类" class="headerlink" title="并行机器的基本分类"></a>并行机器的基本分类</h2><ul>
 <li>SISD(无并行性)</li>
 <li>SIMD(ARC使用该架构)</li>
 <li>MIMD<br>其中I指的是Instruction, D指的是Data。</li>
 </ul>
-<p>本系列博客将使用NCSU的arc系统做为程序运行的环境，该结构的架构图如下：</p>
+<h2 id="Moore’s-Law"><a href="#Moore’s-Law" class="headerlink" title="Moore’s Law"></a>Moore’s Law</h2><p>电路上可容纳的晶体管数目，约每隔两年就会增长一倍（可扩展至各种事物）</p>
+<h2 id="Amdahl’s-law"><a href="#Amdahl’s-law" class="headerlink" title="Amdahl’s law"></a>Amdahl’s law</h2><p>系统十分庞大，我们需要把各个影响系统性能的因素分离出来一一优化，必要时找出性价比最高的因素进行优化。并给出计算公式，详情见<a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank" rel="external">链接</a></p>
+<h2 id="Gustafson’s-Law"><a href="#Gustafson’s-Law" class="headerlink" title="Gustafson’s Law"></a>Gustafson’s Law</h2><p>与Amdahl法则相似的另一个<a href="https://en.wikipedia.org/wiki/Gustafson%27s_law" target="_blank" rel="external">公式</a></p>
+<h2 id="Little’s-law"><a href="#Little’s-law" class="headerlink" title="Little’s law"></a>Little’s law</h2><p>在一个稳定的系统中，平均的客户数（访问该系统的客户）等于客户到达该系统的平均速率乘以客户在该系统中花费的平均时间</p>
+<h1 id="编程架构"><a href="#编程架构" class="headerlink" title="编程架构"></a>编程架构</h1><p>本系列博客将使用NCSU的arc系统做为程序运行的环境，该结构的架构图如下：</p>
 <p>用户可以通过ssh连接到head node，head node可以提交batch任务至计算节点执行，或者直接登陆值计算机节点执行任务。<br><img src="/content/images/2017/09/arc_arch.png" alt="arc_arch"></p>
 <p>下一章使用MPI编写的程序将会在此环境中执行。</p>
   
@@ -167,21 +170,21 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>4</sup></a></li>
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>5</sup></a></li>
 			
 		
 			
@@ -189,11 +192,11 @@
 			
 		
 			
-				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
 			
 		
 			
@@ -205,7 +208,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -468,7 +471,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

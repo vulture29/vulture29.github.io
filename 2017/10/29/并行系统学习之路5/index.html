@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog</title>
+    <title>并行系统学习之路（五） ---- Cache探索 | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
     
 
     
-    <meta name="description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
-<meta name="keywords" content="cpp">
+    <meta name="description" content="#">
+<meta name="keywords" content="parallel system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++读书笔记（二）">
-<meta property="og:url" content="http://vulture29.github.io/2017/10/23/eff-cpp2/index.html">
+<meta property="og:title" content="并行系统学习之路（五） ---- Cache探索">
+<meta property="og:url" content="http://vulture29.github.io/2017/10/29/并行系统学习之路5/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
-<meta property="og:updated_time" content="2017-10-26T03:32:54.000Z">
+<meta property="og:description" content="#">
+<meta property="og:updated_time" content="2017-10-29T18:48:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++读书笔记（二）">
-<meta name="twitter:description" content="条款5： 了解C++默默编写并调用了哪些函数 对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数  条款6： 若不想使用编译器自动生成的函数，就该明确拒绝 有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现  条款7： 为多态基类声明virtual析构函">
+<meta name="twitter:title" content="并行系统学习之路（五） ---- Cache探索">
+<meta name="twitter:description" content="#">
 
     
     <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
@@ -76,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/23/eff-cpp2/" title="Effective C++读书笔记（二）" itemprop="url">Effective C++读书笔记（二）</a>
+      <a href="/2017/10/29/并行系统学习之路5/" title="并行系统学习之路（五） ---- Cache探索" itemprop="url">并行系统学习之路（五） ---- Cache探索</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-24T03:05:35.000Z" itemprop="datePublished"> 發表於 2017-10-23</time>
+    <time datetime="2017-10-29T18:41:48.000Z" itemprop="datePublished"> 發表於 2017-10-29</time>
     
   </p>
 </header>
@@ -92,50 +92,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款5：-了解C-默默编写并调用了哪些函数"><span class="toc-number">1.</span> <span class="toc-text">条款5： 了解C++默默编写并调用了哪些函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款6：-若不想使用编译器自动生成的函数，就该明确拒绝"><span class="toc-number">2.</span> <span class="toc-text">条款6： 若不想使用编译器自动生成的函数，就该明确拒绝</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款7：-为多态基类声明virtual析构函数"><span class="toc-number">3.</span> <span class="toc-text">条款7： 为多态基类声明virtual析构函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款8：-别让异常逃离析构函数"><span class="toc-number">4.</span> <span class="toc-text">条款8： 别让异常逃离析构函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款9：-绝不在构造和析构过程中调用virtual函数"><span class="toc-number">5.</span> <span class="toc-text">条款9： 绝不在构造和析构过程中调用virtual函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款10：-另-operator-返回一个对-this-的引用"><span class="toc-number">6.</span> <span class="toc-text">条款10： 另 operator= 返回一个对 *this 的引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款11：-在-operator-中处理”自我赋值”"><span class="toc-number">7.</span> <span class="toc-text">条款11： 在 operator= 中处理”自我赋值”</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款12：-复制对象时勿忘记其每一个成分"><span class="toc-number">8.</span> <span class="toc-text">条款12： 复制对象时勿忘记其每一个成分</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="条款5：-了解C-默默编写并调用了哪些函数"><a href="#条款5：-了解C-默默编写并调用了哪些函数" class="headerlink" title="条款5： 了解C++默默编写并调用了哪些函数"></a>条款5： 了解C++默默编写并调用了哪些函数</h1><ul>
-<li>对于一个空类，C++会自动为其添加一个copy构造函数，一个copy assignment操作符，一个析构函数和一个defualt构造函数</li>
-</ul>
-<h1 id="条款6：-若不想使用编译器自动生成的函数，就该明确拒绝"><a href="#条款6：-若不想使用编译器自动生成的函数，就该明确拒绝" class="headerlink" title="条款6： 若不想使用编译器自动生成的函数，就该明确拒绝"></a>条款6： 若不想使用编译器自动生成的函数，就该明确拒绝</h1><ul>
-<li>有些时候不希望外部可以使用拷贝构造函数（或其它自动提供的函数），可以考虑将其定义为private并且不予实现</li>
-</ul>
-<h1 id="条款7：-为多态基类声明virtual析构函数"><a href="#条款7：-为多态基类声明virtual析构函数" class="headerlink" title="条款7： 为多态基类声明virtual析构函数"></a>条款7： 为多态基类声明virtual析构函数</h1><ul>
-<li>如果多态类有任何virtual函数，他就应该拥有一个virtual析构函数，这样对象在最后的回收时才能调用正确的析构函数</li>
-<li>为抽象类构造一个纯虚析构函数</li>
-<li>如果类的设计目的不是为了具备多态性，就不该声明析构函数</li>
-</ul>
-<h1 id="条款8：-别让异常逃离析构函数"><a href="#条款8：-别让异常逃离析构函数" class="headerlink" title="条款8： 别让异常逃离析构函数"></a>条款8： 别让异常逃离析构函数</h1><ul>
-<li>析构函数吐出异常是不确定的行为，两个办法<ul>
-<li>捕捉任何异常并吞下（不传播）</li>
-<li>结束程序</li>
-</ul>
-</li>
-<li>如果析构函数一定需要做出反应，class应该在普通函数中处理（设计问题)</li>
-</ul>
-<h1 id="条款9：-绝不在构造和析构过程中调用virtual函数"><a href="#条款9：-绝不在构造和析构过程中调用virtual函数" class="headerlink" title="条款9： 绝不在构造和析构过程中调用virtual函数"></a>条款9： 绝不在构造和析构过程中调用virtual函数</h1><ul>
-<li>此过程中的调用姜不会下降至derived class</li>
-</ul>
-<h1 id="条款10：-另-operator-返回一个对-this-的引用"><a href="#条款10：-另-operator-返回一个对-this-的引用" class="headerlink" title="条款10： 另 operator= 返回一个对 *this 的引用"></a>条款10： 另 operator= 返回一个对 *this 的引用</h1><ul>
-<li>可以实现连续赋值</li>
-</ul>
-<h1 id="条款11：-在-operator-中处理”自我赋值”"><a href="#条款11：-在-operator-中处理”自我赋值”" class="headerlink" title="条款11： 在 operator= 中处理”自我赋值”"></a>条款11： 在 operator= 中处理”自我赋值”</h1><ul>
-<li>确保对象在自我赋值时有良好行为<ul>
-<li>可以在在函数起始处加入证同测试</li>
-<li>或者是operator具备异常安全性</li>
-</ul>
-</li>
-</ul>
-<h1 id="条款12：-复制对象时勿忘记其每一个成分"><a href="#条款12：-复制对象时勿忘记其每一个成分" class="headerlink" title="条款12： 复制对象时勿忘记其每一个成分"></a>条款12： 复制对象时勿忘记其每一个成分</h1><ul>
-<li>copying函数应该确保复制<ul>
-<li>对象内所有成员变量</li>
-<li>所有base成分</li>
-</ul>
-</li>
-<li>不应该在某个copy函数中调用另一个copy函数</li>
-</ul>
+		<p># </p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -144,7 +105,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/cpp/">cpp</a>
+  <span></span> <a href="/tags/parallel-system/">parallel system</a>
   </div>
 
 </div>
@@ -153,7 +114,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/10/23/eff-cpp2/" data-title="Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/29/并行系统学习之路5/" data-title="并行系统学习之路（五） ---- Cache探索 | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -166,19 +127,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/10/29/eff-cpp3/" title="Effective C++读书笔记（三）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Effective C++读书笔记（三）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/10/22/eff-cpp1/"  title="Effective C++读书笔记（一）">
+<a href="/2017/10/29/eff-cpp3/"  title="Effective C++读书笔记（三）">
  <strong>下一篇：</strong><br/> 
- <span>Effective C++读书笔记（一）
+ <span>Effective C++读书笔记（三）
 </span>
 </a>
 </div>
