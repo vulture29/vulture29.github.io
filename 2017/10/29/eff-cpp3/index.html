@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog</title>
+    <title>Effective C++读书笔记（三） | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
@@ -14,13 +14,13 @@
     <meta name="description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++读书笔记（二）">
+<meta property="og:title" content="Effective C++读书笔记（三）">
 <meta property="og:url" content="http://vulture29.github.io/2017/10/29/eff-cpp3/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
-<meta property="og:updated_time" content="2017-10-29T14:48:31.000Z">
+<meta property="og:updated_time" content="2017-10-29T14:49:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++读书笔记（二）">
+<meta name="twitter:title" content="Effective C++读书笔记（三）">
 <meta name="twitter:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
 
     
@@ -45,7 +45,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -61,7 +61,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -76,21 +76,21 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/29/eff-cpp3/" title="Effective C++读书笔记（二）" itemprop="url">Effective C++读书笔记（二）</a>
+      <a href="/2017/10/29/eff-cpp3/" title="Effective C++读书笔记（三）" itemprop="url">Effective C++读书笔记（三）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-29T12:59:11.000Z" itemprop="datePublished"> 發表於 2017-10-29</time>
+    <time datetime="2017-10-29T12:59:11.000Z" itemprop="datePublished"> Published 2017-10-29</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款13：-以对象管理资源"><span class="toc-number">1.</span> <span class="toc-text">条款13： 以对象管理资源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款14：-在资源管理类中小心copying行为"><span class="toc-number">2.</span> <span class="toc-text">条款14： 在资源管理类中小心copying行为</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款15：-在资源管理类中提供对原始资源的访问"><span class="toc-number">3.</span> <span class="toc-text">条款15： 在资源管理类中提供对原始资源的访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款16：-成对使用new和delete时要采取相同形式"><span class="toc-number">4.</span> <span class="toc-text">条款16： 成对使用new和delete时要采取相同形式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款17：-以独立语句将newed对象置入智能指针"><span class="toc-number">5.</span> <span class="toc-text">条款17： 以独立语句将newed对象置入智能指针</span></a></li></ol>
 		
@@ -133,7 +133,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/10/29/eff-cpp3/" data-title="Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/29/eff-cpp3/" data-title="Effective C++读书笔记（三） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,17 +167,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -189,11 +189,11 @@
 			
 		
 			
-				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
 			
 		
 			
@@ -205,7 +205,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -468,7 +468,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
