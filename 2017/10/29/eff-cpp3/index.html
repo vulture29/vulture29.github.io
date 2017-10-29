@@ -4,23 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Xingyao Huang&#39;s Blog</title>
+    <title>Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
+<meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://vulture29.github.io/2017/09/02/hello-world/index.html">
+<meta property="og:title" content="Effective C++读书笔记（二）">
+<meta property="og:url" content="http://vulture29.github.io/2017/10/29/eff-cpp3/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-09-03T02:36:48.000Z">
+<meta property="og:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
+<meta property="og:updated_time" content="2017-10-29T14:48:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Effective C++读书笔记（二）">
+<meta name="twitter:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
 
     
     <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
@@ -75,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2017/10/29/eff-cpp3/" title="Effective C++读书笔记（二）" itemprop="url">Effective C++读书笔记（二）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-03T02:36:48.000Z" itemprop="datePublished"> 發表於 2017-09-02</time>
+    <time datetime="2017-10-29T12:59:11.000Z" itemprop="datePublished"> 發表於 2017-10-29</time>
     
   </p>
 </header>
@@ -91,24 +92,40 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款13：-以对象管理资源"><span class="toc-number">1.</span> <span class="toc-text">条款13： 以对象管理资源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款14：-在资源管理类中小心copying行为"><span class="toc-number">2.</span> <span class="toc-text">条款14： 在资源管理类中小心copying行为</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款15：-在资源管理类中提供对原始资源的访问"><span class="toc-number">3.</span> <span class="toc-text">条款15： 在资源管理类中提供对原始资源的访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款16：-成对使用new和delete时要采取相同形式"><span class="toc-number">4.</span> <span class="toc-text">条款16： 成对使用new和delete时要采取相同形式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款17：-以独立语句将newed对象置入智能指针"><span class="toc-number">5.</span> <span class="toc-text">条款17： 以独立语句将newed对象置入智能指针</span></a></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<h1 id="条款13：-以对象管理资源"><a href="#条款13：-以对象管理资源" class="headerlink" title="条款13： 以对象管理资源"></a>条款13： 以对象管理资源</h1><ul>
+<li>获得资源后立刻放进管理对象内</li>
+<li>管理对象运用析构函数确保资源被释放</li>
+<li>常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null</li>
+</ul>
+<h1 id="条款14：-在资源管理类中小心copying行为"><a href="#条款14：-在资源管理类中小心copying行为" class="headerlink" title="条款14： 在资源管理类中小心copying行为"></a>条款14： 在资源管理类中小心copying行为</h1><ul>
+<li>复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为</li>
+<li>通常采用的方法包括： 抑制copying，引用计数法，复制底部资源和转移底部资源的拥有权</li>
+</ul>
+<h1 id="条款15：-在资源管理类中提供对原始资源的访问"><a href="#条款15：-在资源管理类中提供对原始资源的访问" class="headerlink" title="条款15： 在资源管理类中提供对原始资源的访问"></a>条款15： 在资源管理类中提供对原始资源的访问</h1><ul>
+<li>API往往要求访问原始资源，故每一个class都应该提供一个”取得其对应资源”的方法</li>
+<li>显式转换：提供get方法（安全）</li>
+<li>隐式转换：隐式转换函数（方便）</li>
+</ul>
+<h1 id="条款16：-成对使用new和delete时要采取相同形式"><a href="#条款16：-成对使用new和delete时要采取相同形式" class="headerlink" title="条款16： 成对使用new和delete时要采取相同形式"></a>条款16： 成对使用new和delete时要采取相同形式</h1><ul>
+<li>如果在new表达式中使用[ ]，必须在相应的delete中使用[ ]</li>
+</ul>
+<h1 id="条款17：-以独立语句将newed对象置入智能指针"><a href="#条款17：-以独立语句将newed对象置入智能指针" class="headerlink" title="条款17： 以独立语句将newed对象置入智能指针"></a>条款17： 以独立语句将newed对象置入智能指针</h1><ul>
+<li>防止异常被抛出时，有可能导致难以察觉的资源泄露</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/cpp/">cpp</a>
+  </div>
 
 </div>
 
@@ -116,7 +133,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/09/02/hello-world/" data-title="Hello World | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/29/eff-cpp3/" data-title="Effective C++读书笔记（二） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -129,14 +146,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/09/03/使用sublime进行远程编辑/" title="使用Sublime Text进行远程编辑">
-  <strong>上一篇：</strong><br/>
-  <span>
-  使用Sublime Text进行远程编辑</span>
+
+<div class="next">
+<a href="/2017/10/23/eff-cpp2/"  title="Effective C++读书笔记（二）">
+ <strong>下一篇：</strong><br/> 
+ <span>Effective C++读书笔记（二）
+</span>
 </a>
 </div>
-
 
 </nav>
 
