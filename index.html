@@ -40,7 +40,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -56,7 +56,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -70,15 +70,17 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/29/并行系统学习之路5/" title="并行系统学习之路（五） ---- Cache探索" itemprop="url">
+    <a href="/2017/10/30/config-make-install/" title="Configure, make, make install背后的原理" itemprop="url">
   
-    <h1 itemprop="name">并行系统学习之路（五） ---- Cache探索</h1>
+    <h1 itemprop="name">Configure, make, make install背后的原理</h1>
     
      
-           <p itemprop="description" >#</p>
+           <p itemprop="description" >如果用过Unix系统，相信对下面这三个命令绝对不陌生./configuremakemake install
+这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。
+调试环境 - ./configure这个脚本通常是用来调试环境，使</p>
         
     
-    <time datetime="2017-10-29T18:41:48.000Z" itemprop="datePublished">2017-10-29</time>
+    <time datetime="2017-10-30T14:49:51.000Z" itemprop="datePublished">2017-10-30</time>
   </a>
 </section>
 
@@ -304,25 +306,29 @@ Moore’s Law电路</p>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>5</sup></a></li>
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>4</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/cpp/" title="cpp">cpp<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/random/" title="random">random<sup>1</sup></a></li>
 			
 		
 			
@@ -337,12 +343,14 @@ Moore’s Law电路</p>
 				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
 			
 		
+			
+		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -510,7 +518,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
