@@ -4,23 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | Xingyao Huang&#39;s Blog</title>
+    <title>并发的常见问题 | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
+<meta name="keywords" content="operating system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://vulture29.github.io/2017/09/02/hello-world/index.html">
+<meta property="og:title" content="并发的常见问题">
+<meta property="og:url" content="http://vulture29.github.io/2017/10/30/multi-threading-freq-problems/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-09-03T02:36:48.000Z">
+<meta property="og:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
+<meta property="og:updated_time" content="2017-10-31T01:48:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="并发的常见问题">
+<meta name="twitter:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 
     
     <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
@@ -75,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/02/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2017/10/30/multi-threading-freq-problems/" title="并发的常见问题" itemprop="url">并发的常见问题</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-03T02:36:48.000Z" itemprop="datePublished"> 發表於 2017-09-02</time>
+    <time datetime="2017-10-31T01:48:46.000Z" itemprop="datePublished"> 發表於 2017-10-30</time>
     
   </p>
 </header>
@@ -91,24 +92,57 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#临界区"><span class="toc-number">1.</span> <span class="toc-text">临界区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#饥饿"><span class="toc-number">2.</span> <span class="toc-text">饥饿</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#死锁"><span class="toc-number">3.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#死锁的条件"><span class="toc-number">3.1.</span> <span class="toc-text">死锁的条件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#活锁"><span class="toc-number">4.</span> <span class="toc-text">活锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#竞争"><span class="toc-number">5.</span> <span class="toc-text">竞争</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#信号量"><span class="toc-number">6.</span> <span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生产者消费者问题"><span class="toc-number">7.</span> <span class="toc-text">生产者消费者问题</span></a></li></ol>
 		
 		</div>
 		
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<h1 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h1><p>是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行</p>
+<h1 id="饥饿"><a href="#饥饿" class="headerlink" title="饥饿"></a>饥饿</h1><p>指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况</p>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行</p>
+<h2 id="死锁的条件"><a href="#死锁的条件" class="headerlink" title="死锁的条件"></a>死锁的条件</h2><ul>
+<li>互斥</li>
+<li>占有且等待</li>
+<li>非抢占(可预防)</li>
+</ul>
+<h1 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h1><p>两个或者两个以上的进程为了响应其他进程中的变化而继续改变自己的状态但是不做有用的工作</p>
+<h1 id="竞争"><a href="#竞争" class="headerlink" title="竞争"></a>竞争</h1><p>多个线程或进程在读写一个共享数据时结果依赖于他们执行的相对时间</p>
+<h1 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h1><ul>
+<li>一个信号量可以初始化乘非负数</li>
+<li>wait操作使信号量减1（占有一个信号量）</li>
+<li>signal操作使信号量加1（释放一个信号量）</li>
+<li>二元信号量即为<em>互斥</em></li>
+</ul>
+<h1 id="生产者消费者问题"><a href="#生产者消费者问题" class="headerlink" title="生产者消费者问题"></a>生产者消费者问题</h1><p>以下代码中，producer负责往buffer里写数据，consumer负责从buffer中取数据。代码基本思想如下:<br></p>
+<ul>
+<li>生产者<ul>
+<li>锁lock_bp保证每次写入或读出buffer时可以正确操作</li>
+<li>producer首先检测是否有空闲空间，若无，释放lock并等待直到有空buffer出现并且锁可用</li>
+<li>写数据</li>
+<li>获取锁后加入buffer数据</li>
+<li>signal data信号量并释放锁</li>
+</ul>
+</li>
+<li>消费者<ul>
+<li>获取锁后检查是否有可用空间，若无，释放lock并等待直到有可取数据出现并且锁可用</li>
+<li>取出数据后释放锁</li>
+<li>取数据</li>
+<li>获取锁后将空间设置为空</li>
+<li>signal free信号量并释放锁<br>Producer<figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (free_bp.is_empty())</div><div class="line">    cond_wait(cond_freebp_empty, lock_bp)</div><div class="line">buffer &lt;- free_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... produce data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">data_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_databp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>Consumer<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (data_bp.is_empty())</div><div class="line">    cond_wait(cond_databp_empty, lock_bp)</div><div class="line">buffer &lt;- data_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... consume data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">free_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_freebp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/operating-system/">operating system</a>
+  </div>
 
 </div>
 
@@ -116,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/09/02/hello-world/" data-title="Hello World | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/30/multi-threading-freq-problems/" data-title="并发的常见问题 | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -129,14 +163,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/09/03/使用sublime进行远程编辑/" title="使用Sublime Text进行远程编辑">
-  <strong>上一篇：</strong><br/>
-  <span>
-  使用Sublime Text进行远程编辑</span>
+
+<div class="next">
+<a href="/2017/10/30/config-make-install/"  title="Configure, make, make install背后的原理">
+ <strong>下一篇：</strong><br/> 
+ <span>Configure, make, make install背后的原理
+</span>
 </a>
 </div>
-
 
 </nav>
 

@@ -40,7 +40,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -56,7 +56,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -66,6 +66,28 @@
     </header>
     <div id="container">
       <div id="main">
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/10/30/multi-threading-freq-problems/" title="并发的常见问题" itemprop="url">
+  
+    <h1 itemprop="name">并发的常见问题</h1>
+    
+     
+           <p itemprop="description" >临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行
+饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况
+死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能</p>
+        
+    
+    <time datetime="2017-10-31T01:48:46.000Z" itemprop="datePublished">2017-10-30</time>
+  </a>
+</section>
+
+
+
+
+
 
   
 <section class="post" itemscope itemprop="blogitem">
@@ -274,49 +296,23 @@ GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有�
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/09/04/并行系统学习之路1/" title="并行系统学习之路（一）---- 介绍" itemprop="url">
-  
-    <h1 itemprop="name">并行系统学习之路（一）---- 介绍</h1>
-    
-     
-           <p itemprop="description" >这学期选了一门并行系统的课程，打算讲所学知识稍微整理一下记录下来，以便以后复习。内容主要侧重于实际编程。
-基本概念并行机器的基本分类
-SISD(无并行性)
-SIMD(ARC使用该架构)
-MIMD其中I指的是Instruction, D指的是Data。
-
-Moore’s Law电路</p>
-        
-    
-    <time datetime="2017-09-05T03:25:14.000Z" itemprop="datePublished">2017-09-04</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -332,7 +328,7 @@ Moore’s Law电路</p>
 			
 		
 			
-				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+				<li><a href="/tags/operating-system/" title="operating system">operating system<sup>1</sup></a></li>
 			
 		
 			
@@ -340,9 +336,11 @@ Moore’s Law电路</p>
 			
 		
 			
-				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -350,7 +348,7 @@ Moore’s Law电路</p>
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -518,7 +516,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
