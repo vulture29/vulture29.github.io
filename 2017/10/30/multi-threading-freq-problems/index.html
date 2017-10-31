@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>并发的常见问题 | Xingyao Huang&#39;s Blog</title>
+    <title>多道程序并发 - 死锁，信号量，生产者消费者 | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
@@ -14,13 +14,13 @@
     <meta name="description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 <meta name="keywords" content="operating system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并发的常见问题">
+<meta property="og:title" content="多道程序并发 - 死锁，信号量，生产者消费者">
 <meta property="og:url" content="http://vulture29.github.io/2017/10/30/multi-threading-freq-problems/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
-<meta property="og:updated_time" content="2017-10-31T01:48:46.000Z">
+<meta property="og:updated_time" content="2017-10-31T01:51:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并发的常见问题">
+<meta name="twitter:title" content="多道程序并发 - 死锁，信号量，生产者消费者">
 <meta name="twitter:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 
     
@@ -45,7 +45,7 @@
 				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -61,7 +61,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -76,21 +76,21 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/30/multi-threading-freq-problems/" title="并发的常见问题" itemprop="url">并发的常见问题</a>
+      <a href="/2017/10/30/multi-threading-freq-problems/" title="多道程序并发 - 死锁，信号量，生产者消费者" itemprop="url">多道程序并发 - 死锁，信号量，生产者消费者</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-31T01:48:46.000Z" itemprop="datePublished"> 發表於 2017-10-30</time>
+    <time datetime="2017-10-31T01:48:46.000Z" itemprop="datePublished"> Published 2017-10-30</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#临界区"><span class="toc-number">1.</span> <span class="toc-text">临界区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#饥饿"><span class="toc-number">2.</span> <span class="toc-text">饥饿</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#死锁"><span class="toc-number">3.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#死锁的条件"><span class="toc-number">3.1.</span> <span class="toc-text">死锁的条件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#活锁"><span class="toc-number">4.</span> <span class="toc-text">活锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#竞争"><span class="toc-number">5.</span> <span class="toc-text">竞争</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#信号量"><span class="toc-number">6.</span> <span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生产者消费者问题"><span class="toc-number">7.</span> <span class="toc-text">生产者消费者问题</span></a></li></ol>
 		
@@ -150,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/10/30/multi-threading-freq-problems/" data-title="并发的常见问题 | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/10/30/multi-threading-freq-problems/" data-title="多道程序并发 - 死锁，信号量，生产者消费者 | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -184,17 +184,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -206,19 +206,19 @@
 			
 		
 			
-				<li><a href="/tags/random/" title="random">random<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/operating-system/" title="operating system">operating system<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+				<li><a href="/tags/random/" title="random">random<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
 			
 		
 			
@@ -230,7 +230,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -493,7 +493,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
