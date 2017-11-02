@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Effective C++读书笔记（三） | Xingyao Huang&#39;s Blog</title>
+    <title>Effective C++读书笔记（四） | Xingyao Huang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xingyao Huang">
     
 
     
-    <meta name="description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
+    <meta name="description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++读书笔记（三）">
-<meta property="og:url" content="http://vulture29.github.io/2017/10/29/eff-cpp3/index.html">
+<meta property="og:title" content="Effective C++读书笔记（四）">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/01/eff-cpp4/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
-<meta property="og:updated_time" content="2017-10-30T18:36:05.000Z">
+<meta property="og:description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
+<meta property="og:updated_time" content="2017-11-02T01:11:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++读书笔记（三）">
-<meta name="twitter:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
+<meta name="twitter:title" content="Effective C++读书笔记（四）">
+<meta name="twitter:description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
 
     
     <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
@@ -76,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/29/eff-cpp3/" title="Effective C++读书笔记（三）" itemprop="url">Effective C++读书笔记（三）</a>
+      <a href="/2017/11/01/eff-cpp4/" title="Effective C++读书笔记（四）" itemprop="url">Effective C++读书笔记（四）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-29T12:59:11.000Z" itemprop="datePublished"> 發表於 2017-10-29</time>
+    <time datetime="2017-11-02T01:11:18.000Z" itemprop="datePublished"> 發表於 2017-11-01</time>
     
   </p>
 </header>
@@ -92,30 +92,74 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款13：-以对象管理资源"><span class="toc-number">1.</span> <span class="toc-text">条款13： 以对象管理资源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款14：-在资源管理类中小心copying行为"><span class="toc-number">2.</span> <span class="toc-text">条款14： 在资源管理类中小心copying行为</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款15：-在资源管理类中提供对原始资源的访问"><span class="toc-number">3.</span> <span class="toc-text">条款15： 在资源管理类中提供对原始资源的访问</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款16：-成对使用new和delete时要采取相同形式"><span class="toc-number">4.</span> <span class="toc-text">条款16： 成对使用new和delete时要采取相同形式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款17：-以独立语句将new对象置入智能指针"><span class="toc-number">5.</span> <span class="toc-text">条款17： 以独立语句将new对象置入智能指针</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款18-让接口容易被正确使用，不易被误用"><span class="toc-number">1.</span> <span class="toc-text">条款18: 让接口容易被正确使用，不易被误用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款19：-设计class犹如设计type"><span class="toc-number">2.</span> <span class="toc-text">条款19： 设计class犹如设计type</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款20-宁以pass-by-reference-to-const替换pass-by-value"><span class="toc-number">3.</span> <span class="toc-text">条款20: 宁以pass-by-reference-to-const替换pass-by-value</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款21-必须返回对象时，不要返回其reference"><span class="toc-number">4.</span> <span class="toc-text">条款21: 必须返回对象时，不要返回其reference</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款22-将成员变量声明为private"><span class="toc-number">5.</span> <span class="toc-text">条款22: 将成员变量声明为private</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款23：-宁以non-member、non-friend、替换member函数"><span class="toc-number">6.</span> <span class="toc-text">条款23： 宁以non-member、non-friend、替换member函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款24：-若所有参数皆需类型转换，应为此采用non-member函数"><span class="toc-number">7.</span> <span class="toc-text">条款24： 若所有参数皆需类型转换，应为此采用non-member函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款25-考虑写出一个不抛异常的swap函数"><span class="toc-number">8.</span> <span class="toc-text">条款25: 考虑写出一个不抛异常的swap函数</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="条款13：-以对象管理资源"><a href="#条款13：-以对象管理资源" class="headerlink" title="条款13： 以对象管理资源"></a>条款13： 以对象管理资源</h1><ul>
-<li>获得资源后立刻放进管理对象内</li>
-<li>管理对象运用析构函数确保资源被释放</li>
-<li>常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null</li>
+		<h1 id="条款18-让接口容易被正确使用，不易被误用"><a href="#条款18-让接口容易被正确使用，不易被误用" class="headerlink" title="条款18: 让接口容易被正确使用，不易被误用"></a>条款18: 让接口容易被正确使用，不易被误用</h1><ul>
+<li>“促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容<ul>
+<li>获得大小时全部用size而不是偶尔有length</li>
+<li>如果和int类似，就要是他的行为（比如加减）和int一样</li>
 </ul>
-<h1 id="条款14：-在资源管理类中小心copying行为"><a href="#条款14：-在资源管理类中小心copying行为" class="headerlink" title="条款14： 在资源管理类中小心copying行为"></a>条款14： 在资源管理类中小心copying行为</h1><ul>
-<li>复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为</li>
-<li>通常采用的方法包括： 抑制copying，引用计数法，复制底部资源和转移底部资源的拥有权</li>
+</li>
+<li>“组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任</li>
+<li>shared_ptr支持定制型删除器，消除了”cross-DLL problem”，可用来接触互斥锁<ul>
+<li>cross-DLL problem: 对象在DLL中被new创建，却在另一个DLL中内delete销毁</li>
 </ul>
-<h1 id="条款15：-在资源管理类中提供对原始资源的访问"><a href="#条款15：-在资源管理类中提供对原始资源的访问" class="headerlink" title="条款15： 在资源管理类中提供对原始资源的访问"></a>条款15： 在资源管理类中提供对原始资源的访问</h1><ul>
-<li>API往往要求访问原始资源，故每一个class都应该提供一个”取得其对应资源”的方法</li>
-<li>显式转换：提供get方法（安全）</li>
-<li>隐式转换：隐式转换函数（方便）</li>
+</li>
 </ul>
-<h1 id="条款16：-成对使用new和delete时要采取相同形式"><a href="#条款16：-成对使用new和delete时要采取相同形式" class="headerlink" title="条款16： 成对使用new和delete时要采取相同形式"></a>条款16： 成对使用new和delete时要采取相同形式</h1><ul>
-<li>如果在new表达式中使用[ ]，必须在相应的delete中使用[ ]</li>
+<h1 id="条款19：-设计class犹如设计type"><a href="#条款19：-设计class犹如设计type" class="headerlink" title="条款19： 设计class犹如设计type"></a>条款19： 设计class犹如设计type</h1><p>设计class需要面对的问题：</p>
+<ul>
+<li>新type的对象应该如何被创建和销毁？<ul>
+<li>构造函数和析构函数</li>
 </ul>
-<h1 id="条款17：-以独立语句将new对象置入智能指针"><a href="#条款17：-以独立语句将new对象置入智能指针" class="headerlink" title="条款17： 以独立语句将new对象置入智能指针"></a>条款17： 以独立语句将new对象置入智能指针</h1><ul>
-<li>防止异常被抛出时，有可能导致难以察觉的资源泄露</li>
+</li>
+<li>对象的初始化和对象的赋值该有什么样的差别？</li>
+<li>新对象如果被passed by value(按值传递)，意味着什么？<ul>
+<li>copy构造函数</li>
 </ul>
+</li>
+<li>什么是新type的”合法值”？</li>
+<li>新type需要遵循某种继承关系吗？</li>
+<li>新type需要什么样的转换？</li>
+<li>什么样的操作符和函数对新type是合理的？</li>
+<li>什么样的标准函数应该驳回(private)？</li>
+<li>与type有关系的其他class或type？</li>
+<li>什么是新type的”未声明接口”？</li>
+<li>新type有多一般化?（是否应该直接定义template）</li>
+<li>真的需要定义这样的一个type吗？</li>
+</ul>
+<h1 id="条款20-宁以pass-by-reference-to-const替换pass-by-value"><a href="#条款20-宁以pass-by-reference-to-const替换pass-by-value" class="headerlink" title="条款20: 宁以pass-by-reference-to-const替换pass-by-value"></a>条款20: 宁以pass-by-reference-to-const替换pass-by-value</h1><ul>
+<li>尽量以pass-by-reference-to-const替换pass-by-value。前者通常比较高效，并可避免<ul>
+<li>切割问题: 若传入对象是子类但传入类型是父类类型，由于调用的copy构造函数是父类的，会导致在函数内对象只含有对象的父类部分</li>
+</ul>
+</li>
+<li>具体情况具体分析，有些时候（例如STL）使用pass-by-value比较合适</li>
+</ul>
+<h1 id="条款21-必须返回对象时，不要返回其reference"><a href="#条款21-必须返回对象时，不要返回其reference" class="headerlink" title="条款21: 必须返回对象时，不要返回其reference"></a>条款21: 必须返回对象时，不要返回其reference</h1><ul>
+<li>不要返回指针或者引用指向local stack对象或者heap-allocated对象，或返回指针或者引用指向一个local static对象而有可能同时需要多个这样的对象。<ul>
+<li>local stack: local stack对象在函数退出之前会被销毁</li>
+<li>heap-allocated: 无法反之内存泄露，无法每次都delete</li>
+<li>local static对象: 多个对象的local static对象引用都指向同一个</li>
+</ul>
+</li>
+</ul>
+<h1 id="条款22-将成员变量声明为private"><a href="#条款22-将成员变量声明为private" class="headerlink" title="条款22: 将成员变量声明为private"></a>条款22: 将成员变量声明为private</h1><ul>
+<li>尽可能的把成员变量声明为private<ul>
+<li>赋予客户访问数据的一致性</li>
+<li>细微划分访问控制</li>
+<li>实现封装</li>
+</ul>
+</li>
+<li>protected并不比public更具封装性</li>
+</ul>
+<h1 id="条款23：-宁以non-member、non-friend、替换member函数"><a href="#条款23：-宁以non-member、non-friend、替换member函数" class="headerlink" title="条款23： 宁以non-member、non-friend、替换member函数"></a>条款23： 宁以non-member、non-friend、替换member函数</h1><ul>
+<li>提高封装性：不增加能够访问class内之private成分的函数数量</li>
+<li>提高包裹弹性(packaging flexibility): 可以使该non-member函数位于一个namespace内(namespace可跨越多个源码文件)，符合C++标准程序库的组织方式</li>
+<li>机能扩展性: 由于此类便利函数放在多个头文件但属于同一namespace，客户可以扩展这一组函数</li>
+</ul>
+<h1 id="条款24：-若所有参数皆需类型转换，应为此采用non-member函数"><a href="#条款24：-若所有参数皆需类型转换，应为此采用non-member函数" class="headerlink" title="条款24： 若所有参数皆需类型转换，应为此采用non-member函数"></a>条款24： 若所有参数皆需类型转换，应为此采用non-member函数</h1><p>例子：class有理数和int类型数相乘，即使定义了member operator函数，却不能满足交换律。使用non-member函数或许是个更好的选择</p>
+<h1 id="条款25-考虑写出一个不抛异常的swap函数"><a href="#条款25-考虑写出一个不抛异常的swap函数" class="headerlink" title="条款25: 考虑写出一个不抛异常的swap函数"></a>条款25: 考虑写出一个不抛异常的swap函数</h1><p>（以后补充）</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -133,7 +177,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://vulture29.github.io/2017/10/29/eff-cpp3/" data-title="Effective C++读书笔记（三） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://vulture29.github.io/2017/11/01/eff-cpp4/" data-title="Effective C++读书笔记（四） | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -146,19 +190,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/10/30/config-make-install/" title="Configure, make, make install背后的原理">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Configure, make, make install背后的原理</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/10/23/eff-cpp2/"  title="Effective C++读书笔记（二）">
+<a href="/2017/10/30/multi-threading-freq-problems/"  title="多道程序并发 - 死锁，信号量，生产者消费者">
  <strong>下一篇：</strong><br/> 
- <span>Effective C++读书笔记（二）
+ <span>多道程序并发 - 死锁，信号量，生产者消费者
 </span>
 </a>
 </div>
