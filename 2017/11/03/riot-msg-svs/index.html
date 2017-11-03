@@ -1,0 +1,534 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>RIOT的消息服务 | Xingyao Huang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Xingyao Huang">
+    
+
+    
+    <meta name="description" content="本文原作者 Michal 0xDEADB33F Ptaszek(链接为原文通道)，并附上了自己的理解和评论， 仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知">
+<meta name="keywords" content="game">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RIOT的消息服务">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/03/riot-msg-svs/index.html">
+<meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
+<meta property="og:description" content="本文原作者 Michal 0xDEADB33F Ptaszek(链接为原文通道)，并附上了自己的理解和评论， 仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_UnderTheHood.jpg">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_EdgeTier.jpg">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_RoutingTier.jpg">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_LoadTestTool.jpg">
+<meta property="og:updated_time" content="2017-11-03T04:56:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RIOT的消息服务">
+<meta name="twitter:description" content="本文原作者 Michal 0xDEADB33F Ptaszek(链接为原文通道)，并附上了自己的理解和评论， 仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/RMS_UnderTheHood.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/1.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/1.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/1.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Xingyao Huang&#39;s Blog">Xingyao Huang&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/03/riot-msg-svs/" title="RIOT的消息服务" itemprop="url">RIOT的消息服务</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xingyao Huang" target="_blank" itemprop="author">Xingyao Huang</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-03T04:56:07.000Z" itemprop="datePublished"> Published 2017-11-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RIOT的消息服务"><span class="toc-number">1.</span> <span class="toc-text">RIOT的消息服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#状态"><span class="toc-number">2.</span> <span class="toc-text">状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RMS高层架构"><span class="toc-number">3.</span> <span class="toc-text">RMS高层架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#消息发布"><span class="toc-number">4.</span> <span class="toc-text">消息发布</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实际实现"><span class="toc-number">5.</span> <span class="toc-text">实际实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#负载测试"><span class="toc-number">6.</span> <span class="toc-text">负载测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#差错容忍控制"><span class="toc-number">7.</span> <span class="toc-text">差错容忍控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0-DOWNTIME-DEPLOYMENTS"><span class="toc-number">8.</span> <span class="toc-text">0 DOWNTIME DEPLOYMENTS</span></a></li></ol>
+		
+		</div>
+		
+		<p>本文原作者<a href="https://engineering.riotgames.com/news/riot-messaging-service" target="_blank" rel="external"> Michal 0xDEADB33F Ptaszek(链接为原文通道)</a>，并附上了自己的理解和评论， 仅供学习用途</p>
+<h1 id="RIOT的消息服务"><a href="#RIOT的消息服务" class="headerlink" title="RIOT的消息服务"></a>RIOT的消息服务</h1><p>我们将RIOT消息服务Riot messaging service简写为RMS.</p>
+<p>若以高层划分，服务之间的通信可以被分为两组：</p>
+<ul>
+<li>同步请求：发送者在发出请求后堵塞直到收到回复</li>
+<li>异步请求：发送之后不会堵塞</li>
+</ul>
+<p>本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比如说状态切换。Riot的消息服务的设计就是为了解决不同场景，约束条件下的客户消息传递。</p>
+<p>本文将从讨论状态变化和stateful服务的重要性入手，接着介绍Riot的消息传输服务的架构，这个架构具有可线性扩展和高容错率的特性。最后将讨论一个可支持1千万玩家连接的系统实例。</p>
+<h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><p>在拳头公司里，微服务架构被应用的很广泛，微服务带来了特别多的好处，包括软件的分离，独立的部署，可扩展性提升，支持不同编程语言等等。</p>
+<p>英雄联盟中每个微服务都负责他们对应的状态。我们把战队系统作为例子：战队是一个由玩家创建，由玩家组织，由玩家控制的群组。战队系统储存了成员信息，tag，今日公告，成员排名以及一些其他的信息。每次从客户端登录将从战队服务获得最新的状态然后显示出来。</p>
+<p>然而当我们有了最初的状态后，我们将怎么样更新他呢？比如说，当战队管理员改变了今日公告时，其他成员的客户端是否应该主动从服务端获取数据然后检测是否由改变呢？或者只有当成员重新登录时才获取信息呢？还是说我们应该建立一个连接来实时更新？</p>
+<p>RMS针对具体情况做出了选择，根据此问题的特性，合理的解决方法应该是: 每当管理员更新公告时，会通知战队服务，接着战队服务会通知RMS告诉每一个成员更新最近的战队状态。</p>
+<p>RMS其实和手机上的推送系统类似，然后手机的推送系统有部分为同步请求，而RMS使用的是异步请求。</p>
+<h1 id="RMS高层架构"><a href="#RMS高层架构" class="headerlink" title="RMS高层架构"></a>RMS高层架构</h1><p>RMS的高层架构包括两个部分:</p>
+<ul>
+<li>RMS Edge（RMSE）</li>
+<li>RMS Routing(RMSR)</li>
+</ul>
+<p><img src="/content/images/2017/11/RMS_UnderTheHood.jpg" alt="RMS_UnderTheHood"></p>
+<p>RMSE是一组负责玩家客户端连接的服务器。LOL客户端会通过一个load balancer使用加密的WebSocket与一个RMSE节点连接。该连接在通过身份验证后是永久存在的直到客户端退出。</p>
+<p>在处理身份验证和负责客户端连接之上，每一个RMSE服务器也负责把消息传输给连接的客户端。每一次由新客户端连接进来或者登出时，RMSE节点将通知RMSR层。</p>
+<p>由于RMSE服务器没有相互之间的交互，所以他们都是100%可线性扩展的。值得一提的是，就算是相邻的server，一台server如果down掉，不会对其他的服务器产生影响。</p>
+<p>以下是RMSE层的架构：</p>
+<p><img src="/content/images/2017/11/RMS_EdgeTier.jpg" alt="RMS_EdgeTier"></p>
+<p>RMSR层是一个负责全局客户端状态的服务器集群。每个RMSR节点都有一个全局的分布式表，此表映射了从玩家到特定的RMSE节点的信息，以保持连接状态。RMSR层还负责处理来自其他服务的消息并发送消息至正确的RMSE节点。最后，RMSR会跟踪RMSE层节点的状态，在有客户端登出时触发清理的一个步骤。</p>
+<p>RMSR的架构如下：</p>
+<p><img src="/content/images/2017/11/RMS_RoutingTier.jpg" alt="RMS_RoutingTier"></p>
+<h1 id="消息发布"><a href="#消息发布" class="headerlink" title="消息发布"></a>消息发布</h1><p>RMS消息传输使用的是JSON格式，以下是一个实例：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</div><div class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</div><div class="line">   <span class="attr">"version"</span>: <span class="string">"2016-10-12 09:33:43.1245"</span>,</div><div class="line">   <span class="attr">"recipients"</span>: [<span class="string">"3029B94E-412F-484C-B4E7-BD01073EA629"</span>],</div><div class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每条消息都是以resource和service作为标志符，他们都遵循RESTful的格式。</p>
+<p>当RMSR接收到上述消息后将会对其进行解析，将recipients域移除后转发至对应的客户端连接的RMSE服务器，最后再转发至对应的客户端。</p>
+<p>客户端将会接收到如下信息：<br><figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</div><div class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</div><div class="line">   <span class="attr">"version"</span>: <span class="string">"2015-10-12 09:33:43.1245"</span>,</div><div class="line">   <span class="attr">"timestamp"</span>: <span class="number">1444677045952</span>,</div><div class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>RESTful的消息传输使该过程变的简单并灵活，很轻松就可以添加或删除新的服务，这对大型游戏的开发是很有益的。</p>
+<h1 id="实际实现"><a href="#实际实现" class="headerlink" title="实际实现"></a>实际实现</h1><p>拳头公司使用Erlang实现了整个RMS，Erlang的各种好处巴拉巴拉，总之就是写起来简单适用于游戏。</p>
+<p>RMS被打包部署为Docker镜像，保证了更好的隔离性和可移植性，简化了部署和调试过程，以及与操作系统的分离。</p>
+<p>整个服务部署在AWS上，使用云平台使得灵活性，可扩展性，错误检测，以及开发速度大大提高。所有的AWS资源由Terraform进行自动管理。</p>
+<p>RMS本身是一个全局的服务，所以他的健壮性的优先级是很高的、</p>
+<p>由于服务的CCU（Concurrently Connected Users - 并发连接用户数）随着活动客户端的数量增长而增长，因此我们希望为单个RMSE和RMSR节点建立一个可知容量，然后根据某种公式，以便在需要时扩展集群。</p>
+<h1 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h1><p>负载测试的基本思路是模拟真实客户端连接，使消息跑完整个系统。</p>
+<p>负载测试工具结构图：</p>
+<p><img src="/content/images/2017/11/RMS_LoadTestTool.jpg" alt="RMS_LoadTestTool"></p>
+<p>直接上测试结果:</p>
+<p>由于TCP端口数的限制，每台机器可以处理约60k的RMS连接，我们可以通过增加toolbox的数量通。我们发现一个AWS的r3.8xlarge EC2 instance可以处理10M的连接。这远远超过了预期。但我们决定使每一个服务器承载的连接小一点，以防止实例failure后所有的连接同时丢失。</p>
+<h1 id="差错容忍控制"><a href="#差错容忍控制" class="headerlink" title="差错容忍控制"></a>差错容忍控制</h1><p>使用了Jepsen工具模拟网络的不稳定以及各种差错的测试，本文未对差错容忍的实现进行讨论。(猜测：master/slave arch; sharding)</p>
+<h1 id="0-DOWNTIME-DEPLOYMENTS"><a href="#0-DOWNTIME-DEPLOYMENTS" class="headerlink" title="0 DOWNTIME DEPLOYMENTS"></a>0 DOWNTIME DEPLOYMENTS</h1><p>由于每个RMSE节点都与客户端有WebSocket连接，我们不能简单的使用blue green deployment并随意关掉需要随意更新的节点。对了解决这一问题，我们对RMS加入了会话持久性的功能。只要RMSE检测到客户端连接意外断开连接，或RMSR检测到RMSE节点丢失时，受影响的会话就会进入“持久”模式。发送给受影响播放器的消息被缓存在内存中，并在成功重新连接到系统时传送给客户端。 如果客户端在接下来的几分钟内没有重新连接或系统接近耗尽内存，则会清除持久会话及其排队的消息。（说的仅仅是RMS）</p>
+<p>客户端的消息处理可能会因此有延迟，但是可能被重连的时间所掩盖。若不能及时重连，客户端将重新同步所有服务的状态，因为这可能是由于RMS未连接时错过了某些重要的状态更新。</p>
+<p>对于RMSR，我们可以启动一个辅助群集，将其状态与当前正在运行的状态同步(并处理production load?)，并将所有通信路由到更新后的服务器。</p>
+<p>RMSE和RMSR层可以彼此独立部署，不受面对玩家的影响，使我们能够引入新功能并修复错误，而无需昂贵的维护时间。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/game/">game</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://vulture29.github.io/2017/11/03/riot-msg-svs/" data-title="RIOT的消息服务 | Xingyao Huang&#39;s Blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/11/01/eff-cpp4/"  title="Effective C++读书笔记（四）">
+ <strong>下一篇：</strong><br/> 
+ <span>Effective C++读书笔记（四）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cpp/" title="cpp">cpp<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/random/" title="random">random<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/operating-system/" title="operating system">operating system<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/game/" title="game">game<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://xingyaohuang.com/prog2/" target="_blank" title="看个球">看个球</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://huihuiloves.me" target="_blank" title="网站">网站</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Xingyao Huang. <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/5981969306" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/vulture29" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/xingyaohuang" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		
+		
+		<a href="mailto:huangyy1995@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Xingyao Huang">Xingyao Huang</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'vulture29-github-io';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-106199480-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

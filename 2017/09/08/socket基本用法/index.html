@@ -11,17 +11,17 @@
     
 
     
-    <meta name="description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
+    <meta name="description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm， 仅供学习用途 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道">
 <meta name="keywords" content="network">
 <meta property="og:type" content="article">
 <meta property="og:title" content="socket基本用法">
 <meta property="og:url" content="http://vulture29.github.io/2017/09/08/socket基本用法/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
-<meta property="og:updated_time" content="2017-09-22T21:45:00.000Z">
+<meta property="og:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm， 仅供学习用途 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道">
+<meta property="og:updated_time" content="2017-11-03T01:52:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="socket基本用法">
-<meta name="twitter:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而">
+<meta name="twitter:description" content="本文参考: http://www.linuxhowtos.org/C_C++/socket.htm， 仅供学习用途 客户端（Client）/服务端（Server)模型客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道">
 
     
     <link rel="alternative" href="/atom.xml" title="Xingyao Huang&#39;s Blog" type="application/atom+xml">
@@ -96,7 +96,7 @@
 		
 		</div>
 		
-		<p>本文参考: <a href="http://www.linuxhowtos.org/C_C++/socket.htm" target="_blank" rel="external">http://www.linuxhowtos.org/C_C++/socket.htm</a></p>
+		<p>本文参考: <a href="http://www.linuxhowtos.org/C_C++/socket.htm" target="_blank" rel="external">http://www.linuxhowtos.org/C_C++/socket.htm</a>， 仅供学习用途</p>
 <h2 id="客户端（Client）-服务端（Server-模型"><a href="#客户端（Client）-服务端（Server-模型" class="headerlink" title="客户端（Client）/服务端（Server)模型"></a>客户端（Client）/服务端（Server)模型</h2><p>客户端/服务端模型是进程间通信中使用的比较广泛的一种模型。客户端/服务端模型指的是一种两个进程互相通信的一种方式。对此通信方式的一个很好的比喻就是顾客给客服打电话（顾客是客户端，客服是服务端）。值得一提的是，客户端在建立连接时需要知道服务端的地址，而服务端在连接建立之前是不需要知道客户端地址的，客户端和服务端之间可以互相发送消息。</p>
 <p>在客户端建立socket的步骤如下：</p>
 <ul>
@@ -327,11 +327,15 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>4</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/cpp/" title="cpp">cpp<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/parallel-system/" title="parallel system">parallel system<sup>4</sup></a></li>
+				<li><a href="/tags/random/" title="random">random<sup>1</sup></a></li>
 			
 		
 			
@@ -339,7 +343,7 @@
 			
 		
 			
-				<li><a href="/tags/random/" title="random">random<sup>1</sup></a></li>
+				<li><a href="/tags/game/" title="game">game<sup>1</sup></a></li>
 			
 		
 			
