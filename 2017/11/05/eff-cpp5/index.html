@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://vulture29.github.io/2017/11/05/eff-cpp5/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性 dynamic_cast(expression): 安全向下转型，可用于检测继承体系 此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的pointe">
-<meta property="og:updated_time" content="2017-11-06T03:40:25.000Z">
+<meta property="og:updated_time" content="2017-11-06T03:42:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective C++读书笔记（五）">
 <meta name="twitter:description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性 dynamic_cast(expression): 安全向下转型，可用于检测继承体系 此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的pointe">
@@ -92,7 +92,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款26-尽可能延后变量定义式的出现时间"><span class="toc-number">1.</span> <span class="toc-text">条款26: 尽可能延后变量定义式的出现时间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款27-尽量少做转型操作"><span class="toc-number">2.</span> <span class="toc-text">条款27: 尽量少做转型操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款28-避免返回handles指向对象内部成分"><span class="toc-number">3.</span> <span class="toc-text">条款28: 避免返回handles指向对象内部成分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款29-为”异常安全”努力绝对值得"><span class="toc-number">4.</span> <span class="toc-text">条款29: 为”异常安全”努力绝对值得</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款30：透彻了解inlining的里里外外"><span class="toc-number">5.</span> <span class="toc-text">条款30：透彻了解inlining的里里外外</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款31：将文件间的编译依存关系降至最低"><span class="toc-number">6.</span> <span class="toc-text">条款31：将文件间的编译依存关系降至最低</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#条款26-尽可能延后变量定义式的出现时间"><span class="toc-number">1.</span> <span class="toc-text">条款26: 尽可能延后变量定义式的出现时间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款27-尽量少做转型操作"><span class="toc-number">2.</span> <span class="toc-text">条款27: 尽量少做转型操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款28-避免返回handles指向对象内部成分"><span class="toc-number">3.</span> <span class="toc-text">条款28: 避免返回handles指向对象内部成分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条款29-为”异常安全”努力绝对值得"><span class="toc-number">4.</span> <span class="toc-text">条款29: 为”异常安全”努力绝对值得</span></a></li></ol>
 		
 		</div>
 		
@@ -129,10 +129,7 @@
 </li>
 <li>三种可能保证：基本型，强烈型，不抛异常型</li>
 <li>“强烈保证”异常安全策略: copy-and-swap，但并非对所有函数都可实现或具备实际意义</li>
-<li>函数或系统提供的异常安全保证通常最高只等于其调用的各个函数的”异常安全保证”中的最弱者<br>&lt;!–<h1 id="条款30：透彻了解inlining的里里外外"><a href="#条款30：透彻了解inlining的里里外外" class="headerlink" title="条款30：透彻了解inlining的里里外外"></a>条款30：透彻了解inlining的里里外外</h1>（以后补充）</li>
-</ul>
-<h1 id="条款31：将文件间的编译依存关系降至最低"><a href="#条款31：将文件间的编译依存关系降至最低" class="headerlink" title="条款31：将文件间的编译依存关系降至最低"></a>条款31：将文件间的编译依存关系降至最低</h1><ul>
-<li>关键在于以”声明的依存性”替代”定义的依存性”<br>（以后补充） –&gt;</li>
+<li>函数或系统提供的异常安全保证通常最高只等于其调用的各个函数的”异常安全保证”中的最弱者</li>
 </ul>
   
 	</div>
@@ -219,15 +216,15 @@
 			
 		
 			
-				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/network/" title="network">network<sup>1</sup></a></li>
 			
 		
 		</ul>
