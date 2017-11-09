@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Xingyao Huang" />
+  <meta name="keywords" content="cpp," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xingyao Huang&#39;s Blog">
-<meta property="og:url" content="http://vulture29.github.io/archives/2017/index.html">
+<meta name="description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
+<meta name="keywords" content="cpp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective C++读书笔记（六）">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/08/eff-cpp6/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
+<meta property="og:description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-09T01:32:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xingyao Huang&#39;s Blog">
+<meta name="twitter:title" content="Effective C++读书笔记（六）">
+<meta name="twitter:description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/archives/2017/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/08/eff-cpp6/"/>
 
 
 
 
 
-  <title>归档 | Xingyao Huang's Blog</title>
+  <title>Effective C++读书笔记（六） | Xingyao Huang's Blog</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,411 +239,163 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/08/eff-cpp6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyao Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xingyao Huang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Effective C++读书笔记（六）</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T19:01:06-05:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 17 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/08/eff-cpp6/" itemprop="url">
-              
-                <span itemprop="name">Effective C++读书笔记（六）</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-08T19:01:06-05:00"
-              content="2017-11-08" >
-          11-08
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/05/eff-cpp5/" itemprop="url">
-              
-                <span itemprop="name">Effective C++读书笔记（五）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-05T22:40:25-05:00"
-              content="2017-11-05" >
-          11-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/03/riot-msg-svs/" itemprop="url">
-              
-                <span itemprop="name">RIOT消息服务 - Riot messaging service</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-03T01:09:13-04:00"
-              content="2017-11-03" >
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="条款32-确定你的public继承塑模出is-a关系"><a href="#条款32-确定你的public继承塑模出is-a关系" class="headerlink" title="条款32: 确定你的public继承塑模出is-a关系"></a>条款32: 确定你的public继承塑模出is-a关系</h1><ul>
+<li>public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上</li>
+<li>可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析</li>
+</ul>
+<h1 id="条款33：-避免遮掩继承而来的名称"><a href="#条款33：-避免遮掩继承而来的名称" class="headerlink" title="条款33： 避免遮掩继承而来的名称"></a>条款33： 避免遮掩继承而来的名称</h1><ul>
+<li>derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base里重载的函数，base的函数将完全不可见</li>
+<li>可以使用using声明或转交函数解决</li>
+</ul>
+<h1 id="条款34-区分接口继承和实现继承"><a href="#条款34-区分接口继承和实现继承" class="headerlink" title="条款34: 区分接口继承和实现继承"></a>条款34: 区分接口继承和实现继承</h1><ul>
+<li>接口继承和实现继承不同。在public继承之下，derived classes总是继承base class的接口</li>
+<li>pure virtual函数只具体指定接口继承</li>
+<li>impure virtual函数具体指定接口继承及缺省实现继承</li>
+<li>non-virtual函数具体指定接口继承以及强制性实现继承</li>
+</ul>
+<h1 id="条款36-绝不重新定义继承而来的non-virtual函数"><a href="#条款36-绝不重新定义继承而来的non-virtual函数" class="headerlink" title="条款36: 绝不重新定义继承而来的non-virtual函数"></a>条款36: 绝不重新定义继承而来的non-virtual函数</h1><ul>
+<li>绝不重新定义继承而来的non-virtual函数</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/01/eff-cpp4/" itemprop="url">
-              
-                <span itemprop="name">Effective C++读书笔记（四）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-01T21:11:18-04:00"
-              content="2017-11-01" >
-          11-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/30/multi-threading-freq-problems/" itemprop="url">
-              
-                <span itemprop="name">多道程序并发 - 死锁，信号量，生产者消费者</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-30T21:48:46-04:00"
-              content="2017-10-30" >
-          10-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/30/config-make-install/" itemprop="url">
-              
-                <span itemprop="name">Configure, make, make install背后的原理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-30T10:49:51-04:00"
-              content="2017-10-30" >
-          10-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/29/eff-cpp3/" itemprop="url">
-              
-                <span itemprop="name">Effective C++读书笔记（三）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-29T08:59:11-04:00"
-              content="2017-10-29" >
-          10-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/23/eff-cpp2/" itemprop="url">
-              
-                <span itemprop="name">Effective C++读书笔记（二）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-23T23:05:35-04:00"
-              content="2017-10-23" >
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/22/eff-cpp1/" itemprop="url">
-              
-                <span itemprop="name">Effective C++读书笔记（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-22T23:07:44-04:00"
-              content="2017-10-22" >
-          10-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/03/并行系统学习之路4/" itemprop="url">
-              
-                <span itemprop="name">并行系统学习之路（四） ---- OpenMP学习</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-03T15:47:17-04:00"
-              content="2017-10-03" >
-          10-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cpp/" rel="tag"># cpp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/05/eff-cpp5/" rel="next" title="Effective C++读书笔记（五）">
+                <i class="fa fa-chevron-left"></i> Effective C++读书笔记（五）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -646,6 +403,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -666,8 +427,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -750,6 +520,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款32-确定你的public继承塑模出is-a关系"><span class="nav-number">1.</span> <span class="nav-text">条款32: 确定你的public继承塑模出is-a关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款33：-避免遮掩继承而来的名称"><span class="nav-number">2.</span> <span class="nav-text">条款33： 避免遮掩继承而来的名称</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款34-区分接口继承和实现继承"><span class="nav-number">3.</span> <span class="nav-text">条款34: 区分接口继承和实现继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款36-绝不重新定义继承而来的non-virtual函数"><span class="nav-number">4.</span> <span class="nav-text">条款36: 绝不重新定义继承而来的non-virtual函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -890,6 +676,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
