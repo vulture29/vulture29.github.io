@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Xingyao Huang" />
+  <meta name="keywords" content="random," />
 
 
 
@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xingyao Huang&#39;s Blog">
-<meta property="og:url" content="http://vulture29.github.io/archives/2017/09/index.html">
+<meta name="description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
+<meta name="keywords" content="random">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库的规范化和反规范化">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
+<meta property="og:description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/db_sample.png">
+<meta property="og:updated_time" content="2017-11-09T03:21:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xingyao Huang&#39;s Blog">
+<meta name="twitter:title" content="数据库的规范化和反规范化">
+<meta name="twitter:description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/db_sample.png">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/archives/2017/09/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/"/>
 
 
 
 
 
-  <title>归档 | Xingyao Huang's Blog</title>
+  <title>数据库的规范化和反规范化 | Xingyao Huang's Blog</title>
   
 
 
@@ -140,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,296 +241,260 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyao Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xingyao Huang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">数据库的规范化和反规范化</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T21:34:09-05:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 18 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/22/并行系统学习之路3/" itemprop="url">
-              
-                <span itemprop="name">并行系统学习之路（三） ---- CUDA学习</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-22T14:44:27-04:00"
-              content="2017-09-22" >
-          09-22
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/08/socket基本用法/" itemprop="url">
-              
-                <span itemprop="name">socket基本用法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-08T22:32:14-04:00"
-              content="2017-09-08" >
-          09-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/06/算法1/" itemprop="url">
-              
-                <span itemprop="name">算法 ---- 位操作小结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-06T22:20:30-04:00"
-              content="2017-09-06" >
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：</p>
+<p><img src="/content/images/2017/11/db_sample.png" alt="db_sample"></p>
+<p>然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？<br>规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional Dependencies)使用join操作找到所有的数据。数据库规范化的好处在于减少了数据库的冗余度和保证了数据的一致性。所有的数据列都被分割为许多小的表而存储。</p>
+<ul>
+<li>去除冗余度</li>
+</ul>
+<p>在规范化之前，有可能出现如下的数据:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">城市</th>
+<th style="text-align:center">省份</th>
+<th style="text-align:center">缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">长沙</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+<tr>
+<td style="text-align:center">邵阳</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+<tr>
+<td style="text-align:center">株洲</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+<tr>
+<td style="text-align:center">岳阳</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+<tr>
+<td style="text-align:center">湘潭</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+<tr>
+<td style="text-align:center">凤凰</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+</tbody>
+</table>
+<p>我们可以看到其实后两项出现了重复，利用数据库的规范化我们可以把数据库优化为如下的两个:</p>
+<p>城市省份表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">城市</th>
+<th style="text-align:center">省份</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">长沙</td>
+<td style="text-align:center">湖南</td>
+</tr>
+<tr>
+<td style="text-align:center">邵阳</td>
+<td style="text-align:center">湖南</td>
+</tr>
+<tr>
+<td style="text-align:center">株洲</td>
+<td style="text-align:center">湖南</td>
+</tr>
+<tr>
+<td style="text-align:center">岳阳</td>
+<td style="text-align:center">湖南</td>
+</tr>
+<tr>
+<td style="text-align:center">湘潭</td>
+<td style="text-align:center">湖南</td>
+</tr>
+<tr>
+<td style="text-align:center">凤凰</td>
+<td style="text-align:center">湖南</td>
+</tr>
+</tbody>
+</table>
+<p>省份缩写表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">省份</th>
+<th style="text-align:center">缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
+</tr>
+<tr>
+<td style="text-align:center">XX</td>
+<td style="text-align:center">X</td>
+</tr>
+</tbody>
+</table>
+<p>优化过后我们可以明显发现我们的数据库变的更加的精简    <u>some text</u></p>
+<ul>
+<li>完整性</li>
+</ul>
+<p>有时候由于一些数据库在最初设计时的考虑不周全，导致一个主键对应了表中的多个行，通过规范化把表分割可以解决这一问题。</p>
+<p>但是，规范化也有他的坏处，那就是每一个query查询操作都可能导致多个表的join操作，当数据量很庞大的时候，这种操作的性能是很低的，而当query操作频繁时，这将导致整个系统的性能下降。但是如果我们将所有的数据都放在一个表中，query的速度就会得到显著的提升，我们甚至可以通过索引使查询操作的速度进一步提升。尽管可能带来冗余的数据，但是我们损失的性能有时候会比硬盘存储空间更加珍贵。</p>
+<p>我们并不是说规范化和反规范化中我们必须选一个或另一个; 数据库不必被归一化到第n级或完全非规范化到一个表中。 如果因为查询的复杂性导致查询运行速度太慢，我们可以将数据库非规范化，以消除太多数据库之间的连接。而如果数据库是一个巨大的数据，我们可以通过规范化适当组织数据库摆脱冗余。所有的一切都是trade-off.</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/05/并行系统学习之路2/" itemprop="url">
-              
-                <span itemprop="name">并行系统学习之路（二） ---- MPI热身</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-05T15:54:29-04:00"
-              content="2017-09-05" >
-          09-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/04/并行系统学习之路1/" itemprop="url">
-              
-                <span itemprop="name">并行系统学习之路（一）---- 介绍</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-04T23:25:14-04:00"
-              content="2017-09-04" >
-          09-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/03/使用sublime进行远程编辑/" itemprop="url">
-              
-                <span itemprop="name">使用Sublime Text进行远程编辑</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-03T23:29:43-04:00"
-              content="2017-09-03" >
-          09-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/02/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-02T22:36:48-04:00"
-              content="2017-09-02" >
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/random/" rel="tag"># random</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/05/eff-cpp5/" rel="next" title="Effective C++读书笔记（五）">
+                <i class="fa fa-chevron-left"></i> Effective C++读书笔记（五）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/08/eff-cpp6/" rel="prev" title="Effective C++读书笔记（六）">
+                Effective C++读书笔记（六） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -531,6 +502,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -793,6 +768,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
