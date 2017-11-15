@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/1.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/1.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/1.jpg?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/1.jpg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="random," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文介绍的是我的一个课程项目OpenStack的自动部署实现，附英文版详细报告详细报告以及代码。 项目介绍OpenStack是一个免费开源的云计算平台项目，它提供的主要是IaaS(Infrastructure as a service)的解决方案，也就是提供plain虚拟机资源。基于OpenStack我们可以构造出大规模的云计算数据中心，它在工业界被应用的十分广泛。然而他的安装和调试比较复杂琐碎，">
+<meta name="keywords" content="random">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenStack的自动部署实现">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/14/openstack-auto-deploy/index.html">
+<meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
+<meta property="og:description" content="本文介绍的是我的一个课程项目OpenStack的自动部署实现，附英文版详细报告详细报告以及代码。 项目介绍OpenStack是一个免费开源的云计算平台项目，它提供的主要是IaaS(Infrastructure as a service)的解决方案，也就是提供plain虚拟机资源。基于OpenStack我们可以构造出大规模的云计算数据中心，它在工业界被应用的十分广泛。然而他的安装和调试比较复杂琐碎，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/openstack_service.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/flow_chart.jpg">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/openstack_arch.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/openstack_network.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/compute_network.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/network_network.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/flow.gif">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/network_network.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/network_network.png">
+<meta property="og:updated_time" content="2017-11-15T19:00:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenStack的自动部署实现">
+<meta name="twitter:description" content="本文介绍的是我的一个课程项目OpenStack的自动部署实现，附英文版详细报告详细报告以及代码。 项目介绍OpenStack是一个免费开源的云计算平台项目，它提供的主要是IaaS(Infrastructure as a service)的解决方案，也就是提供plain虚拟机资源。基于OpenStack我们可以构造出大规模的云计算数据中心，它在工业界被应用的十分广泛。然而他的安装和调试比较复杂琐碎，">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/openstack_service.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/14/openstack-auto-deploy/"/>
+
+
+
+
+
+  <title>OpenStack的自动部署实现 | Xingyao Huang's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xingyao Huang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/14/openstack-auto-deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingyao Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xingyao Huang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenStack的自动部署实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T22:45:21-05:00">
+                2017-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍的是我的一个课程项目<strong>OpenStack的自动部署实现</strong>，附<a href="https://github.com/vulture29/OpenStack-auto-deploy/raw/master/Document.pdf" target="_blank" rel="external">英文版详细报告详细报告</a>以及<a href="https://github.com/vulture29/OpenStack-auto-deploy" target="_blank" rel="external">代码</a>。</p>
+<h1 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h1><p>OpenStack是一个免费开源的云计算平台项目，它提供的主要是IaaS(Infrastructure as a service)的解决方案，也就是提供plain虚拟机资源。基于OpenStack我们可以构造出大规模的云计算数据中心，它在工业界被应用的十分广泛。然而他的安装和调试比较复杂琐碎，对他的构造和维护需要比较大的代价。对于一些小型工作室，甚至个人而言，他们可能更关心的是如何快速构造一个可用的OpenStack，这个项目的目的就是基于PackStack编写一套可以快速构造一个可调试的OpenStack系统。</p>
+<p>功能要求：</p>
+<ul>
+<li>OpenStack的快速安装</li>
+<li>用户可以自定义配置信息</li>
+<li>自动卸载</li>
+<li>自定义OpenStack内的网络</li>
+<li>可以通过Web接口控制</li>
+<li>身份验证功能</li>
+<li>用户可管理镜像资源</li>
+<li>可扩展性（支持添加新硬件）</li>
+</ul>
+<h1 id="OpenStack相关介绍"><a href="#OpenStack相关介绍" class="headerlink" title="OpenStack相关介绍"></a>OpenStack相关介绍</h1><h2 id="OpenStack的几大组件"><a href="#OpenStack的几大组件" class="headerlink" title="OpenStack的几大组件"></a>OpenStack的几大组件</h2><p><img src="/content/images/2017/11/openstack_service.png" alt="OpenStack_service"></p>
+<ul>
+<li>Nova(Compute)<ul>
+<li>核心部分，整个IaaS服务的主要部分，它负责提供计算服务，也就是提供负责生产虚拟机以及一部分他们之间的基本通信</li>
+</ul>
+</li>
+<li>Neutron(Network)<ul>
+<li>负责SDN，提供Network as a Service。用户可以通过Neutron API自定义网络，控制他们的流量，连接不同网络内的虚拟机，它还有插件一些高级功能比如load balancing, firewalls, VPN</li>
+</ul>
+</li>
+<li>Horizon(Dashboard)<ul>
+<li>前端web界面。可以通过Web界面对OpenStack进行控制。当然提供的功能没有Terminal那么丰富。</li>
+</ul>
+</li>
+<li>Cinder(Block Storage)<ul>
+<li>提供Block存储，是必须的组件之一。负责Block内的所有存储，包括虚拟机所需的block空间。</li>
+</ul>
+</li>
+<li>Swift(Object Storage)<ul>
+<li>是一个可选择的组件。负责Object Storage</li>
+</ul>
+</li>
+<li>Keystone(Identity)<ul>
+<li>负责身份验证功能</li>
+</ul>
+</li>
+<li>Glance(Image)<ul>
+<li>负责管理虚拟机的镜像</li>
+</ul>
+</li>
+</ul>
+<h2 id="PackStack"><a href="#PackStack" class="headerlink" title="PackStack"></a>PackStack</h2><p>PackStack是有Redhat发行的一个OpenStack安装工具，我们将使用PackStack对OpenStack进行安装。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="系统及环境依赖"><a href="#系统及环境依赖" class="headerlink" title="系统及环境依赖"></a>系统及环境依赖</h2><ul>
+<li>CentOS 7</li>
+<li>节点最低配置<ul>
+<li>网络节点(1 CPU, 1GB RAM, 5 GB of storage)</li>
+<li>计算节点(2 CPU, 2GB RAM, 10 GB of storage)</li>
+<li>控制节点(1 CPU, 2GB RAM, 5 GB of storage)</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ul>
+<li>读入用户输入并产生配置文件</li>
+<li>基于用户配置，检查节点间网络连通性</li>
+<li>清理可能影响到安装过程的残留文件</li>
+<li>检查系统及环境是否符合OpenStack安装条件</li>
+<li>安装开始</li>
+<li>结果<ul>
+<li>若安装成功，显示成功信息并提供web接口的URL</li>
+<li>若安装失败，提示错误信息</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><div class="line">“<span class="keyword">Do</span> you want <span class="keyword">to</span> proceed with<span class="built_in"> default </span>configuration? [y/n]”</div><div class="line">→ <span class="keyword">If</span><span class="built_in"> user </span>input is “<span class="literal">no</span>” then first check with the customized<span class="built_in"> config </span>file is present <span class="keyword">or</span> <span class="keyword">not</span>.</div><div class="line">  → <span class="keyword">If</span> customize<span class="built_in"> config </span>file is present then prompt the user.</div><div class="line">    “<span class="keyword">Do</span> you really want <span class="keyword">to</span> proceed with<span class="built_in"> config </span>file (PATH) ?</div><div class="line">    → <span class="keyword">If</span> <span class="literal">yes</span> then</div><div class="line">      proceed the installation with the customized file.</div><div class="line">    → <span class="keyword">else</span></div><div class="line">      prompt the<span class="built_in"> user </span><span class="keyword">for</span> input (configuration)</div><div class="line">  → <span class="keyword">else</span></div><div class="line">   <span class="built_in"> script </span>should prompt <span class="keyword">for</span><span class="built_in"> user </span>input <span class="keyword">for</span> configuration</div><div class="line">    <span class="keyword">For</span> ex:</div><div class="line">      ● Please enter the controller node<span class="built_in"> IP </span>address.</div><div class="line">      ● <span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="builtin-name">enable</span> cinder service? [y/n].</div><div class="line">→ <span class="keyword">else</span></div><div class="line">  install the OpenStack with<span class="built_in"> default </span>configuration.</div></pre></td></tr></table></figure>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="/content/images/2017/11/flow_chart.jpg" alt="flow_chart"></p>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>本工具在NC State网络实验室测试安装，实验室的硬件包括：</p>
+<ul>
+<li>Dell Power-Edge T610服务器 2台(四核处理器, 24GB内存, 1TB硬盘空间)</li>
+<li>Dell Power-Edge T310服务器 2台(双核处理器, 4GB内存, 300GB硬盘空间)</li>
+<li>Cisco SG 300 20-port Gigabit Managed Switch 交换机</li>
+<li>TP-LINK TL-WN722N Wireless USB adapter 无线网卡</li>
+<li>KVM</li>
+<li>CentOS 7</li>
+</ul>
+<h2 id="架构设计及实现"><a href="#架构设计及实现" class="headerlink" title="架构设计及实现"></a>架构设计及实现</h2><h3 id="三节点架构"><a href="#三节点架构" class="headerlink" title="三节点架构"></a>三节点架构</h3><p>我们参考了OpenStack官方文档，最终决定采用三节点的基本架构(Compute-Network-Controller)</p>
+<p><img src="/content/images/2017/11/openstack_arch.png" alt="OpenStack_arch"></p>
+<p>此设计的有点包括:</p>
+<ul>
+<li>由于每个节点提供不同的服务，三节点架构可以提供更好的可扩展性，可靠性和可用性</li>
+<li>把节点分离出来可以使得整个系统的性能提升</li>
+<li>把Network节点分离出来可以让网络的隔离性更好，也更加安全</li>
+</ul>
+<h3 id="控制节点-Controller-Node"><a href="#控制节点-Controller-Node" class="headerlink" title="控制节点(Controller Node)"></a>控制节点(Controller Node)</h3><p>控制节点负责处理OpenStack架构中的大部分服务。Keystone，Glance，Nova API，Neutron API都安装在控制节点上。控制器点上还安装了数据库和消息传递等服务。如果未安装和配置对象存储，则Glance服务将使用本地存储来存储用于启动虚拟机的映像。</p>
+<h3 id="网络节点-Network-Node"><a href="#网络节点-Network-Node" class="headerlink" title="网络节点(Network Node)"></a>网络节点(Network Node)</h3><p>此节点负责处理Internet，OpenStack组件和物理计算节点上的vm之间的所有传入和传出流量。由于网络内容复杂，所以需要为环境提供一定的隔离。该节点还安装了neutron DHCP agent服务，它将为vm动态分配公共IP。</p>
+<h3 id="计算节点-Compute-Node"><a href="#计算节点-Compute-Node" class="headerlink" title="计算节点(Compute Node)"></a>计算节点(Compute Node)</h3><p>该节点负责处理按需分配虚拟机的各种配置。若不使用提供块处理的Cinder服务，可以使用DAS(Direct Attached Storage)以使得结构简单。</p>
+<h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p>以下是三节点架构下网络的基本架构示意图:</p>
+<p><img src="/content/images/2017/11/openstack_network.png" alt="OpenStack_network"></p>
+<h4 id="管理网络-Management-Network"><a href="#管理网络-Management-Network" class="headerlink" title="管理网络(Management Network)"></a>管理网络(Management Network)</h4><p>所有的节点都会通过一个共同的管理网络相连。这个网络将会负责传输关于启动或者停止OpenStack服务的请求，创建新虚拟机，身份验证，更改现有硬件配置等等的消息。在实验室网络下，控制节点，网络节点和计算节点的IP分别是192.168.0.42/24, 192.168.0.22/24 and 192.168.0.32/24。这个也是脚本的缺省值。</p>
+<h4 id="封装网络-GRE-Tunnel-VM-Data-Network"><a href="#封装网络-GRE-Tunnel-VM-Data-Network" class="headerlink" title="封装网络(GRE Tunnel / VM Data Network)"></a>封装网络(GRE Tunnel / VM Data Network)</h4><p>GRE(Generic Routing Encapsulation)管道即通用路由封装管道，可实现点对点的链路。我们将网络节点和计算节点通过管道相连。若有多个计算节点，每一个都要与网络节点建立一条独立的管道。这条管道的网络流量是私有的。它负责承载来自外部网络与虚拟机之间相互通信的流量，由于外部网络只直接连接网络节点，网络节点需要将流量进行转发，而这个过程中的数据应该有较好的独立性，不应该被其他流量所干扰，所以我们设立了一条单独的GRE管道。</p>
+<h4 id="外部网络-External-Network"><a href="#外部网络-External-Network" class="headerlink" title="外部网络(External Network)"></a>外部网络(External Network)</h4><p>与网络节点相连，主要用于将整个系统连接到互联网。实验室通过在网络节点上插入无线网卡访问外部网络。NAT和网络配置是在每个节点需要访问互联网的物理服务器上完成的。</p>
+<h4 id="计算节点内部网络"><a href="#计算节点内部网络" class="headerlink" title="计算节点内部网络"></a>计算节点内部网络</h4><p><img src="/content/images/2017/11/compute_network.png" alt="compute_network"></p>
+<p>计算节点内运行着一个OpenVSwitch。OpenStack安装时会自动设置一个默认的Linux网桥(virbr0).这个网桥会与一个网络接口相连(比如eth0, eth1)。当Nova-compute模块启动一个新vm时该vm会创建一个与该网桥相连的端口，这个端口是计算节点和vm网络通信的媒介。</p>
+<h4 id="网络节点内部网络"><a href="#网络节点内部网络" class="headerlink" title="网络节点内部网络"></a>网络节点内部网络</h4><p><img src="/content/images/2017/11/network_network.png" alt="network_network"></p>
+<p>网络节点内有一个虚拟router。当一个子网中的虚拟机希望与另一个运行在不同子网中的虚拟机通信时，该虚拟设备将提供所需的路由规则。</p>
+<h4 id="创建vm请求示例"><a href="#创建vm请求示例" class="headerlink" title="创建vm请求示例"></a>创建vm请求示例</h4><p>我们以当客户发出一个创建VM的请求为例,说明OpenStack中消息的传递过程:</p>
+<p><img src="/content/images/2017/11/flow.gif" alt="flow"></p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><h4 id="单服务器实现"><a href="#单服务器实现" class="headerlink" title="单服务器实现"></a>单服务器实现</h4><p>一个物理服务器用于托管整个云栈，其中三个主节点 - 网络，计算和控制节点被安装或作为单独的虚拟机运行。 Hypervisor需要在物理服务器上运行虚拟机。 OpenStack支持XEN，KVM等许多管理程序。本项目中我们使用KVM做为管理程序来创建和运行这些VM。</p>
+<p><img src="/content/images/2017/11/network_network.png" alt="network_network"></p>
+<p>优点:</p>
+<ul>
+<li>由于所有”节点”都运行在一个物理服务器上，他们之间的通信会比多服务器实现快</li>
+<li>由于整个系统在一个服务器上，我们可以方便的存储系统的某一状态作为镜像，还可以方便的回滚</li>
+<li>由于所有的节点都是虚拟机，如果某一节点出现比较严重的错误，我们可以直接重新创建一个新的vm，这样比实体服务器中必须要重装系统方便很多</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>最大的缺点是性能问题，由于一台服务器的性能有限，整个系统的性能也会有瓶颈。而且，由于计算节点还会产生新的虚拟机，这样的二重结构虚拟机的速度也会比较慢</li>
+<li>单服务器架构的扩展性也受到限制，增加计算节点的数量可能会导致性能进一步下降</li>
+<li>由于所有的节点都在一台物理服务器上，不同节点之间的隔离性比多服务器差</li>
+</ul>
+<h4 id="三服务器实现"><a href="#三服务器实现" class="headerlink" title="三服务器实现"></a>三服务器实现</h4><p>在我们的多服务器实现中，三台物理计算机充当网络，计算和控制器节点。这三个服务器由交换机管理网络连接。这种实现的应用更加广泛。</p>
+<p><img src="/content/images/2017/11/network_network.png" alt="network_network"></p>
+<p>优点:</p>
+<ul>
+<li>性能好</li>
+<li>可扩展性好</li>
+<li>更好的隔离性，更加安全</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>由于物理机的数量增加，安装和维护成本将会比单台服务器结构更高。</li>
+</ul>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>我们可以扩展计算节点的数量，没增加一个计算节点，我们需要将其加入管理网络并建立一个与网络节点的GRE管道。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总结</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/random/" rel="tag"># random</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/12/并行系统学习之路5/" rel="next" title="并行系统学习之路（五） ---- Cache探索">
+                <i class="fa fa-chevron-left"></i> 并行系统学习之路（五） ---- Cache探索
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Xingyao Huang" />
+            
+              <p class="site-author-name" itemprop="name">Xingyao Huang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/vulture29" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:huangyy1995@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/xingyaohuang/" target="_blank" title="Linkedin">
+                    
+                      <i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5981969306" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.huihuiloves.me/" title="友情链接" target="_blank">友情链接</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xingyaohuang.com/prog2" title="看个球" target="_blank">看个球</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xingyaohuang.com/prog3" title="看个球2" target="_blank">看个球2</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目介绍"><span class="nav-number">1.</span> <span class="nav-text">项目介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenStack相关介绍"><span class="nav-number">2.</span> <span class="nav-text">OpenStack相关介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenStack的几大组件"><span class="nav-number">2.1.</span> <span class="nav-text">OpenStack的几大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PackStack"><span class="nav-number">2.2.</span> <span class="nav-text">PackStack</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统及环境依赖"><span class="nav-number">3.1.</span> <span class="nav-text">系统及环境依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本步骤"><span class="nav-number">3.2.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程图"><span class="nav-number">3.3.</span> <span class="nav-text">流程图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">4.</span> <span class="nav-text">案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">4.1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构设计及实现"><span class="nav-number">4.2.</span> <span class="nav-text">架构设计及实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三节点架构"><span class="nav-number">4.2.1.</span> <span class="nav-text">三节点架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制节点-Controller-Node"><span class="nav-number">4.2.2.</span> <span class="nav-text">控制节点(Controller Node)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络节点-Network-Node"><span class="nav-number">4.2.3.</span> <span class="nav-text">网络节点(Network Node)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算节点-Compute-Node"><span class="nav-number">4.2.4.</span> <span class="nav-text">计算节点(Compute Node)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络架构"><span class="nav-number">4.2.5.</span> <span class="nav-text">网络架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#管理网络-Management-Network"><span class="nav-number">4.2.5.1.</span> <span class="nav-text">管理网络(Management Network)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封装网络-GRE-Tunnel-VM-Data-Network"><span class="nav-number">4.2.5.2.</span> <span class="nav-text">封装网络(GRE Tunnel / VM Data Network)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部网络-External-Network"><span class="nav-number">4.2.5.3.</span> <span class="nav-text">外部网络(External Network)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算节点内部网络"><span class="nav-number">4.2.5.4.</span> <span class="nav-text">计算节点内部网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络节点内部网络"><span class="nav-number">4.2.5.5.</span> <span class="nav-text">网络节点内部网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建vm请求示例"><span class="nav-number">4.2.5.6.</span> <span class="nav-text">创建vm请求示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">4.2.6.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单服务器实现"><span class="nav-number">4.2.6.1.</span> <span class="nav-text">单服务器实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三服务器实现"><span class="nav-number">4.2.6.2.</span> <span class="nav-text">三服务器实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展"><span class="nav-number">4.2.6.3.</span> <span class="nav-text">扩展</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xingyao Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
