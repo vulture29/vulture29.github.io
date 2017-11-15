@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T01:32:08.000Z">
+<meta property="og:updated_time" content="2017-11-15T01:53:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective C++读书笔记（六）">
 <meta name="twitter:description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
@@ -335,7 +335,23 @@
 <li>non-virtual函数具体指定接口继承以及强制性实现继承</li>
 </ul>
 <h1 id="条款36-绝不重新定义继承而来的non-virtual函数"><a href="#条款36-绝不重新定义继承而来的non-virtual函数" class="headerlink" title="条款36: 绝不重新定义继承而来的non-virtual函数"></a>条款36: 绝不重新定义继承而来的non-virtual函数</h1><ul>
-<li>绝不重新定义继承而来的non-virtual函数</li>
+<li>绝不重新定义继承而来的non-virtual函数（设计问题）</li>
+</ul>
+<h1 id="条款37-绝不重新定义继承而来的缺省参数值"><a href="#条款37-绝不重新定义继承而来的缺省参数值" class="headerlink" title="条款37: 绝不重新定义继承而来的缺省参数值"></a>条款37: 绝不重新定义继承而来的缺省参数值</h1><ul>
+<li>当继承一个带有缺省参数值的virtual函数时</li>
+<li>缺省参数值是静态绑定，调用定义于derived class内的virtual函数是，会使用静态类型对应的缺省参数值</li>
+</ul>
+<h1 id="条款38-通过复合塑模出has-a模型"><a href="#条款38-通过复合塑模出has-a模型" class="headerlink" title="条款38: 通过复合塑模出has-a模型"></a>条款38: 通过复合塑模出has-a模型</h1><ul>
+<li>复合和public继承的区别: has-a 和 is-a</li>
+<li>复合意味着is implemented in terms of，根据某物实现</li>
+</ul>
+<h1 id="条款39-谨慎使用private继承"><a href="#条款39-谨慎使用private继承" class="headerlink" title="条款39: 谨慎使用private继承"></a>条款39: 谨慎使用private继承</h1><ul>
+<li>private和has-a有类似的地方，也意味着in implemented in terms of(根据某物实现出)。他的使用级别通常比复合的级别低。</li>
+<li>和复合不同，private继承可以造成empty base最优化。</li>
+</ul>
+<h1 id="条款40-谨慎使用多重继承"><a href="#条款40-谨慎使用多重继承" class="headerlink" title="条款40: 谨慎使用多重继承"></a>条款40: 谨慎使用多重继承</h1><ul>
+<li>会带来歧义性，以及对virtual继承的需要</li>
+<li>一个正当用途是public继承interface class和private继承某个协助实现的class</li>
 </ul>
 
       
@@ -533,6 +549,10 @@
                     <a href="http://xingyaohuang.com/prog2" title="看个球" target="_blank">看个球</a>
                   </li>
                 
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xingyaohuang.com/prog3" title="看个球2" target="_blank">看个球2</a>
+                  </li>
+                
               </ul>
             </div>
           
@@ -552,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款32-确定你的public继承塑模出is-a关系"><span class="nav-number">1.</span> <span class="nav-text">条款32: 确定你的public继承塑模出is-a关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款33：-避免遮掩继承而来的名称"><span class="nav-number">2.</span> <span class="nav-text">条款33： 避免遮掩继承而来的名称</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款34-区分接口继承和实现继承"><span class="nav-number">3.</span> <span class="nav-text">条款34: 区分接口继承和实现继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款36-绝不重新定义继承而来的non-virtual函数"><span class="nav-number">4.</span> <span class="nav-text">条款36: 绝不重新定义继承而来的non-virtual函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款32-确定你的public继承塑模出is-a关系"><span class="nav-number">1.</span> <span class="nav-text">条款32: 确定你的public继承塑模出is-a关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款33：-避免遮掩继承而来的名称"><span class="nav-number">2.</span> <span class="nav-text">条款33： 避免遮掩继承而来的名称</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款34-区分接口继承和实现继承"><span class="nav-number">3.</span> <span class="nav-text">条款34: 区分接口继承和实现继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款36-绝不重新定义继承而来的non-virtual函数"><span class="nav-number">4.</span> <span class="nav-text">条款36: 绝不重新定义继承而来的non-virtual函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款37-绝不重新定义继承而来的缺省参数值"><span class="nav-number">5.</span> <span class="nav-text">条款37: 绝不重新定义继承而来的缺省参数值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款38-通过复合塑模出has-a模型"><span class="nav-number">6.</span> <span class="nav-text">条款38: 通过复合塑模出has-a模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款39-谨慎使用private继承"><span class="nav-number">7.</span> <span class="nav-text">条款39: 谨慎使用private继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款40-谨慎使用多重继承"><span class="nav-number">8.</span> <span class="nav-text">条款40: 谨慎使用多重继承</span></a></li></ol></div>
             
 
           </div>
