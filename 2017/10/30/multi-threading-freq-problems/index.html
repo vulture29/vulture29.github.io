@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T01:51:28.000Z">
+<meta property="og:updated_time" content="2017-11-16T17:01:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多道程序并发 - 死锁，信号量，生产者消费者">
 <meta name="twitter:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
@@ -367,11 +367,11 @@
 <li>取出数据后释放锁</li>
 <li>取数据</li>
 <li>获取锁后将空间设置为空</li>
-<li>signal free信号量并释放锁<br>Producer<figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (free_bp.is_empty())</div><div class="line">    cond_wait(cond_freebp_empty, lock_bp)</div><div class="line">buffer &lt;- free_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... produce data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">data_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_databp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure>
-</li>
+<li>signal free信号量并释放锁</li>
 </ul>
 </li>
 </ul>
+<p>Producer<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (free_bp.is_empty())</div><div class="line">    cond_wait(cond_freebp_empty, lock_bp)</div><div class="line">buffer &lt;- free_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... produce data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">data_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_databp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure></p>
 <p>Consumer<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (data_bp.is_empty())</div><div class="line">    cond_wait(cond_databp_empty, lock_bp)</div><div class="line">buffer &lt;- data_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... consume data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">free_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_freebp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure></p>
 
       
