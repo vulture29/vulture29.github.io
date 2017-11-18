@@ -79,21 +79,24 @@
 
 
 
-<meta name="description" content="FATFAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统，本文我们将对其进行分析。 基本设计思想FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成的。我们可以为创建一个表专门表示block的分配信息。 以下给出一个例子:  在此例中，file是我们需要研究的">
+<meta name="description" content="文件系统是用户和硬盘数据打交道的接口，用户通过文件系统可以对文件内容进行各种操作。本篇将讨论目前最常见的两种文件系统: FAT和Ext FATFAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统。 基本设计思想FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成">
 <meta name="keywords" content="operating system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件系统学习 -- FAT, EXT">
+<meta property="og:title" content="文件系统学习 -- FAT, Ext">
 <meta property="og:url" content="http://vulture29.github.io/2017/11/16/fat/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="FATFAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统，本文我们将对其进行分析。 基本设计思想FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成的。我们可以为创建一个表专门表示block的分配信息。 以下给出一个例子:  在此例中，file是我们需要研究的">
+<meta property="og:description" content="文件系统是用户和硬盘数据打交道的接口，用户通过文件系统可以对文件内容进行各种操作。本篇将讨论目前最常见的两种文件系统: FAT和Ext FATFAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统。 基本设计思想FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/fat.png">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/fdt.png">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/fat_system.png">
-<meta property="og:updated_time" content="2017-11-17T05:12:01.000Z">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/inode.jpg">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/inode1.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/inode_system.png">
+<meta property="og:updated_time" content="2017-11-18T03:04:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件系统学习 -- FAT, EXT">
-<meta name="twitter:description" content="FATFAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统，本文我们将对其进行分析。 基本设计思想FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成的。我们可以为创建一个表专门表示block的分配信息。 以下给出一个例子:  在此例中，file是我们需要研究的">
+<meta name="twitter:title" content="文件系统学习 -- FAT, Ext">
+<meta name="twitter:description" content="文件系统是用户和硬盘数据打交道的接口，用户通过文件系统可以对文件内容进行各种操作。本篇将讨论目前最常见的两种文件系统: FAT和Ext FATFAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统。 基本设计思想FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成">
 <meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/fat.png">
 
 
@@ -130,7 +133,7 @@
 
 
 
-  <title>文件系统学习 -- FAT, EXT | Xingyao Huang's Blog</title>
+  <title>文件系统学习 -- FAT, Ext | Xingyao Huang's Blog</title>
   
 
 
@@ -284,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">文件系统学习 -- FAT, EXT</h1>
+          <h1 class="post-title" itemprop="name headline">文件系统学习 -- FAT, Ext</h1>
         
 
         <div class="post-meta">
@@ -350,7 +353,8 @@
       
 
       
-        <h1 id="FAT"><a href="#FAT" class="headerlink" title="FAT"></a>FAT</h1><p>FAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统，本文我们将对其进行分析。</p>
+        <p>文件系统是用户和硬盘数据打交道的接口，用户通过文件系统可以对文件内容进行各种操作。本篇将讨论目前最常见的两种文件系统: FAT和Ext</p>
+<h1 id="FAT"><a href="#FAT" class="headerlink" title="FAT"></a>FAT</h1><p>FAT文件系统曾经被广泛运用与DOS系统和早期的Windows系统，即使到了现在，部分U盘等存储设备使用的依然是FAT的文件系统格式。这种文件系统是最经典的一种文件系统。</p>
 <h2 id="基本设计思想"><a href="#基本设计思想" class="headerlink" title="基本设计思想"></a>基本设计思想</h2><p>FAT的基本思想是: 由于文件是由一个一个block构成类似链表格式而组成的。我们可以为创建一个表专门表示block的分配信息。</p>
 <p>以下给出一个例子:</p>
 <p><img src="/content/images/2017/11/fat.png" alt="fat"></p>
@@ -381,7 +385,41 @@
 <h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
 <li>有时访问效率比较低下，由于查找一个文件的内容必须从头开始遍历，就算只需要最后的内容</li>
 </ul>
-<h1 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h1>
+<h1 id="EXT"><a href="#EXT" class="headerlink" title="EXT"></a>EXT</h1><p>另外一种流行的文件系统是Ext(Extended Format)。EXT系统被广泛运用于Linux上，它有Ext2, Ext3, Ext4等版本，不过他们的基本思想比较类似。</p>
+<h2 id="基本设计思想-1"><a href="#基本设计思想-1" class="headerlink" title="基本设计思想"></a>基本设计思想</h2><p>在EXT文件系统中，每一个文件都有一个对应的inode数据结构对其进行描述:(图片来自于《鸟哥的Linux私房菜》)</p>
+<p><img src="/content/images/2017/11/inode.jpg" alt="inode"></p>
+<p>Inode的大小是固定的，Inode的第一个部分是文件的Metadata，描述这个文件的各种性质。接着inode存储着15个地址：前12个地址中，每一个地址都直接指向一个数据块Data Block，这是为了对于小文件而言有更好的存储效率。第13个地址指向一个256个项的表，这个表的每一项都对应一个数据块，这瞬间就让inode可存储的数据大小大了许多。如果这还不够的话，第14个地址指向一个二重表，表的每一项都指向一个表，指向的表每一项都指向对应的数据块。第15个地址指向一个三重表，这样的话文件的大小就可以非常大了。以每一个block大小为1K为例，单个文件的总存储大小可以达到<code>12+256+256*256+256*256*256(K) = 16GB</code>。</p>
+<p><img src="/content/images/2017/11/inode1.png" alt="inode1">（图片来自Udacity）</p>
+<p>上述例子描述了目录相关的存储方法。假设我们要找的文件位于<code>/foo/File.txt</code>。首先我们找到根目录对应的inode，在他的数据区里找到foo对应的inode的地址，然后找到foo的inode数据区域在找到File.txt对应inode的地址，就可以访问到inode内部内容了。</p>
+<h2 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h2><p>Ext文件系统由以下几个部分组成：superblock，文件系统描述，块对应表，inode对应表，inode table和Data Block。</p>
+<p><img src="/content/images/2017/11/inode_system.png" alt="inode_system"></p>
+<h3 id="superblock"><a href="#superblock" class="headerlink" title="superblock"></a>superblock</h3><p>Superblock是记录整个文件系统相关信息的地方，没有superblock就没有这个文件系统。记录的信息包括：</p>
+<ul>
+<li>block与inode的总量</li>
+<li>未使用和已使用的block/inode总量</li>
+<li>block与inode的大小</li>
+<li>文件系统的挂载时间，最近一次写入数据的时间等</li>
+<li><strong>validbit数值，若被挂载则valid bit为0，否则为1</strong></li>
+<li>superblock可能会在其他的block group内备份</li>
+<li>可以用<code>dumpe2fs</code>查看</li>
+</ul>
+<h3 id="文件系统描述"><a href="#文件系统描述" class="headerlink" title="文件系统描述"></a>文件系统描述</h3><p>这个区段可以描述每个block group的开始与结束的block号码，以及说明每个区段(superblock, bitmap, inodemap, data block)分别介于哪一个block号码之间。也可以使用<code>dumpe2fs</code>查看。</p>
+<h3 id="块对应表-block-bitmap"><a href="#块对应表-block-bitmap" class="headerlink" title="块对应表 - block bitmap"></a>块对应表 - block bitmap</h3><p>当我们在添加文件是需要用到新的block记录数据，那我们怎么知道哪一个block是空闲的呢？块对应表将记录这些。通过此表我们可以快速找到可使用的空间来处理文件。并且再删除文件中也记录下来，把对应的block好嘛设置为空闲。</p>
+<h3 id="inode对应表-inode-bitmap"><a href="#inode对应表-inode-bitmap" class="headerlink" title="inode对应表 - inode bitmap"></a>inode对应表 - inode bitmap</h3><p>与block bitmap类似，记录的是使用中和未使用的inode的情况。</p>
+<h3 id="inode-table"><a href="#inode-table" class="headerlink" title="inode table"></a>inode table</h3><p>inode的内容主要是记录文件的属性metadata以及该文件的实际数据放在哪一个block内。inode table的组成可见Ext的基本设计思想。</p>
+<h3 id="Data-Block"><a href="#Data-Block" class="headerlink" title="Data Block"></a>Data Block</h3><p>data block是用来放置文件内容的地方，在Ext2文件系统中所支持的block大小有1KB，2KB及4KB三种。在格式化的时候block的大小就已经固定了，且每个block都有编号，以方便inode的记录。由于block大小的差别可能会导致文件系统支持的最大磁盘容量不一样。</p>
+<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><ul>
+<li>新建文件简单</li>
+<li>扩充文件简单</li>
+<li>空间利用率较高(不会有外部碎片，有内部碎片，与簇大小有关系)</li>
+<li>即使在随机访问文件里的数据，效率也比较高</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/Design_of_the_FAT_file_system" target="_blank" rel="external">FAT Design Wikipedia</a></li>
+<li>Udacity OS Course</li>
+<li>《鸟哥的Linux私房菜》</li>
+</ul>
+
       
     </div>
     
@@ -623,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FAT"><span class="nav-number">1.</span> <span class="nav-text">FAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本设计思想"><span class="nav-number">1.1.</span> <span class="nav-text">基本设计思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方式"><span class="nav-number">1.2.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.3.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EXT"><span class="nav-number">2.</span> <span class="nav-text">EXT</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FAT"><span class="nav-number">1.</span> <span class="nav-text">FAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本设计思想"><span class="nav-number">1.1.</span> <span class="nav-text">基本设计思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方式"><span class="nav-number">1.2.</span> <span class="nav-text">实现方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.3.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EXT"><span class="nav-number">2.</span> <span class="nav-text">EXT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本设计思想-1"><span class="nav-number">2.1.</span> <span class="nav-text">基本设计思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方式-1"><span class="nav-number">2.2.</span> <span class="nav-text">实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#superblock"><span class="nav-number">2.2.1.</span> <span class="nav-text">superblock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统描述"><span class="nav-number">2.2.2.</span> <span class="nav-text">文件系统描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块对应表-block-bitmap"><span class="nav-number">2.2.3.</span> <span class="nav-text">块对应表 - block bitmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inode对应表-inode-bitmap"><span class="nav-number">2.2.4.</span> <span class="nav-text">inode对应表 - inode bitmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inode-table"><span class="nav-number">2.2.5.</span> <span class="nav-text">inode table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Block"><span class="nav-number">2.2.6.</span> <span class="nav-text">Data Block</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析-1"><span class="nav-number">2.3.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -815,7 +853,7 @@
         var disqus_config = function () {
           this.page.url = 'http://vulture29.github.io/2017/11/16/fat/';
           this.page.identifier = '2017/11/16/fat/';
-          this.page.title = '文件系统学习 -- FAT, EXT';
+          this.page.title = '文件系统学习 -- FAT, Ext';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://vulture29-github-io.disqus.com/embed.js';
