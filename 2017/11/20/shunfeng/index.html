@@ -82,11 +82,11 @@
 <meta name="description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="顺丰科技面试准备">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/20/db-opt/index.html">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/20/shunfeng/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-21T00:19:22.000Z">
+<meta property="og:updated_time" content="2017-11-21T18:52:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺丰科技面试准备">
 <meta name="twitter:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/20/db-opt/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/20/shunfeng/"/>
 
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/20/db-opt/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/20/shunfeng/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
@@ -310,9 +310,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/20/db-opt/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/20/shunfeng/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/20/db-opt/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/20/shunfeng/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -399,7 +399,7 @@
 <li>AOP面向切面编程：把具体的类创建对应的代理类，通过代理类来对具体类进行操作。</li>
 </ul>
 <p>spring是一个容器，通过spring这个容器来对对象进行管理，根据配置文件来实现spring对对象的管理。</p>
-<h2 id="增删改查都是一样的么"><a href="#增删改查都是一样的么" class="headerlink" title="增删改查都是一样的么"></a>增删改查都是一样的么</h2><h2 id="该怎么做"><a href="#该怎么做" class="headerlink" title="该怎么做"></a>该怎么做</h2><h1 id="常见的锁"><a href="#常见的锁" class="headerlink" title="常见的锁"></a>常见的锁</h1><h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁可以使线程在没有取得锁的时候，不被挂起，而转去执行一个空循环，（即所谓的自旋，就是自己执行空循环），若在若干个空循环后，线程如果可以获得锁，则继续执行。若线程依然不能获得锁，才会被挂起。</p>
+<h1 id="常见的锁"><a href="#常见的锁" class="headerlink" title="常见的锁"></a>常见的锁</h1><h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁可以使线程在没有取得锁的时候，不被挂起，而转去执行一个空循环，（即所谓的自旋，就是自己执行空循环），若在若干个空循环后，线程如果可以获得锁，则继续执行。若线程依然不能获得锁，才会被挂起。</p>
 <h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>如果程序没有竞争，则取消之前已经取得锁的线程同步操作。也就是说，若某一锁被线程获取后，便进入偏向模式，当线程再次请求这个锁时，就无需再进行相关的同步操作了，从而节约了操作时间，如果在此之间有其他的线程进行了锁请求，则锁退出偏向模式。</p>
 <h1 id="同步方式"><a href="#同步方式" class="headerlink" title="同步方式"></a>同步方式</h1><ul>
 <li><a href="https://fangjian0423.github.io/2016/04/18/java-synchronize-way/" target="_blank" rel="external">https://fangjian0423.github.io/2016/04/18/java-synchronize-way/</a></li>
@@ -454,6 +454,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/fuse/" rel="prev" title="基于FUSE实现一个类FAT文件系统">
+                基于FUSE实现一个类FAT文件系统 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -546,7 +550,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -642,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL调优及函数"><span class="nav-number">1.</span> <span class="nav-text">SQL调优及函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.1.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程"><span class="nav-number">2.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程调度"><span class="nav-number">3.</span> <span class="nav-text">进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#评价指标"><span class="nav-number">3.1.</span> <span class="nav-text">评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU利用率"><span class="nav-number">3.1.1.</span> <span class="nav-text">CPU利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">3.1.2.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#周转时间"><span class="nav-number">3.1.3.</span> <span class="nav-text">周转时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待时间"><span class="nav-number">3.1.4.</span> <span class="nav-text">等待时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应时间"><span class="nav-number">3.1.5.</span> <span class="nav-text">响应时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用算法"><span class="nav-number">3.2.</span> <span class="nav-text">常用算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">4.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring是怎么控制事物的"><span class="nav-number">4.1.</span> <span class="nav-text">Spring是怎么控制事物的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改查都是一样的么"><span class="nav-number">4.2.</span> <span class="nav-text">增删改查都是一样的么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#该怎么做"><span class="nav-number">4.3.</span> <span class="nav-text">该怎么做</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的锁"><span class="nav-number">5.</span> <span class="nav-text">常见的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋锁"><span class="nav-number">5.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#偏向锁"><span class="nav-number">5.2.</span> <span class="nav-text">偏向锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步方式"><span class="nav-number">6.</span> <span class="nav-text">同步方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL调优及函数"><span class="nav-number">1.</span> <span class="nav-text">SQL调优及函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.1.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程"><span class="nav-number">2.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程调度"><span class="nav-number">3.</span> <span class="nav-text">进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#评价指标"><span class="nav-number">3.1.</span> <span class="nav-text">评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU利用率"><span class="nav-number">3.1.1.</span> <span class="nav-text">CPU利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">3.1.2.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#周转时间"><span class="nav-number">3.1.3.</span> <span class="nav-text">周转时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待时间"><span class="nav-number">3.1.4.</span> <span class="nav-text">等待时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应时间"><span class="nav-number">3.1.5.</span> <span class="nav-text">响应时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用算法"><span class="nav-number">3.2.</span> <span class="nav-text">常用算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">4.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring是怎么控制事物的"><span class="nav-number">4.1.</span> <span class="nav-text">Spring是怎么控制事物的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的锁"><span class="nav-number">5.</span> <span class="nav-text">常见的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋锁"><span class="nav-number">5.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#偏向锁"><span class="nav-number">5.2.</span> <span class="nav-text">偏向锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步方式"><span class="nav-number">6.</span> <span class="nav-text">同步方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -832,8 +836,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://vulture29.github.io/2017/11/20/db-opt/';
-          this.page.identifier = '2017/11/20/db-opt/';
+          this.page.url = 'http://vulture29.github.io/2017/11/20/shunfeng/';
+          this.page.identifier = '2017/11/20/shunfeng/';
           this.page.title = '顺丰科技面试准备';
         };
         var d = document, s = d.createElement('script');
