@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="cpp," />
+  <meta name="keywords" content="Xingyao Huang" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
-<meta name="keywords" content="cpp">
+<meta name="description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++读书笔记（四）">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/01/eff-cpp4/index.html">
+<meta property="og:title" content="顺丰科技面试准备">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/20/db-opt/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
+<meta property="og:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-05T00:50:41.000Z">
+<meta property="og:updated_time" content="2017-11-20T23:40:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++读书笔记（四）">
-<meta name="twitter:description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
+<meta name="twitter:title" content="顺丰科技面试准备">
+<meta name="twitter:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/01/eff-cpp4/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/20/db-opt/"/>
 
 
 
 
 
-  <title>Effective C++读书笔记（四） | Xingyao Huang's Blog</title>
+  <title>顺丰科技面试准备 | Xingyao Huang's Blog</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/01/eff-cpp4/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/20/db-opt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
@@ -280,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Effective C++读书笔记（四）</h1>
+          <h1 class="post-title" itemprop="name headline">顺丰科技面试准备</h1>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T21:11:18-04:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T14:21:09-05:00">
+                2017-11-20
               </time>
             
 
@@ -311,9 +310,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/01/eff-cpp4/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/20/db-opt/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/01/eff-cpp4/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/20/db-opt/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -346,70 +345,67 @@
       
 
       
-        <h1 id="条款18-让接口容易被正确使用，不易被误用"><a href="#条款18-让接口容易被正确使用，不易被误用" class="headerlink" title="条款18: 让接口容易被正确使用，不易被误用"></a>条款18: 让接口容易被正确使用，不易被误用</h1><ul>
-<li>“促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容<ul>
-<li>获得大小时全部用size而不是偶尔有length</li>
-<li>如果和int类似，就要是他的行为（比如加减）和int一样</li>
-</ul>
-</li>
-<li>“组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任</li>
-<li>shared_ptr支持定制型删除器，消除了”cross-DLL problem”，可用来接触互斥锁<ul>
-<li>cross-DLL problem: 对象在DLL中被new创建，却在另一个DLL中内delete销毁</li>
-</ul>
-</li>
-</ul>
-<h1 id="条款19：-设计class犹如设计type"><a href="#条款19：-设计class犹如设计type" class="headerlink" title="条款19： 设计class犹如设计type"></a>条款19： 设计class犹如设计type</h1><p>设计class需要面对的问题：</p>
+        <h1 id="SQL调优及函数"><a href="#SQL调优及函数" class="headerlink" title="SQL调优及函数"></a>SQL调优及函数</h1><p>随着数据库数据增多，SQL语句的效率会变的越来越重要。</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。</p>
+<p>缺点：</p>
 <ul>
-<li>新type的对象应该如何被创建和销毁？<ul>
-<li>构造函数和析构函数</li>
+<li>表数据改变时，索引表也需要改变</li>
+<li>额外磁盘空间，1.2倍表大小</li>
 </ul>
-</li>
-<li>对象的初始化和对象的赋值该有什么样的差别？</li>
-<li>新对象如果被passed by value(按值传递)，意味着什么？<ul>
-<li>copy构造函数</li>
+<p>聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）</p>
+<ul>
+<li>定义主键的数据列一定要建立索引</li>
+<li>定义有外键的数据列一定要建立索引</li>
+<li>对于经常查询的数据列最好建立索引</li>
 </ul>
-</li>
-<li>什么是新type的”合法值”？</li>
-<li>新type需要遵循某种继承关系吗？</li>
-<li>新type需要什么样的转换？</li>
-<li>什么样的操作符和函数对新type是合理的？</li>
-<li>什么样的标准函数应该驳回(private)？</li>
-<li>与type有关系的其他class或type？</li>
-<li>什么是新type的”未声明接口”？</li>
-<li>新type有多一般化?（是否应该直接定义template）</li>
-<li>真的需要定义这样的一个type吗？</li>
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><p>我们常用的操作数据库语言SQL语句在执行的时候需要要先编译，然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果该存储过程带有参数）来调用执行它。</p>
+<p>一个存储过程是一个可编程的函数，它在数据库中创建并保存。它可以有SQL语句和一些特殊的控制结构组成。当希望在不同的应用程序或平台上执行相同的函数，或者封装特定功能时，存储过程是非常有用的。数据库中的存储过程可以看做是对编程中面向对象方法的模拟。它允许控制数据的访问方式。</p>
+<p>存储过程通常有以下优点：</p>
+<ul>
+<li>存储过程增强了SQL语言的功能和灵活性。存储过程可以用流控制语句编写，有很强的灵活性，可以完成复杂的判断和较复杂的运算。</li>
+<li>存储过程允许标准组件是编程。存储过程被创建后，可以在程序中被多次调用，而不必重新编写该存储过程的SQL语句。而且数据库专业人员可以随时对存储过程进行修改，对应用程序源代码毫无影响。</li>
+<li>存储过程能实现较快的执行速度。如果某一操作包含大量的Transaction-SQL代码或分别被多次执行，那么存储过程要比批处理的执行速度快很多。因为存储过程是预编译的。在首次运行一个存储过程时查询，优化器对其进行分析优化，并且给出最终被存储在系统表中的执行计划。而批处理的Transaction-SQL语句在每次运行时都要进行编译和优化，速度相对要慢一些。</li>
+<li>存储过程能过减少网络流量。针对同一个数据库对象的操作（如查询、修改），如果这一操作所涉及的Transaction-SQL语句被组织程存储过程，那么当在客户计算机上调用该存储过程时，网络中传送的只是该调用语句，从而大大增加了网络流量并降低了网络负载。</li>
+<li>存储过程可被作为一种安全机制来充分利用。系统管理员通过执行某一存储过程的权限进行限制，能够实现对相应的数据的访问权限的限制，避免了非授权用户对数据的访问，保证了数据的安全。</li>
 </ul>
-<h1 id="条款20-宁以pass-by-reference-to-const替换pass-by-value"><a href="#条款20-宁以pass-by-reference-to-const替换pass-by-value" class="headerlink" title="条款20: 宁以pass-by-reference-to-const替换pass-by-value"></a>条款20: 宁以pass-by-reference-to-const替换pass-by-value</h1><ul>
-<li>尽量以pass-by-reference-to-const替换pass-by-value。前者通常比较高效，并可避免<ul>
-<li>切割问题: 若传入对象是子类但传入类型是父类类型，由于调用的copy构造函数是父类的，会导致在函数内对象只含有对象的父类部分</li>
+<h1 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h1><ul>
+<li>非抢占式</li>
+<li>抢占式</li>
 </ul>
-</li>
-<li>具体情况具体分析，有些时候（例如STL）使用pass-by-value比较合适</li>
+<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><h3 id="CPU利用率"><a href="#CPU利用率" class="headerlink" title="CPU利用率"></a>CPU利用率</h3><p>CPU是计算机系统中的稀缺资源，所以应在有具体任务的情况下尽可能使CPU保持忙，从而使得CPU资源利用率最高。<br>CPU利用率 = CPU利用的时间 / 开机运行的总时间</p>
+<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p>CPU运行时的工作量大小是以每单位时间所完成的进程数目来描述的，即称为吞吐量。</p>
+<h3 id="周转时间"><a href="#周转时间" class="headerlink" title="周转时间"></a>周转时间</h3><p>指从进程创建到作进程结束所经过的时间，这期间包括了由于各种因素（比如等待I/O操作完成）导致的进程阻塞，处于就绪态并在就绪队列中排队，在处理机上运行所花时间的总和。</p>
+<p>作业的周转时间：</p>
+<ul>
+<li>周转时间 = 作业完成时间 - 作业提交时间</li>
+<li>平均周转时间是指多个作业周转时间的平均值：</li>
+<li>平均周转时间 = (作业1的周转时间 + … + 作业 n 的周转时间) / n</li>
+<li>带权周转时间是指作业周转时间与作业实际运行时间的比值：</li>
+<li>带权周转时间 = 作业周转时间 / 作业实际运行时间</li>
+<li>平均带权周转时间是指多个作业带权周转时间的平均值：</li>
+<li>平均带权周转时间 = (作业1的带权周转时间 + … + 作业 n 的带权周转时间) / n</li>
 </ul>
-<h1 id="条款21-必须返回对象时，不要返回其reference"><a href="#条款21-必须返回对象时，不要返回其reference" class="headerlink" title="条款21: 必须返回对象时，不要返回其reference"></a>条款21: 必须返回对象时，不要返回其reference</h1><ul>
-<li>不要返回指针或者引用指向local stack对象或者heap-allocated对象，或返回指针或者引用指向一个local static对象而有可能同时需要多个这样的对象。<ul>
-<li>local stack: local stack对象在函数退出之前会被销毁</li>
-<li>heap-allocated: 无法反之内存泄露，无法每次都delete</li>
-<li>local static对象: 多个对象的local static对象引用都指向同一个</li>
+<h3 id="等待时间"><a href="#等待时间" class="headerlink" title="等待时间"></a>等待时间</h3><p>即进程在就绪队列中等待所花的时间总和。因此衡量一个调度算法的简单方法就是统计进程在就绪队列上的等待时间。</p>
+<h3 id="响应时间"><a href="#响应时间" class="headerlink" title="响应时间"></a>响应时间</h3><p>指从事件（比如产生了一次时钟中断事件）产生到进程或系统作出响应所经过的时间。在交互式桌面计算机系统中，用户希望响应时间越快越好，但这常常要以牺牲吞吐量为代价。</p>
+<h2 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h2><ul>
+<li>FCFS(First come first serve)</li>
+<li>SJF(Short job first)</li>
+<li>RR(Round Robin)</li>
+<li>PR(Priority First)</li>
 </ul>
-</li>
+<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring是怎么控制事物的"><a href="#Spring是怎么控制事物的" class="headerlink" title="Spring是怎么控制事物的"></a>Spring是怎么控制事物的</h2><p>spring的事务是通过“声明式事务”的方式对事务进行管理，即在配置文件中进行声明，通过AOP将事务切面切入程序。最大的好处是大大减少了代码量，简化了程序，提高了工作效率。</p>
+<ul>
+<li>IoC控制反转：控制权由对象本身转向容器，由容器对bean对象进行控制。</li>
+<li>AOP面向切面编程：把具体的类创建对应的代理类，通过代理类来对具体类进行操作。</li>
 </ul>
-<h1 id="条款22-将成员变量声明为private"><a href="#条款22-将成员变量声明为private" class="headerlink" title="条款22: 将成员变量声明为private"></a>条款22: 将成员变量声明为private</h1><ul>
-<li>尽可能的把成员变量声明为private<ul>
-<li>赋予客户访问数据的一致性</li>
-<li>细微划分访问控制</li>
-<li>实现封装</li>
+<p>spring是一个容器，通过spring这个容器来对对象进行管理，根据配置文件来实现spring对对象的管理。</p>
+<h2 id="增删改查都是一样的么"><a href="#增删改查都是一样的么" class="headerlink" title="增删改查都是一样的么"></a>增删改查都是一样的么</h2><h2 id="该怎么做"><a href="#该怎么做" class="headerlink" title="该怎么做"></a>该怎么做</h2><h1 id="常见的锁"><a href="#常见的锁" class="headerlink" title="常见的锁"></a>常见的锁</h1><h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁可以使线程在没有取得锁的时候，不被挂起，而转去执行一个空循环，（即所谓的自旋，就是自己执行空循环），若在若干个空循环后，线程如果可以获得锁，则继续执行。若线程依然不能获得锁，才会被挂起。</p>
+<h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>如果程序没有竞争，则取消之前已经取得锁的线程同步操作。也就是说，若某一锁被线程获取后，便进入偏向模式，当线程再次请求这个锁时，就无需再进行相关的同步操作了，从而节约了操作时间，如果在此之间有其他的线程进行了锁请求，则锁退出偏向模式。</p>
+<h1 id="同步方式"><a href="#同步方式" class="headerlink" title="同步方式"></a>同步方式</h1><ul>
+<li><a href="https://fangjian0423.github.io/2016/04/18/java-synchronize-way/" target="_blank" rel="external">https://fangjian0423.github.io/2016/04/18/java-synchronize-way/</a></li>
+<li><a href="http://www.cnblogs.com/XHJT/p/3897440.html" target="_blank" rel="external">http://www.cnblogs.com/XHJT/p/3897440.html</a></li>
 </ul>
-</li>
-<li>protected并不比public更具封装性</li>
-</ul>
-<h1 id="条款23：-宁以non-member、non-friend、替换member函数"><a href="#条款23：-宁以non-member、non-friend、替换member函数" class="headerlink" title="条款23： 宁以non-member、non-friend、替换member函数"></a>条款23： 宁以non-member、non-friend、替换member函数</h1><ul>
-<li>提高封装性：不增加能够访问class内之private成分的函数数量</li>
-<li>提高包裹弹性(packaging flexibility): 可以使该non-member函数位于一个namespace内(namespace可跨越多个源码文件)，符合C++标准程序库的组织方式</li>
-<li>机能扩展性: 由于此类便利函数放在多个头文件但属于同一namespace，客户可以扩展这一组函数</li>
-</ul>
-<h1 id="条款24：-若所有参数皆需类型转换，应为此采用non-member函数"><a href="#条款24：-若所有参数皆需类型转换，应为此采用non-member函数" class="headerlink" title="条款24： 若所有参数皆需类型转换，应为此采用non-member函数"></a>条款24： 若所有参数皆需类型转换，应为此采用non-member函数</h1><p>例子：class有理数和int类型数相乘，即使定义了member operator函数，却不能满足交换律。使用non-member函数或许是个更好的选择</p>
-<h1 id="条款25-考虑写出一个不抛异常的swap函数"><a href="#条款25-考虑写出一个不抛异常的swap函数" class="headerlink" title="条款25: 考虑写出一个不抛异常的swap函数"></a>条款25: 考虑写出一个不抛异常的swap函数</h1><p>（以后补充）</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://blog.sina.com.cn/s/blog_52d20fbf0100ofd5.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_52d20fbf0100ofd5.html</a><br><a href="http://blog.csdn.net/guoweimelon/article/details/50847532" target="_blank" rel="external">http://blog.csdn.net/guoweimelon/article/details/50847532</a><br><a href="http://bbs.csdn.net/topics/390632361" target="_blank" rel="external">http://bbs.csdn.net/topics/390632361</a></p>
 
       
     </div>
@@ -424,12 +420,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/cpp/" rel="tag"># cpp</a>
-          
-        </div>
       
 
       
@@ -455,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/30/multi-threading-freq-problems/" rel="next" title="多道程序并发 - 死锁，信号量，生产者消费者">
-                <i class="fa fa-chevron-left"></i> 多道程序并发 - 死锁，信号量，生产者消费者
+              <a href="/2017/11/19/plan/" rel="next" title="Plan">
+                <i class="fa fa-chevron-left"></i> Plan
               </a>
             
           </div>
@@ -464,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/03/riot-msg-svs/" rel="prev" title="RIOT消息服务 - Riot messaging service">
-                RIOT消息服务 - Riot messaging service <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -656,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款18-让接口容易被正确使用，不易被误用"><span class="nav-number">1.</span> <span class="nav-text">条款18: 让接口容易被正确使用，不易被误用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款19：-设计class犹如设计type"><span class="nav-number">2.</span> <span class="nav-text">条款19： 设计class犹如设计type</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款20-宁以pass-by-reference-to-const替换pass-by-value"><span class="nav-number">3.</span> <span class="nav-text">条款20: 宁以pass-by-reference-to-const替换pass-by-value</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款21-必须返回对象时，不要返回其reference"><span class="nav-number">4.</span> <span class="nav-text">条款21: 必须返回对象时，不要返回其reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款22-将成员变量声明为private"><span class="nav-number">5.</span> <span class="nav-text">条款22: 将成员变量声明为private</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款23：-宁以non-member、non-friend、替换member函数"><span class="nav-number">6.</span> <span class="nav-text">条款23： 宁以non-member、non-friend、替换member函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款24：-若所有参数皆需类型转换，应为此采用non-member函数"><span class="nav-number">7.</span> <span class="nav-text">条款24： 若所有参数皆需类型转换，应为此采用non-member函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款25-考虑写出一个不抛异常的swap函数"><span class="nav-number">8.</span> <span class="nav-text">条款25: 考虑写出一个不抛异常的swap函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL调优及函数"><span class="nav-number">1.</span> <span class="nav-text">SQL调优及函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.1.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程"><span class="nav-number">2.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程调度"><span class="nav-number">3.</span> <span class="nav-text">进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#评价指标"><span class="nav-number">3.1.</span> <span class="nav-text">评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU利用率"><span class="nav-number">3.1.1.</span> <span class="nav-text">CPU利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">3.1.2.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#周转时间"><span class="nav-number">3.1.3.</span> <span class="nav-text">周转时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待时间"><span class="nav-number">3.1.4.</span> <span class="nav-text">等待时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应时间"><span class="nav-number">3.1.5.</span> <span class="nav-text">响应时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用算法"><span class="nav-number">3.2.</span> <span class="nav-text">常用算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">4.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring是怎么控制事物的"><span class="nav-number">4.1.</span> <span class="nav-text">Spring是怎么控制事物的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改查都是一样的么"><span class="nav-number">4.2.</span> <span class="nav-text">增删改查都是一样的么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#该怎么做"><span class="nav-number">4.3.</span> <span class="nav-text">该怎么做</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的锁"><span class="nav-number">5.</span> <span class="nav-text">常见的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋锁"><span class="nav-number">5.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#偏向锁"><span class="nav-number">5.2.</span> <span class="nav-text">偏向锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步方式"><span class="nav-number">6.</span> <span class="nav-text">同步方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -846,9 +832,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://vulture29.github.io/2017/11/01/eff-cpp4/';
-          this.page.identifier = '2017/11/01/eff-cpp4/';
-          this.page.title = 'Effective C++读书笔记（四）';
+          this.page.url = 'http://vulture29.github.io/2017/11/20/db-opt/';
+          this.page.identifier = '2017/11/20/db-opt/';
+          this.page.title = '顺丰科技面试准备';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://vulture29-github-io.disqus.com/embed.js';
