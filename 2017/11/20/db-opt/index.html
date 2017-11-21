@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
+<meta name="description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="顺丰科技面试准备">
 <meta property="og:url" content="http://vulture29.github.io/2017/11/20/db-opt/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
+<meta property="og:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-20T23:40:54.000Z">
+<meta property="og:updated_time" content="2017-11-21T00:19:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺丰科技面试准备">
-<meta name="twitter:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
+<meta name="twitter:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
 
 
 
@@ -346,7 +346,7 @@
 
       
         <h1 id="SQL调优及函数"><a href="#SQL调优及函数" class="headerlink" title="SQL调优及函数"></a>SQL调优及函数</h1><p>随着数据库数据增多，SQL语句的效率会变的越来越重要。</p>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B数下，n个数据最多只需要log(n)次查询就可以访问到。</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。</p>
 <p>缺点：</p>
 <ul>
 <li>表数据改变时，索引表也需要改变</li>
