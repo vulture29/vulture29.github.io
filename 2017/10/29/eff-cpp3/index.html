@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-30T18:36:05.000Z">
+<meta property="og:updated_time" content="2017-11-22T17:23:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective C++读书笔记（三）">
 <meta name="twitter:description" content="条款13： 以对象管理资源 获得资源后立刻放进管理对象内 管理对象运用析构函数确保资源被释放 常被使用的管理对象有shared_ptr, unique_ptr和auto_ptr，auto_ptr的复制会使它（被复制物）指向null  条款14： 在资源管理类中小心copying行为 复制管理对象会一并复制他所管理的资源，所以资源的copying行为决定了管理对象的copy行为 通常采用的方法包括：">
@@ -211,6 +211,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -302,6 +312,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/reading-notes/" itemprop="url" rel="index">
+                    <span itemprop="name">reading notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -519,6 +562,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
@@ -583,10 +635,6 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://xingyaohuang.com/prog2" title="看个球" target="_blank">看个球</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://xingyaohuang.com/prog3" title="看个球2" target="_blank">看个球2</a>
                   </li>
                 
               </ul>

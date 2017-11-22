@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-16T17:01:49.000Z">
+<meta property="og:updated_time" content="2017-11-22T17:23:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多道程序并发 - 死锁，信号量，生产者消费者">
 <meta name="twitter:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
@@ -211,6 +211,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -302,6 +312,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -541,6 +573,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
@@ -605,10 +646,6 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://xingyaohuang.com/prog2" title="看个球" target="_blank">看个球</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://xingyaohuang.com/prog3" title="看个球2" target="_blank">看个球2</a>
                   </li>
                 
               </ul>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="本文参考: https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-07T00:52:42.000Z">
+<meta property="og:updated_time" content="2017-11-22T17:26:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法 ---- 位操作小结">
 <meta name="twitter:description" content="本文参考: https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
@@ -211,6 +211,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -302,6 +312,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -416,7 +448,7 @@
 <li>SUM OF TWO INTEGERS</li>
 </ul>
 <p>使用<code>^</code>和<code>&amp;</code>实现两个数相加</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> b==<span class="number">0</span>? a:getSum(a^b, (a&amp;b)&lt;&lt;<span class="number">1</span>); </div><div class="line">    <span class="comment">//be careful about the terminating condition;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> b==<span class="number">0</span>? a:getSum(a^b, (a&amp;b)&lt;&lt;<span class="number">1</span>);</div><div class="line">    <span class="comment">//be careful about the terminating condition;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>MISSING NUMBER</li>
 </ul>
@@ -436,10 +468,11 @@
 <figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">x = ((x &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt; <span class="number">1</span>) | ((x &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</div><div class="line">x = ((x &amp; <span class="number">0xcccccccc</span>) &gt;&gt; <span class="number">2</span>) | ((x &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</div><div class="line">x = ((x &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt; <span class="number">4</span>) | ((x &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</div><div class="line">x = ((x &amp; <span class="number">0xff00ff00</span>) &gt;&gt; <span class="number">8</span>) | ((x &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</div><div class="line">x = ((x &amp; <span class="number">0xffff0000</span>) &gt;&gt; <span class="number">16</span>) | ((x &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</div></pre></td></tr></table></figure>
 <p>BITWISE AND OF NUMBERS RANGE</p>
 <p>给定范围[m, n]使得 0 &lt;= m &lt;= n &lt;= 2147483647, 返回范围内所有值按位的与操作之和。例如给定 [5, 7], 返回4.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(m != n) &#123;</div><div class="line">        m &gt;&gt;= <span class="number">1</span>;</div><div class="line">        n &gt;&gt;= <span class="number">1</span>;</div><div class="line">        a++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> m&lt;&lt;a; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(m != n) &#123;</div><div class="line">        m &gt;&gt;= <span class="number">1</span>;</div><div class="line">        n &gt;&gt;= <span class="number">1</span>;</div><div class="line">        a++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> m&lt;&lt;a;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>NUMBER OF 1 BITS</p>
 <p>求一个整数的转为二进制后含有1的比特位的个数（也称为汉明距离)</p>
 <figure class="highlight excel"><table><tr><td class="code"><pre><div class="line"><span class="built_in">int</span> hammingWeight(uint32_t <span class="built_in">n</span>) &#123;</div><div class="line">	<span class="built_in">int</span> <span class="built_in">count</span> = <span class="number">0</span>;</div><div class="line">	while(<span class="built_in">n</span>) &#123;</div><div class="line">		<span class="built_in">n</span> = <span class="built_in">n</span>&amp;(<span class="built_in">n</span>-<span class="number">1</span>);</div><div class="line">		<span class="built_in">count</span>++;</div><div class="line">	&#125;</div><div class="line">	return <span class="built_in">count</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">int</span> hammingWeight(uint32_t <span class="built_in">n</span>) &#123;</div><div class="line">    ulong mask = <span class="number">1</span>;</div><div class="line">    <span class="built_in">int</span> <span class="built_in">count</span> = <span class="number">0</span>;</div><div class="line">    for(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123; //<span class="number">31</span> will <span class="built_in">not</span> do, delicate;</div><div class="line">        <span class="built_in">if</span>(mask &amp; <span class="built_in">n</span>) <span class="built_in">count</span>++;</div><div class="line">        mask &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    return <span class="built_in">count</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -593,6 +626,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
@@ -657,10 +699,6 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://xingyaohuang.com/prog2" title="看个球" target="_blank">看个球</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://xingyaohuang.com/prog3" title="看个球2" target="_blank">看个球2</a>
                   </li>
                 
               </ul>
