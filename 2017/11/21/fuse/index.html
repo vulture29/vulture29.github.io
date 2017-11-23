@@ -88,7 +88,7 @@
 <meta property="og:description" content="FUSE文件系统是一种用来存储和组织计算机文件、目录及其包含的数据的方法，它使文件、目录以及数据的查找和访问得到简化。FUSE（Filesystem in Userspace）是用户级文件系统连接到Linux内核的接口。 使用FUSE我们不需要进行内核级的编程而可以直接创建操作系统。  三大模块 内核模块 Libfuse模块 用户程序模块    fuse内核实现VFS接口，传递给libfuse，再">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/fuse.png">
-<meta property="og:updated_time" content="2017-11-22T17:27:31.000Z">
+<meta property="og:updated_time" content="2017-11-23T16:39:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于FUSE实现一个文件系统">
 <meta name="twitter:description" content="FUSE文件系统是一种用来存储和组织计算机文件、目录及其包含的数据的方法，它使文件、目录以及数据的查找和访问得到简化。FUSE（Filesystem in Userspace）是用户级文件系统连接到Linux内核的接口。 使用FUSE我们不需要进行内核级的编程而可以直接创建操作系统。  三大模块 内核模块 Libfuse模块 用户程序模块    fuse内核实现VFS接口，传递给libfuse，再">
@@ -417,7 +417,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="结构设计"><a href="#结构设计" class="headerlink" title="结构设计:"></a>结构设计:</h1><ul>
+<h1 id="结构设计"><a href="#结构设计" class="headerlink" title="结构设计"></a>结构设计</h1><ul>
 <li>name</li>
 <li>sameLevelNext</li>
 <li>nextLevelStart</li>
@@ -462,7 +462,59 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.png" alt="Xingyao Huang 比特币"/>
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Xingyao Huang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://vulture29.github.io/2017/11/21/fuse/" title="基于FUSE实现一个文件系统">http://vulture29.github.io/2017/11/21/fuse/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
@@ -696,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FUSE"><span class="nav-number">1.</span> <span class="nav-text">FUSE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户程序实现"><span class="nav-number">2.</span> <span class="nav-text">用户程序实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构设计"><span class="nav-number">3.</span> <span class="nav-text">结构设计:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计问题"><span class="nav-number">4.</span> <span class="nav-text">设计问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FUSE"><span class="nav-number">1.</span> <span class="nav-text">FUSE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户程序实现"><span class="nav-number">2.</span> <span class="nav-text">用户程序实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构设计"><span class="nav-number">3.</span> <span class="nav-text">结构设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计问题"><span class="nav-number">4.</span> <span class="nav-text">设计问题</span></a></li></ol></div>
             
 
           </div>
