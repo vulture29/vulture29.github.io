@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="有时候我们需要编辑一些远程服务器上的文件，但是由于屏幕刷新延迟等问题，直接使用vim等编辑器会使得效率比较低。本文将详细介绍如何使用sublime text 3 对远程文件进行编辑。  (本地）首先在Sublime Text 3里打开Package Manager(Linux/Win使用Ctrl-Shift-P, Mac使用Cmd-Shift-P)，选择Install Package, 接着搜索r">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-25T19:26:18.000Z">
+<meta property="og:updated_time" content="2017-11-25T19:40:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Sublime Text进行远程编辑">
 <meta name="twitter:description" content="有时候我们需要编辑一些远程服务器上的文件，但是由于屏幕刷新延迟等问题，直接使用vim等编辑器会使得效率比较低。本文将详细介绍如何使用sublime text 3 对远程文件进行编辑。  (本地）首先在Sublime Text 3里打开Package Manager(Linux/Win使用Ctrl-Shift-P, Mac使用Cmd-Shift-P)，选择Install Package, 接着搜索r">
@@ -385,7 +385,7 @@
 <figure class="highlight basic"><table><tr><td class="code"><pre><div class="line"><span class="comment">RemoteForward 52698 127.0.0.1:52698</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>（远程）在远程服务器上下载rmate并将其加入bin目录：</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">sudo wget -O <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>rsub https:<span class="regexp">//</span>raw.github.com<span class="regexp">/aurora/</span>rmate<span class="regexp">/master/</span>rmate</div><div class="line">chmod a+x <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>rsub</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><div class="line">sudo wget -O <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>rsub https:<span class="regexp">//</span>raw.github.com<span class="regexp">/aurora/</span>rmate<span class="regexp">/master/</span>rmate</div><div class="line">sudo chmod a+x <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>rsub</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>现在使用exit退出远程服务器再重新登陆，即可轻松使用类似<code>rsub hello.c</code>的语句使用本地sublime编辑文件了。</p>
