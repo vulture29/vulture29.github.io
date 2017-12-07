@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="random," />
+  <meta name="keywords" content="computer architecture," />
 
 
 
@@ -79,18 +79,29 @@
 
 
 
-<meta name="description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
-<meta name="keywords" content="random">
+<meta name="description" content="几十年来，计算机的基本结构没有改变，改变的是各个部分的规模，工艺改进。所以学习计算机的基本架构是很有必要的。 冯诺依曼结构  存储型计算机，即通用计算机(专用计算机还是有实际用途的，比如军事。延伸到设计层面，应该如何选择。追求专用性还是通用性) 缺点：数据传输效率远低于 CPU 运算效率 改进：增加 CPU 缓存  总线结构(bus)  CPU 以总线连接外部设备。 总线是组件之间规范化的数据交换">
+<meta name="keywords" content="computer architecture">
 <meta property="og:type" content="article">
-<meta property="og:title" content="顺丰科技面试准备">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/20/shunfeng/index.html">
+<meta property="og:title" content="计算机硬件概要">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/27/cs-fund/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
+<meta property="og:description" content="几十年来，计算机的基本结构没有改变，改变的是各个部分的规模，工艺改进。所以学习计算机的基本架构是很有必要的。 冯诺依曼结构  存储型计算机，即通用计算机(专用计算机还是有实际用途的，比如军事。延伸到设计层面，应该如何选择。追求专用性还是通用性) 缺点：数据传输效率远低于 CPU 运算效率 改进：增加 CPU 缓存  总线结构(bus)  CPU 以总线连接外部设备。 总线是组件之间规范化的数据交换">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-22T17:25:16.000Z">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/von_neumann.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/bus.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/cpu.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/rank.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/cache1.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/cache2.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/smp.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/numa.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/ht.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/htd.png">
+<meta property="og:updated_time" content="2017-12-05T00:53:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="顺丰科技面试准备">
-<meta name="twitter:description" content="SQL调优及函数随着数据库数据增多，SQL语句的效率会变的越来越重要。 索引索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。 缺点：  表数据改变时，索引表也需要改变 额外磁盘空间，1.2倍表大小  聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）  定义主键的数据列一定要建立索引 定">
+<meta name="twitter:title" content="计算机硬件概要">
+<meta name="twitter:description" content="几十年来，计算机的基本结构没有改变，改变的是各个部分的规模，工艺改进。所以学习计算机的基本架构是很有必要的。 冯诺依曼结构  存储型计算机，即通用计算机(专用计算机还是有实际用途的，比如军事。延伸到设计层面，应该如何选择。追求专用性还是通用性) 缺点：数据传输效率远低于 CPU 运算效率 改进：增加 CPU 缓存  总线结构(bus)  CPU 以总线连接外部设备。 总线是组件之间规范化的数据交换">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/von_neumann.png">
 
 
 
@@ -120,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/20/shunfeng/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/27/cs-fund/"/>
 
 
 
 
 
-  <title>顺丰科技面试准备 | Xingyao Huang's Blog</title>
+  <title>计算机硬件概要 | Xingyao Huang's Blog</title>
   
 
 
@@ -273,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/20/shunfeng/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/27/cs-fund/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
@@ -290,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">顺丰科技面试准备</h1>
+          <h1 class="post-title" itemprop="name headline">计算机硬件概要</h1>
         
 
         <div class="post-meta">
@@ -302,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T14:21:09-05:00">
-                2017-11-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-27T21:40:40-05:00">
+                2017-11-27
               </time>
             
 
@@ -343,8 +354,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/20/shunfeng/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/11/20/shunfeng/" itemprop="commentsCount"></span>
+                <a href="/2017/11/27/cs-fund/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/11/27/cs-fund/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -377,67 +388,116 @@
       
 
       
-        <h1 id="SQL调优及函数"><a href="#SQL调优及函数" class="headerlink" title="SQL调优及函数"></a>SQL调优及函数</h1><p>随着数据库数据增多，SQL语句的效率会变的越来越重要。</p>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>索引可以大幅度增加SQL查询的速度，通常用B树实现，这样在严格B树下，n个数据最多只需要log(n)次查询就可以访问到。</p>
-<p>缺点：</p>
+        <p>几十年来，计算机的基本结构没有改变，改变的是各个部分的规模，工艺改进。所以学习计算机的基本架构是很有必要的。</p>
+<h1 id="冯诺依曼结构"><a href="#冯诺依曼结构" class="headerlink" title="冯诺依曼结构"></a>冯诺依曼结构</h1><p><img src="/content/images/2017/11/von_neumann.png" alt="冯诺依曼结构"></p>
 <ul>
-<li>表数据改变时，索引表也需要改变</li>
-<li>额外磁盘空间，1.2倍表大小</li>
+<li>存储型计算机，即通用计算机(专用计算机还是有实际用途的，比如军事。延伸到设计层面，应该如何选择。追求专用性还是通用性)</li>
+<li>缺点：数据传输效率远低于 CPU 运算效率</li>
+<li>改进：增加 CPU 缓存</li>
 </ul>
-<p>聚集索引和非聚集索引的根本区别是表记录的排列顺序和与索引的排列顺序是否一致（聚集索引一致）</p>
+<h1 id="总线结构-bus"><a href="#总线结构-bus" class="headerlink" title="总线结构(bus)"></a>总线结构(bus)</h1><p><img src="/content/images/2017/11/bus.png" alt="总线结构"></p>
 <ul>
-<li>定义主键的数据列一定要建立索引</li>
-<li>定义有外键的数据列一定要建立索引</li>
-<li>对于经常查询的数据列最好建立索引</li>
+<li>CPU 以总线连接外部设备。</li>
+<li>总线是组件之间规范化的数据交换方式。不仅仅是电路线，还规定了数据传输的方法。包括地址、数据、控制总线等。</li>
+<li>北桥为高速芯片，连接内存、显卡等。</li>
+<li>南桥连接硬盘、网卡等低速设备。</li>
+<li>高低速分离会使得计算机效率更高</li>
+<li>现在流行方式是将南北桥整合到 CPU 内。</li>
 </ul>
-<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><p>我们常用的操作数据库语言SQL语句在执行的时候需要要先编译，然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数（如果该存储过程带有参数）来调用执行它。</p>
-<p>一个存储过程是一个可编程的函数，它在数据库中创建并保存。它可以有SQL语句和一些特殊的控制结构组成。当希望在不同的应用程序或平台上执行相同的函数，或者封装特定功能时，存储过程是非常有用的。数据库中的存储过程可以看做是对编程中面向对象方法的模拟。它允许控制数据的访问方式。</p>
-<p>存储过程通常有以下优点：</p>
+<h1 id="中央处理器"><a href="#中央处理器" class="headerlink" title="中央处理器"></a>中央处理器</h1><p><img src="/content/images/2017/11/cpu.png" alt="总线结构"></p>
 <ul>
-<li>存储过程增强了SQL语言的功能和灵活性。存储过程可以用流控制语句编写，有很强的灵活性，可以完成复杂的判断和较复杂的运算。</li>
-<li>存储过程允许标准组件是编程。存储过程被创建后，可以在程序中被多次调用，而不必重新编写该存储过程的SQL语句。而且数据库专业人员可以随时对存储过程进行修改，对应用程序源代码毫无影响。</li>
-<li>存储过程能实现较快的执行速度。如果某一操作包含大量的Transaction-SQL代码或分别被多次执行，那么存储过程要比批处理的执行速度快很多。因为存储过程是预编译的。在首次运行一个存储过程时查询，优化器对其进行分析优化，并且给出最终被存储在系统表中的执行计划。而批处理的Transaction-SQL语句在每次运行时都要进行编译和优化，速度相对要慢一些。</li>
-<li>存储过程能过减少网络流量。针对同一个数据库对象的操作（如查询、修改），如果这一操作所涉及的Transaction-SQL语句被组织程存储过程，那么当在客户计算机上调用该存储过程时，网络中传送的只是该调用语句，从而大大增加了网络流量并降低了网络负载。</li>
-<li>存储过程可被作为一种安全机制来充分利用。系统管理员通过执行某一存储过程的权限进行限制，能够实现对相应的数据的访问权限的限制，避免了非授权用户对数据的访问，保证了数据的安全。</li>
+<li>任务：解释指令，处理数据。<ul>
+<li>冯·诺伊曼 CPU 运作原理可分为四个阶段：提取、解码、执行和写回</li>
 </ul>
-<h1 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h1><ul>
-<li>非抢占式</li>
-<li>抢占式</li>
+</li>
+<li>主频：运算、处理速度。即中央处理器内部的工作速度</li>
+<li>外频：主板速度，超频。即与其他设备共同工作的速度</li>
+<li>编程实质上是对 CPU 而言的</li>
+<li>分复杂指令集 CISC 和精简指令集 RISC<ul>
+<li>CISC：x86，指令字长不等，按顺序串行执行。指令丰富，利用率不高，执行速度慢。Intel/AMD等</li>
+<li>RISC：指令和寻址方式少，格式统一，并行速度快，主要用于大型机和中高档服务器。PowerPC/Alpha等</li>
 </ul>
-<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><h3 id="CPU利用率"><a href="#CPU利用率" class="headerlink" title="CPU利用率"></a>CPU利用率</h3><p>CPU是计算机系统中的稀缺资源，所以应在有具体任务的情况下尽可能使CPU保持忙，从而使得CPU资源利用率最高。<br>CPU利用率 = CPU利用的时间 / 开机运行的总时间</p>
-<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p>CPU运行时的工作量大小是以每单位时间所完成的进程数目来描述的，即称为吞吐量。</p>
-<h3 id="周转时间"><a href="#周转时间" class="headerlink" title="周转时间"></a>周转时间</h3><p>指从进程创建到作进程结束所经过的时间，这期间包括了由于各种因素（比如等待I/O操作完成）导致的进程阻塞，处于就绪态并在就绪队列中排队，在处理机上运行所花时间的总和。</p>
-<p>作业的周转时间：</p>
+</li>
+<li>指令集 ISA：包含基本数据类型，指令，寄存器，寻址模式，存储体系，中断和异常处理等。</li>
+<li>小端模式 ：强制转换数据不需要调整字节内容，1、2、4字节的存储方式一样。</li>
+<li>大端模式 ：符号位的判定固定为第一个字节，容易判断正负。</li>
+</ul>
+<h1 id="CPU存储等级"><a href="#CPU存储等级" class="headerlink" title="CPU存储等级"></a>CPU存储等级</h1><p><img src="/content/images/2017/11/rank.png" alt="存储等级"></p>
+<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><ul>
+<li>CPU 中暂存指令、地址、数据，速度最快的存储单元。</li>
+<li>寄存器分通用、指令、标志、段等。</li>
+<li>快：距离近；硬件设计；工作方式简单。</li>
+</ul>
+<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><p><img src="/content/images/2017/11/cache1.png" alt="缓存1"></p>
+<p><img src="/content/images/2017/11/cache2.png" alt="缓存2"></p>
 <ul>
-<li>周转时间 = 作业完成时间 - 作业提交时间</li>
-<li>平均周转时间是指多个作业周转时间的平均值：</li>
-<li>平均周转时间 = (作业1的周转时间 + … + 作业 n 的周转时间) / n</li>
-<li>带权周转时间是指作业周转时间与作业实际运行时间的比值：</li>
-<li>带权周转时间 = 作业周转时间 / 作业实际运行时间</li>
-<li>平均带权周转时间是指多个作业带权周转时间的平均值：</li>
-<li>平均带权周转时间 = (作业1的带权周转时间 + … + 作业 n 的带权周转时间) / n</li>
+<li>缓存的主要目的：速度越来越快的 CPU 被多年没长进的内存拖累。容量虽小，但速度接近 CPU 处理频率。</li>
+<li>总是先检查缓存。如果没有命中，则先缓存，然后再返回给处理器。</li>
+<li>基于时间和空间局部性，有较高的命中率。</li>
+<li>一级缓存分指令和数据两部分。</li>
+<li>缓存由多个块（cache line）构成。每个块存储连续地址的数据单元。</li>
+<li>通过标志可检查缓存是否更新，以决定是否需要置换回内存。缓存减少更新次数。</li>
+<li>多级缓存：追求速度必然要减少容积，反之就要牺牲访问速度。L1 靠近 CPU，L2 靠近内存。每级缓存数据都是下一级的一部分。</li>
+<li>技术和成本考虑。缓存使用 SRAM 存储器，不用像主存 DRAM 那样频繁刷新电路。</li>
+<li>时间局部性：正在被访问的数据可能近期被再次访</li>
+<li>空间局部性：临近地址数据可能即将被访问；顺序局部性：大部分指令是顺序执行。</li>
+<li>为了避免缓存失效，可采取行填充的技术</li>
+<li>之前在<a href="http://xingyaohuang.com/2017/11/12/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF5" target="_blank" rel="external">另一篇博客</a>也讨论过缓存相关</li>
 </ul>
-<h3 id="等待时间"><a href="#等待时间" class="headerlink" title="等待时间"></a>等待时间</h3><p>即进程在就绪队列中等待所花的时间总和。因此衡量一个调度算法的简单方法就是统计进程在就绪队列上的等待时间。</p>
-<h3 id="响应时间"><a href="#响应时间" class="headerlink" title="响应时间"></a>响应时间</h3><p>指从事件（比如产生了一次时钟中断事件）产生到进程或系统作出响应所经过的时间。在交互式桌面计算机系统中，用户希望响应时间越快越好，但这常常要以牺牲吞吐量为代价。</p>
-<h2 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h2><ul>
-<li>FCFS(First come first serve)</li>
-<li>SJF(Short job first)</li>
-<li>RR(Round Robin)</li>
-<li>PR(Priority First)</li>
+<h1 id="多核"><a href="#多核" class="headerlink" title="多核"></a>多核</h1><ul>
+<li>概念：在一个处理器内集成多个独立实体物理内核。</li>
+<li>解决问题：主频提升的麻烦，散热等等问题。</li>
+<li>优点<ul>
+<li>多核更好支持并行任务。</li>
+<li>可通过共享 cache 进行通信。</li>
 </ul>
-<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="Spring是怎么控制事物的"><a href="#Spring是怎么控制事物的" class="headerlink" title="Spring是怎么控制事物的"></a>Spring是怎么控制事物的</h2><p>spring的事务是通过“声明式事务”的方式对事务进行管理，即在配置文件中进行声明，通过AOP将事务切面切入程序。最大的好处是大大减少了代码量，简化了程序，提高了工作效率。</p>
+</li>
+</ul>
+<h2 id="两种模式"><a href="#两种模式" class="headerlink" title="两种模式"></a>两种模式</h2><ul>
+<li><p>SMP：对称多处理。</p>
+<p><img src="/content/images/2017/11/smp.png" alt="SMP"></p>
+<p>每个处理器地位平等，对资源使用权相同。连接到共享的主存，由软硬件锁机制解决资源竞争问题。随处理器数量增加，导致访问冲突增加。核的数量为2到4的时候效率比较高，这也是为什么PC一般核的数量都是2到4.</p>
+</li>
+<li><p>NUMA：非统一内存访问。</p>
+<p><img src="/content/images/2017/11/numa.png" alt="NUMA"></p>
+<p>将内存分散给多个处理器，避免存储器对处理器访问的限制（多任务资源分片）。处理器可以访问全部内存，但访问本地内存更快。扩展性更好，适用于服务器。</p>
+</li>
+</ul>
+<h2 id="超线程"><a href="#超线程" class="headerlink" title="超线程"></a>超线程</h2><p><img src="/content/images/2017/11/ht.png" alt="ht"><br><img src="/content/images/2017/11/htd.png" alt="ht"></p>
 <ul>
-<li>IoC控制反转：控制权由对象本身转向容器，由容器对bean对象进行控制。</li>
-<li>AOP面向切面编程：把具体的类创建对应的代理类，通过代理类来对具体类进行操作。</li>
+<li>通过增加保存状态的寄存器的数量，在单个物理核内虚拟多个逻辑处理器。</li>
+<li>将指令等待时间做别的任务，充分利用相关资源，减少闲置时间。除自有状态外，共享其他单元。</li>
+<li>和软线程类似，多数时候可提升执行效率。</li>
+<li>但如果资源冲突，依然需要等待，类似同步锁。</li>
+<li>某些时候可能导致性能下降。</li>
+<li>单位时间内，只有一个线程能运行。</li>
 </ul>
-<p>spring是一个容器，通过spring这个容器来对对象进行管理，根据配置文件来实现spring对对象的管理。</p>
-<h1 id="常见的锁"><a href="#常见的锁" class="headerlink" title="常见的锁"></a>常见的锁</h1><h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁可以使线程在没有取得锁的时候，不被挂起，而转去执行一个空循环，（即所谓的自旋，就是自己执行空循环），若在若干个空循环后，线程如果可以获得锁，则继续执行。若线程依然不能获得锁，才会被挂起。</p>
-<h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>如果程序没有竞争，则取消之前已经取得锁的线程同步操作。也就是说，若某一锁被线程获取后，便进入偏向模式，当线程再次请求这个锁时，就无需再进行相关的同步操作了，从而节约了操作时间，如果在此之间有其他的线程进行了锁请求，则锁退出偏向模式。</p>
-<h1 id="同步方式"><a href="#同步方式" class="headerlink" title="同步方式"></a>同步方式</h1><ul>
-<li><a href="https://fangjian0423.github.io/2016/04/18/java-synchronize-way/" target="_blank" rel="external">https://fangjian0423.github.io/2016/04/18/java-synchronize-way/</a></li>
-<li><a href="http://www.cnblogs.com/XHJT/p/3897440.html" target="_blank" rel="external">http://www.cnblogs.com/XHJT/p/3897440.html</a></li>
+<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>内存是与CPU沟通的桥梁。</p>
+<p>主要功能包括：可直接寻址的存储空间，暂存数据。</p>
+<ul>
+<li>DRAM：主存，动态随机访问。结构简单，空间小，需要刷新。</li>
+<li>SRAM：缓存，静态随机存储。结构复杂，成本高，速度快。</li>
 </ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://blog.sina.com.cn/s/blog_52d20fbf0100ofd5.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_52d20fbf0100ofd5.html</a><br><a href="http://blog.csdn.net/guoweimelon/article/details/50847532" target="_blank" rel="external">http://blog.csdn.net/guoweimelon/article/details/50847532</a><br><a href="http://bbs.csdn.net/topics/390632361" target="_blank" rel="external">http://bbs.csdn.net/topics/390632361</a></p>
+<h1 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h1><p>硬盘是计算机的主要持久化存储媒介。</p>
+<p>两种工作方式：</p>
+<ul>
+<li>PIO：通过 CPU 执行 IO 指令读写数据。早期模式，速率低下，CPU 占用率高。</li>
+<li>DMA：直接内存访问。CPU只需开始和结束时参与，其他由DMA控制器完成，让外部设备和内存之间直接读写数据。<ul>
+<li>DMA 通过中断通知 CPU 传输结束。</li>
+</ul>
+</li>
+</ul>
+<h1 id="IO（外设访问）"><a href="#IO（外设访问）" class="headerlink" title="IO（外设访问）"></a>IO（外设访问）</h1><ul>
+<li>PMIO：独立地址空间，以专用指令读写。</li>
+<li>MMIO：和物理内存共享地址空间，相同常规读写指令。需要为设备保留地址范围。</li>
+<li>如果外部设备比较慢，PMIO 不会拖累地址总线，影响内存访问。但是 MMIO 让 CPU 逻辑更少，且读写更方便。</li>
+<li>可以通过 DMA 将数据传送到 I/O 设备。</li>
+</ul>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><ul>
+<li>管理计算机硬件和软件资源，是内核和基石。</li>
+<li>分配内存，调度进程，控制输入输出设备，操作文件和网络系统等等。</li>
+<li>微内核仅提供核心功能，将服务和基本操作区分开来，模块化设计。Linux用单内核，因多数服务都在内核态运行，效率较好。</li>
+</ul>
 
       
     </div>
@@ -484,7 +544,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/random/" rel="tag"># random</a>
+            <a href="/tags/computer-architecture/" rel="tag"># computer architecture</a>
           
         </div>
       
@@ -512,8 +572,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/19/plan/" rel="next" title="Plan">
-                <i class="fa fa-chevron-left"></i> Plan
+              <a href="/2017/11/25/freestyle_swimming/" rel="next" title="自由泳要点">
+                <i class="fa fa-chevron-left"></i> 自由泳要点
               </a>
             
           </div>
@@ -521,10 +581,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/21/fuse/" rel="prev" title="基于FUSE实现一个文件系统">
-                基于FUSE实现一个文件系统 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -715,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL调优及函数"><span class="nav-number">1.</span> <span class="nav-text">SQL调优及函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.1.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程"><span class="nav-number">2.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程调度"><span class="nav-number">3.</span> <span class="nav-text">进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#评价指标"><span class="nav-number">3.1.</span> <span class="nav-text">评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU利用率"><span class="nav-number">3.1.1.</span> <span class="nav-text">CPU利用率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">3.1.2.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#周转时间"><span class="nav-number">3.1.3.</span> <span class="nav-text">周转时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待时间"><span class="nav-number">3.1.4.</span> <span class="nav-text">等待时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应时间"><span class="nav-number">3.1.5.</span> <span class="nav-text">响应时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用算法"><span class="nav-number">3.2.</span> <span class="nav-text">常用算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">4.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring是怎么控制事物的"><span class="nav-number">4.1.</span> <span class="nav-text">Spring是怎么控制事物的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的锁"><span class="nav-number">5.</span> <span class="nav-text">常见的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋锁"><span class="nav-number">5.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#偏向锁"><span class="nav-number">5.2.</span> <span class="nav-text">偏向锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步方式"><span class="nav-number">6.</span> <span class="nav-text">同步方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#冯诺依曼结构"><span class="nav-number">1.</span> <span class="nav-text">冯诺依曼结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总线结构-bus"><span class="nav-number">2.</span> <span class="nav-text">总线结构(bus)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中央处理器"><span class="nav-number">3.</span> <span class="nav-text">中央处理器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU存储等级"><span class="nav-number">4.</span> <span class="nav-text">CPU存储等级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">5.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存"><span class="nav-number">6.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多核"><span class="nav-number">7.</span> <span class="nav-text">多核</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种模式"><span class="nav-number">7.1.</span> <span class="nav-text">两种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超线程"><span class="nav-number">7.2.</span> <span class="nav-text">超线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存"><span class="nav-number">8.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#硬盘"><span class="nav-number">9.</span> <span class="nav-text">硬盘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IO（外设访问）"><span class="nav-number">10.</span> <span class="nav-text">IO（外设访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统"><span class="nav-number">11.</span> <span class="nav-text">操作系统</span></a></li></ol></div>
             
 
           </div>
