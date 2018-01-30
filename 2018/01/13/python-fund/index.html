@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="game," />
+  <meta name="keywords" content="Xingyao Huang" />
 
 
 
@@ -79,23 +79,17 @@
 
 
 
-<meta name="description" content="本文原作者 Michal 0xDEADB33F Ptaszek(链接为原文通道),仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比">
-<meta name="keywords" content="game">
+<meta name="description" content="放假归来，这几天复习了一下好久不用的python，总结了一下知识点。 语法基础 tuple与list的异同 都由多个元素组成 tuple由()组成，list由[]组成 tuple不可变，list可变 tuple表示的是一种结构，而list表示的是多个事物的集合 tuple操作比list快   字符串用法要点  转义符和其他语言类似 在字符串前加r表示raw字符串: print(r&amp;#39;C:\s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RIOT消息服务 - Riot messaging service">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/03/riot-msg-svs/index.html">
+<meta property="og:title" content="python知识点复习">
+<meta property="og:url" content="http://vulture29.github.io/2018/01/13/python-fund/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="本文原作者 Michal 0xDEADB33F Ptaszek(链接为原文通道),仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比">
+<meta property="og:description" content="放假归来，这几天复习了一下好久不用的python，总结了一下知识点。 语法基础 tuple与list的异同 都由多个元素组成 tuple由()组成，list由[]组成 tuple不可变，list可变 tuple表示的是一种结构，而list表示的是多个事物的集合 tuple操作比list快   字符串用法要点  转义符和其他语言类似 在字符串前加r表示raw字符串: print(r&amp;#39;C:\s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_UnderTheHood.jpg">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_EdgeTier.jpg">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_RoutingTier.jpg">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_LoadTestTool.jpg">
-<meta property="og:updated_time" content="2017-11-22T17:25:07.000Z">
+<meta property="og:updated_time" content="2018-01-30T02:49:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RIOT消息服务 - Riot messaging service">
-<meta name="twitter:description" content="本文原作者 Michal 0xDEADB33F Ptaszek(链接为原文通道),仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/RMS_UnderTheHood.jpg">
+<meta name="twitter:title" content="python知识点复习">
+<meta name="twitter:description" content="放假归来，这几天复习了一下好久不用的python，总结了一下知识点。 语法基础 tuple与list的异同 都由多个元素组成 tuple由()组成，list由[]组成 tuple不可变，list可变 tuple表示的是一种结构，而list表示的是多个事物的集合 tuple操作比list快   字符串用法要点  转义符和其他语言类似 在字符串前加r表示raw字符串: print(r&amp;#39;C:\s">
 
 
 
@@ -125,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/03/riot-msg-svs/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2018/01/13/python-fund/"/>
 
 
 
 
 
-  <title>RIOT消息服务 - Riot messaging service | Xingyao Huang's Blog</title>
+  <title>python知识点复习 | Xingyao Huang's Blog</title>
   
 
 
@@ -278,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/03/riot-msg-svs/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2018/01/13/python-fund/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
@@ -295,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RIOT消息服务 - Riot messaging service</h1>
+          <h1 class="post-title" itemprop="name headline">python知识点复习</h1>
         
 
         <div class="post-meta">
@@ -307,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T01:09:13-04:00">
-                2017-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T16:39:59-05:00">
+                2018-01-13
               </time>
             
 
@@ -318,28 +312,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -348,8 +320,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/03/riot-msg-svs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/11/03/riot-msg-svs/" itemprop="commentsCount"></span>
+                <a href="/2018/01/13/python-fund/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/13/python-fund/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -382,56 +354,53 @@
       
 
       
-        <p>本文原作者<a href="https://engineering.riotgames.com/news/riot-messaging-service" target="_blank" rel="external"> Michal 0xDEADB33F Ptaszek(链接为原文通道)</a>,仅供学习用途</p>
-<h1 id="RIOT的消息服务"><a href="#RIOT的消息服务" class="headerlink" title="RIOT的消息服务"></a>RIOT的消息服务</h1><p>我们将RIOT消息服务Riot messaging service简写为RMS.</p>
-<p>若以高层划分，服务之间的通信可以被分为两组：</p>
-<ul>
-<li>同步请求：发送者在发出请求后堵塞直到收到回复</li>
-<li>异步请求：发送之后不会堵塞</li>
+        <p>放假归来，这几天复习了一下好久不用的python，总结了一下知识点。</p>
+<h2 id="语法基础"><a href="#语法基础" class="headerlink" title="语法基础"></a>语法基础</h2><ul>
+<li>tuple与list的异同<ul>
+<li>都由多个元素组成</li>
+<li>tuple由()组成，list由[]组成</li>
+<li>tuple不可变，list可变</li>
+<li>tuple表示的是一种结构，而list表示的是多个事物的集合</li>
+<li>tuple操作比list快</li>
 </ul>
-<p>本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比如说状态切换。Riot的消息服务的设计就是为了解决不同场景，约束条件下的客户消息传递。</p>
-<p>本文将从讨论状态变化和stateful服务的重要性入手，接着介绍Riot的消息传输服务的架构，这个架构具有可线性扩展和高容错率的特性。最后将讨论一个可支持1千万玩家连接的系统实例。</p>
-<h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><p>在拳头公司里，微服务架构被应用的很广泛，微服务带来了特别多的好处，包括软件的分离，独立的部署，可扩展性提升，支持不同编程语言等等。</p>
-<p>英雄联盟中每个微服务都负责他们对应的状态。我们把战队系统作为例子：战队是一个由玩家创建，由玩家组织，由玩家控制的群组。战队系统储存了成员信息，tag，今日公告，成员排名以及一些其他的信息。每次从客户端登录将从战队服务获得最新的状态然后显示出来。</p>
-<p>然而当我们有了最初的状态后，我们将怎么样更新他呢？比如说，当战队管理员改变了今日公告时，其他成员的客户端是否应该主动从服务端获取数据然后检测是否由改变呢？或者只有当成员重新登录时才获取信息呢？还是说我们应该建立一个连接来实时更新？</p>
-<p>RMS针对具体情况做出了选择，根据此问题的特性，合理的解决方法应该是: 每当管理员更新公告时，会通知战队服务，接着战队服务会通知RMS告诉每一个成员更新最近的战队状态。</p>
-<p>RMS其实和手机上的推送系统类似，然后手机的推送系统有部分为同步请求，而RMS使用的是异步请求。</p>
-<h1 id="RMS高层架构"><a href="#RMS高层架构" class="headerlink" title="RMS高层架构"></a>RMS高层架构</h1><p>RMS的高层架构包括两个部分:</p>
+</li>
+<li><p>字符串用法要点</p>
 <ul>
-<li>RMS Edge（RMSE）</li>
-<li>RMS Routing(RMSR)</li>
+<li>转义符和其他语言类似</li>
+<li>在字符串前加r表示raw字符串: <code>print(r&#39;C:\some\name&#39;)</code></li>
+<li>使用’’’或者”””表示换行:<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">  print(<span class="string">"""\</span></div><div class="line"><span class="string">Usage: thingy [OPTIONS]</span></div><div class="line"><span class="string">     -h                        Display this usage message</span></div><div class="line"><span class="string">     -H hostname               Hostname to connect to</span></div><div class="line"><span class="string">"""</span>)</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><img src="/content/images/2017/11/RMS_UnderTheHood.jpg" alt="RMS_UnderTheHood"></p>
-<p>RMSE是一组负责玩家客户端连接的服务器。LOL客户端会通过一个load balancer使用加密的WebSocket与一个RMSE节点连接。该连接在通过身份验证后是永久存在的直到客户端退出。</p>
-<p>在处理身份验证和负责客户端连接之上，每一个RMSE服务器也负责把消息传输给连接的客户端。每一次由新客户端连接进来或者登出时，RMSE节点将通知RMSR层。</p>
-<p>由于RMSE服务器没有相互之间的交互，所以他们都是100%可线性扩展的。值得一提的是，就算是相邻的server，一台server如果down掉，不会对其他的服务器产生影响。</p>
-<p>以下是RMSE层的架构：</p>
-<p><img src="/content/images/2017/11/RMS_EdgeTier.jpg" alt="RMS_EdgeTier"></p>
-<p>RMSR层是一个负责全局客户端状态的服务器集群。每个RMSR节点都有一个全局的分布式表，此表映射了从玩家到特定的RMSE节点的信息，以保持连接状态。RMSR层还负责处理来自其他服务的消息并发送消息至正确的RMSE节点。最后，RMSR会跟踪RMSE层节点的状态，在有客户端登出时触发清理的一个步骤。</p>
-<p>RMSR的架构如下：</p>
-<p><img src="/content/images/2017/11/RMS_RoutingTier.jpg" alt="RMS_RoutingTier"></p>
-<h1 id="消息发布"><a href="#消息发布" class="headerlink" title="消息发布"></a>消息发布</h1><p>RMS消息传输使用的是JSON格式，以下是一个实例：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</div><div class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</div><div class="line">   <span class="attr">"version"</span>: <span class="string">"2016-10-12 09:33:43.1245"</span>,</div><div class="line">   <span class="attr">"recipients"</span>: [<span class="string">"3029B94E-412F-484C-B4E7-BD01073EA629"</span>],</div><div class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>每条消息都是以resource和service作为标志符，他们都遵循RESTful的格式。</p>
-<p>当RMSR接收到上述消息后将会对其进行解析，将recipients域移除后转发至对应的客户端连接的RMSE服务器，最后再转发至对应的客户端。</p>
-<p>客户端将会接收到如下信息：<br><figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</div><div class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</div><div class="line">   <span class="attr">"version"</span>: <span class="string">"2015-10-12 09:33:43.1245"</span>,</div><div class="line">   <span class="attr">"timestamp"</span>: <span class="number">1444677045952</span>,</div><div class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>RESTful的消息传输使该过程变的简单并灵活，很轻松就可以添加或删除新的服务，这对大型游戏的开发是很有益的。</p>
-<h1 id="实际实现"><a href="#实际实现" class="headerlink" title="实际实现"></a>实际实现</h1><p>拳头公司使用Erlang实现了整个RMS，Erlang的各种好处巴拉巴拉，总之就是写起来简单适用于游戏。</p>
-<p>RMS被打包部署为Docker镜像，保证了更好的隔离性和可移植性，简化了部署和调试过程，以及与操作系统的分离。</p>
-<p>整个服务部署在AWS上，使用云平台使得灵活性，可扩展性，错误检测，以及开发速度大大提高。所有的AWS资源由Terraform进行自动管理。</p>
-<p>RMS本身是一个全局的服务，所以他的健壮性的优先级是很高的、</p>
-<p>由于服务的CCU（Concurrently Connected Users - 并发连接用户数）随着活动客户端的数量增长而增长，因此我们希望为单个RMSE和RMSR节点建立一个可知容量，然后根据某种公式，以便在需要时扩展集群。</p>
-<h1 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h1><p>负载测试的基本思路是模拟真实客户端连接，使消息跑完整个系统。</p>
-<p>负载测试工具结构图：</p>
-<p><img src="/content/images/2017/11/RMS_LoadTestTool.jpg" alt="RMS_LoadTestTool"></p>
-<p>直接上测试结果:</p>
-<p>由于TCP端口数的限制，每台机器可以处理约60k的RMS连接，我们可以通过增加toolbox的数量通。我们发现一个AWS的r3.8xlarge EC2 instance可以处理10M的连接。这远远超过了预期。但我们决定使每一个服务器承载的连接小一点，以防止实例failure后所有的连接同时丢失。</p>
-<h1 id="差错容忍控制"><a href="#差错容忍控制" class="headerlink" title="差错容忍控制"></a>差错容忍控制</h1><p>使用了Jepsen工具模拟网络的不稳定以及各种差错的测试，本文未对差错容忍的实现进行讨论。(猜测：master/slave arch; sharding)</p>
-<h1 id="0-DOWNTIME-DEPLOYMENTS"><a href="#0-DOWNTIME-DEPLOYMENTS" class="headerlink" title="0 DOWNTIME DEPLOYMENTS"></a>0 DOWNTIME DEPLOYMENTS</h1><p>由于每个RMSE节点都与客户端有WebSocket连接，我们不能简单的使用blue green deployment并随意关掉需要随意更新的节点。对了解决这一问题，我们对RMS加入了会话持久性的功能。只要RMSE检测到客户端连接意外断开连接，或RMSR检测到RMSE节点丢失时，受影响的会话就会进入“持久”模式。发送给受影响播放器的消息被缓存在内存中，并在成功重新连接到系统时传送给客户端。 如果客户端在接下来的几分钟内没有重新连接或系统接近耗尽内存，则会清除持久会话及其排队的消息。（说的仅仅是RMS）</p>
-<p>客户端的消息处理可能会因此有延迟，但是可能被重连的时间所掩盖。若不能及时重连，客户端将重新同步所有服务的状态，因为这可能是由于RMS未连接时错过了某些重要的状态更新。</p>
-<p>对于RMSR，我们可以启动一个辅助群集，将其状态与当前正在运行的状态同步(并处理production load?)，并将所有通信路由到更新后的服务器。</p>
-<p>RMSE和RMSR层可以彼此独立部署，不受面对玩家的影响，使我们能够引入新功能并修复错误，而无需昂贵的维护时间。</p>
-
+</li>
+<li><p>if/elif/else嵌套<br>通过缩进表示，标准建议使用4空格而非tab</p>
+</li>
+<li><p>while/else和for/else的用法<br>else块会在循环按顺序执行完的情况下执行，即没有出发for/while里的break</p>
+</li>
+<li><p>value if cond else other的三段式表示</p>
+</li>
+<li>list comprehension</li>
+<li>常用操作符的运算优先级</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="1、函数定义、参数传递、调用方式及返回值规则。"><a href="#1、函数定义、参数传递、调用方式及返回值规则。" class="headerlink" title="1、函数定义、参数传递、调用方式及返回值规则。"></a>1、函数定义、参数传递、调用方式及返回值规则。</h3><ul>
+<li>没有显式返回值时的情况,返回的是None</li>
+<li>list型及dict型的变长参数传递<br>加<code>*</code>表示展开list，加<code>**</code>表示展开dict</li>
+<li>参数默认值定义规则<br>设置了默认值的参数后不能跟未设置默认值的参数</li>
+</ul>
+<h3 id="2、理解嵌套函数及闭包的用法。"><a href="#2、理解嵌套函数及闭包的用法。" class="headerlink" title="2、理解嵌套函数及闭包的用法。"></a>2、理解嵌套函数及闭包的用法。</h3><p><a href="http://yunjianfei.iteye.com/blog/2186092" target="_blank" rel="external">http://yunjianfei.iteye.com/blog/2186092</a></p>
+<ul>
+<li>闭包：在非全局（global）作用域中定义inner函数（即嵌套函数）时，会记录下它的嵌套函数namespaces（嵌套函数作用域的locals），可以称作：定义时状态，可以通过func_closure 这个属性来获得inner函数的外层嵌套函数的namespaces。</li>
+</ul>
+<h3 id="3、理解变量的作用域及生命周期（globals-locals）。"><a href="#3、理解变量的作用域及生命周期（globals-locals）。" class="headerlink" title="3、理解变量的作用域及生命周期（globals, locals）。"></a>3、理解变量的作用域及生命周期（globals, locals）。</h3><p>就作用域而言，Python与C有着很大的区别，在Python中并不是所有的语句块中都会产生作用域。只有当变量在Module(模块)、Class(类)、def(函数)中定义的时候，才会有作用域的概念。if condition并不会产生作用域。如下代码可以输出正确结果:<br><figure class="highlight routeros"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="literal">True</span>:</div><div class="line">    variable = 100</div><div class="line">    <span class="builtin-name">print</span> (variable)</div><div class="line"><span class="builtin-name">print</span> (variable)</div></pre></td></tr></table></figure></p>
+<p>作用域级别: local &gt; enclosing &gt; global &gt; built-in</p>
+<p>一个non-L的变量相对于L而言，默认是只读而不能修改的。如果希望在L中修改定义在non-L的变量，为其绑定一个新的值，Python会认为是在当前的L中引入一个新的变量(即便内外两个变量重名，但却有着不同的意义)。即在当前的L中，如果直接使用non-L中的变量，那么这个变量是只读的，不能被修改，否则会在L中引入一个同名的新变量。这是对上述几个例子的另一种方式的理解。<br>注意：而且在L中对新变量的修改不会影响到non-L的。当你希望在L中修改non-L中的变量时，可以使用global、nonlocal关键字。</p>
+<h3 id="4、yield语句及Generator的使用。"><a href="#4、yield语句及Generator的使用。" class="headerlink" title="4、yield语句及Generator的使用。"></a>4、yield语句及Generator的使用。</h3><p><a href="https://www.jianshu.com/p/d09778f4e055" target="_blank" rel="external">https://www.jianshu.com/p/d09778f4e055</a></p>
+<h3 id="5、熟悉Python官方的内置函数，如enumerate-eval-hasattr等"><a href="#5、熟悉Python官方的内置函数，如enumerate-eval-hasattr等" class="headerlink" title="5、熟悉Python官方的内置函数，如enumerate/eval/hasattr等"></a>5、熟悉Python官方的内置函数，如enumerate/eval/hasattr等</h3><p><a href="https://docs.python.org/2/library/functions.html" target="_blank" rel="external">https://docs.python.org/2/library/functions.html</a></p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><h3 id="1、类的定义及类的基本协议，如init-str等。"><a href="#1、类的定义及类的基本协议，如init-str等。" class="headerlink" title="1、类的定义及类的基本协议，如init/str等。"></a>1、类的定义及类的基本协议，如<strong>init</strong>/<strong>str</strong>等。</h3><h3 id="2、类的继承、多继承及super的用法，特别是多继承下super调用可能引起的特殊情况。"><a href="#2、类的继承、多继承及super的用法，特别是多继承下super调用可能引起的特殊情况。" class="headerlink" title="2、类的继承、多继承及super的用法，特别是多继承下super调用可能引起的特殊情况。"></a>2、类的继承、多继承及super的用法，特别是多继承下super调用可能引起的特殊情况。</h3><h3 id="3、理解属性（property）的应用场合及本质"><a href="#3、理解属性（property）的应用场合及本质" class="headerlink" title="3、理解属性（property）的应用场合及本质"></a>3、理解属性（property）的应用场合及本质</h3><h3 id="4、理解类命名空间及其访问规则。"><a href="#4、理解类命名空间及其访问规则。" class="headerlink" title="4、理解类命名空间及其访问规则。"></a>4、理解类命名空间及其访问规则。</h3><h3 id="5、理解类的动态性。"><a href="#5、理解类的动态性。" class="headerlink" title="5、理解类的动态性。"></a>5、理解类的动态性。</h3><h3 id="6、理解方法和函数的异同"><a href="#6、理解方法和函数的异同" class="headerlink" title="6、理解方法和函数的异同"></a>6、理解方法和函数的异同</h3><p><a href="http://blog.csdn.net/chili_min/article/details/10447923" target="_blank" rel="external">http://blog.csdn.net/chili_min/article/details/10447923</a></p>
+<h3 id="7、类的静态方法、类方法及其与一般方法、函数的异同"><a href="#7、类的静态方法、类方法及其与一般方法、函数的异同" class="headerlink" title="7、类的静态方法、类方法及其与一般方法、函数的异同"></a>7、类的静态方法、类方法及其与一般方法、函数的异同</h3><h3 id="8、理解命名空间及对象空间，及此模型与C-C-的模型差异。"><a href="#8、理解命名空间及对象空间，及此模型与C-C-的模型差异。" class="headerlink" title="8、理解命名空间及对象空间，及此模型与C/C++的模型差异。"></a>8、理解命名空间及对象空间，及此模型与C/C++的模型差异。</h3><h3 id="9、循环引用产生，解环及无法解环时Python的处理方式。"><a href="#9、循环引用产生，解环及无法解环时Python的处理方式。" class="headerlink" title="9、循环引用产生，解环及无法解环时Python的处理方式。"></a>9、循环引用产生，解环及无法解环时Python的处理方式。</h3><h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><pre><code>1、理解模块的本质是什么。
+2、分清内置模块、标准模块及扩展模块的区别。
+3、理解Python模块的加载机制。
+</code></pre><p>  <a href="https://www.jianshu.com/p/c04dc172335e" target="_blank" rel="external">https://www.jianshu.com/p/c04dc172335e</a><br>    4、熟悉Python官方提供的常用模块，如copy/types/os/random/re/gc等</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="1、理解异常的使用方法及适用范围。"><a href="#1、理解异常的使用方法及适用范围。" class="headerlink" title="1、理解异常的使用方法及适用范围。"></a>1、理解异常的使用方法及适用范围。</h3><h3 id="2、异常的栈展开原理"><a href="#2、异常的栈展开原理" class="headerlink" title="2、异常的栈展开原理"></a>2、异常的栈展开原理</h3><h3 id="3、常见的异常类"><a href="#3、常见的异常类" class="headerlink" title="3、常见的异常类"></a>3、常见的异常类</h3>
       
     </div>
     
@@ -475,12 +444,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/game/" rel="tag"># game</a>
-          
-        </div>
-      
 
       
       
@@ -505,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/01/eff-cpp4/" rel="next" title="Effective C++读书笔记（四）">
-                <i class="fa fa-chevron-left"></i> Effective C++读书笔记（四）
+              <a href="/2017/11/27/cs-fund/" rel="next" title="计算机硬件概要">
+                <i class="fa fa-chevron-left"></i> 计算机硬件概要
               </a>
             
           </div>
@@ -514,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/05/eff-cpp5/" rel="prev" title="Effective C++读书笔记（五）">
-                Effective C++读书笔记（五） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -708,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RIOT的消息服务"><span class="nav-number">1.</span> <span class="nav-text">RIOT的消息服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#状态"><span class="nav-number">2.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RMS高层架构"><span class="nav-number">3.</span> <span class="nav-text">RMS高层架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息发布"><span class="nav-number">4.</span> <span class="nav-text">消息发布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际实现"><span class="nav-number">5.</span> <span class="nav-text">实际实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#负载测试"><span class="nav-number">6.</span> <span class="nav-text">负载测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#差错容忍控制"><span class="nav-number">7.</span> <span class="nav-text">差错容忍控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-DOWNTIME-DEPLOYMENTS"><span class="nav-number">8.</span> <span class="nav-text">0 DOWNTIME DEPLOYMENTS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法基础"><span class="nav-number">1.</span> <span class="nav-text">语法基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、函数定义、参数传递、调用方式及返回值规则。"><span class="nav-number">2.1.</span> <span class="nav-text">1、函数定义、参数传递、调用方式及返回值规则。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、理解嵌套函数及闭包的用法。"><span class="nav-number">2.2.</span> <span class="nav-text">2、理解嵌套函数及闭包的用法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、理解变量的作用域及生命周期（globals-locals）。"><span class="nav-number">2.3.</span> <span class="nav-text">3、理解变量的作用域及生命周期（globals, locals）。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、yield语句及Generator的使用。"><span class="nav-number">2.4.</span> <span class="nav-text">4、yield语句及Generator的使用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、熟悉Python官方的内置函数，如enumerate-eval-hasattr等"><span class="nav-number">2.5.</span> <span class="nav-text">5、熟悉Python官方的内置函数，如enumerate/eval/hasattr等</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象编程"><span class="nav-number">3.</span> <span class="nav-text">面向对象编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、类的定义及类的基本协议，如init-str等。"><span class="nav-number">3.1.</span> <span class="nav-text">1、类的定义及类的基本协议，如init/str等。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、类的继承、多继承及super的用法，特别是多继承下super调用可能引起的特殊情况。"><span class="nav-number">3.2.</span> <span class="nav-text">2、类的继承、多继承及super的用法，特别是多继承下super调用可能引起的特殊情况。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、理解属性（property）的应用场合及本质"><span class="nav-number">3.3.</span> <span class="nav-text">3、理解属性（property）的应用场合及本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、理解类命名空间及其访问规则。"><span class="nav-number">3.4.</span> <span class="nav-text">4、理解类命名空间及其访问规则。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、理解类的动态性。"><span class="nav-number">3.5.</span> <span class="nav-text">5、理解类的动态性。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、理解方法和函数的异同"><span class="nav-number">3.6.</span> <span class="nav-text">6、理解方法和函数的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、类的静态方法、类方法及其与一般方法、函数的异同"><span class="nav-number">3.7.</span> <span class="nav-text">7、类的静态方法、类方法及其与一般方法、函数的异同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、理解命名空间及对象空间，及此模型与C-C-的模型差异。"><span class="nav-number">3.8.</span> <span class="nav-text">8、理解命名空间及对象空间，及此模型与C/C++的模型差异。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、循环引用产生，解环及无法解环时Python的处理方式。"><span class="nav-number">3.9.</span> <span class="nav-text">9、循环引用产生，解环及无法解环时Python的处理方式。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">4.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">5.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、理解异常的使用方法及适用范围。"><span class="nav-number">5.1.</span> <span class="nav-text">1、理解异常的使用方法及适用范围。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、异常的栈展开原理"><span class="nav-number">5.2.</span> <span class="nav-text">2、异常的栈展开原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、常见的异常类"><span class="nav-number">5.3.</span> <span class="nav-text">3、常见的异常类</span></a></li></ol></li></ol></div>
             
 
           </div>
