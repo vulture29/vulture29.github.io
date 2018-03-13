@@ -87,16 +87,16 @@
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/mapreduce_arch.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/yarn_arch.png">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/sample_resource_manager.png">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/rest_resource_manager.png">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/sample_spark.png">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/rest_spark.png">
-<meta property="og:updated_time" content="2018-03-13T17:07:30.000Z">
+<meta property="og:updated_time" content="2018-03-13T17:30:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="收集MapReduce和Spark的Metrics">
 <meta name="twitter:description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoo">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2018/03/mapreduce_arch.png">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2018/03/yarn_arch.png">
 
 
 
@@ -364,7 +364,7 @@
         <p>随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考<a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/</a></p>
 <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>可参考:<br><a href="http://blog.csdn.net/v_july_v/article/details/6637014" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6637014</a></p>
 <h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark的最大特点就是引入了RDD，可参考<br><a href="http://blog.csdn.net/u011204847/article/details/51010205" target="_blank" rel="external">http://blog.csdn.net/u011204847/article/details/51010205</a></p>
-<h1 id="数据收集"><a href="#数据收集" class="headerlink" title="数据收集"></a>数据收集</h1><h2 id="MapReduce-1"><a href="#MapReduce-1" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>MapReduce的架构图如下：<br><img src="/content/images/2018/03/mapreduce_arch.png" alt="mapreduceArch"><br>资源管理器(Resource Manager)全局管理所有应用程序计算资源的分配，每一个应用的 ApplicationMaster 负责相应的调度和协调，NodeManager 是每一台机器框架的代理，是执行应用程序的容器，监控应用程序的资源使用情况 (CPU，内存，硬盘，网络 ) 并且向调度器汇报。当一个任务完成后，该任务的具体执行的log，例如average map time, average shuffle time传至history server保存。</p>
+<h1 id="数据收集"><a href="#数据收集" class="headerlink" title="数据收集"></a>数据收集</h1><h2 id="MapReduce-1"><a href="#MapReduce-1" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>MapReduce的架构图如下：<br><img src="/content/images/2018/03/yarn_arch.png" alt="yarn_arch"><br>资源管理器(Resource Manager)全局管理所有应用程序计算资源的分配，每一个应用的 ApplicationMaster 负责相应的调度和协调，NodeManager 是每一台机器框架的代理，是执行应用程序的容器，监控应用程序的资源使用情况 (CPU，内存，硬盘，网络 ) 并且向调度器汇报。当一个任务完成后，该任务的具体执行的log，例如average map time, average shuffle time传至history server保存。</p>
 <p>我们获取MapReduce系统的metrics本质上就是获取这几个服务的metrics。</p>
 <ul>
 <li>resource manager的默认端口号是8080，我们可以通过访问 ip+端口号 通过UI查看系统的metrics<br><img src="/content/images/2018/03/sample_resource_manager.png" alt="sample_resource_manager"><br>我们还可以通过restful的方式获取数据<br><img src="/content/images/2018/03/rest_resource_manager.png" alt="rest_resource_manager"></li>
