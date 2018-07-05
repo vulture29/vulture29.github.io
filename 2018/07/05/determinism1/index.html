@@ -82,15 +82,15 @@
 <meta name="description" content="本文原作者Rick Hoskinson(链接为原文通道),仅供学习用途 介绍这篇博客系列将介绍英雄联盟中的Determinism故障恢复，这个功能的目的是将游戏的进度随时保存，也可以回到过去的某一个时间点继续开始游戏。在比赛时难免会有突发状况，甚至还可能会触发了游戏的某个bug。在这个时候如果不想重赛，determinism就发挥作用了。可以读取游戏在异常状态之前的进度然后从该进度开始玩，避免了彻">
 <meta name="keywords" content="game">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LOL中的Determinism">
+<meta property="og:title" content="LOL中的Determinism（一）">
 <meta property="og:url" content="http://vulture29.github.io/2018/07/05/determinism1/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="本文原作者Rick Hoskinson(链接为原文通道),仅供学习用途 介绍这篇博客系列将介绍英雄联盟中的Determinism故障恢复，这个功能的目的是将游戏的进度随时保存，也可以回到过去的某一个时间点继续开始游戏。在比赛时难免会有突发状况，甚至还可能会触发了游戏的某个bug。在这个时候如果不想重赛，determinism就发挥作用了。可以读取游戏在异常状态之前的进度然后从该进度开始玩，避免了彻">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://vulture29.github.io/content/images/2018/07/Determinism_intro_workflow.png">
-<meta property="og:updated_time" content="2018-07-05T04:32:36.000Z">
+<meta property="og:updated_time" content="2018-07-05T04:35:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LOL中的Determinism">
+<meta name="twitter:title" content="LOL中的Determinism（一）">
 <meta name="twitter:description" content="本文原作者Rick Hoskinson(链接为原文通道),仅供学习用途 介绍这篇博客系列将介绍英雄联盟中的Determinism故障恢复，这个功能的目的是将游戏的进度随时保存，也可以回到过去的某一个时间点继续开始游戏。在比赛时难免会有突发状况，甚至还可能会触发了游戏的某个bug。在这个时候如果不想重赛，determinism就发挥作用了。可以读取游戏在异常状态之前的进度然后从该进度开始玩，避免了彻">
 <meta name="twitter:image" content="http://vulture29.github.io/content/images/2018/07/Determinism_intro_workflow.png">
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>LOL中的Determinism | Xingyao Huang's Blog</title>
+  <title>LOL中的Determinism（一） | Xingyao Huang's Blog</title>
   
 
 
@@ -292,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LOL中的Determinism</h1>
+          <h1 class="post-title" itemprop="name headline">LOL中的Determinism（一）</h1>
         
 
         <div class="post-meta">
@@ -397,7 +397,7 @@
 <li>开发电竞主办方可用来恢复比赛进度的工具</li>
 </ol>
 <p>该工具于16年底开发完成，并在17年7月上线了GUI工具。</p>
-<h1 id="ChronoBreak的结构"><a href="#ChronoBreak的结构" class="headerlink" title="ChronoBreak的结构"></a>ChronoBreak的结构</h1><p>在电竞主办方能够使用ChronoBreak之前，我们必须让服务器能够记录每场比赛，记录的内容包括输入和各种设定。然后我们就可以通过这些记录来恢复比赛了，恢复过程将很快，比如恢复到比赛的第40分钟通常只需要不到3分钟。接着玩家们可以断开有bug的服务器并重新连接到恢复好的服务器即可继续游戏。</p>
+<h1 id="ChronoBreak的结构"><a href="#ChronoBreak的结构" class="headerlink" title="ChronoBreak的结构"></a>ChronoBreak的结构</h1><p>在电竞主办方能够使用ChronoBreak之前，我们必须让服务器(SNR, Server Network Recording)能够记录每场比赛，记录的内容包括输入和各种设定。然后我们就可以通过这些记录来恢复比赛了，恢复过程将很快，比如恢复到比赛的第40分钟通常只需要不到3分钟。接着玩家们可以断开有bug的服务器并重新连接到恢复好的服务器即可继续游戏。</p>
 <p>流程图如下：</p>
 <p><img src="/content/images/2018/07/Determinism_intro_workflow.png" alt="determinism0"></p>
 <p>更多内容请见下一篇。</p>
@@ -484,6 +484,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/05/determinism2/" rel="prev" title="LOL中的Determinism（二）">
+                LOL中的Determinism（二） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -573,7 +577,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
