@@ -83,19 +83,17 @@
 <meta name="keywords" content="game">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RIOT消息服务 - Riot messaging service">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/03/riot-msg-svs/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;03&#x2F;riot-msg-svs&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="本文原作者Michal Ptaszek(链接为原文通道),仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比如说状态切换。Riot的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_UnderTheHood.jpg">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_EdgeTier.jpg">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_RoutingTier.jpg">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/RMS_LoadTestTool.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;RMS_UnderTheHood.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;RMS_EdgeTier.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;RMS_RoutingTier.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;RMS_LoadTestTool.jpg">
 <meta property="og:updated_time" content="2018-07-05T03:28:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RIOT消息服务 - Riot messaging service">
-<meta name="twitter:description" content="本文原作者Michal Ptaszek(链接为原文通道),仅供学习用途 RIOT的消息服务我们将RIOT消息服务Riot messaging service简写为RMS. 若以高层划分，服务之间的通信可以被分为两组：  同步请求：发送者在发出请求后堵塞直到收到回复 异步请求：发送之后不会堵塞  本文将着重讨论异步请求，此类型适用于后端服务异步通知客户端特定事件的场景 - 比如说状态切换。Riot的">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/RMS_UnderTheHood.jpg">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;RMS_UnderTheHood.jpg">
 
 
 
@@ -187,7 +185,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +195,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -207,7 +205,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -217,7 +215,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -227,7 +225,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -237,7 +235,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -382,7 +380,7 @@
       
 
       
-        <p>本文原作者<a href="https://engineering.riotgames.com/news/riot-messaging-service" target="_blank" rel="external">Michal Ptaszek(链接为原文通道)</a>,仅供学习用途</p>
+        <p>本文原作者<a href="https://engineering.riotgames.com/news/riot-messaging-service" target="_blank" rel="noopener">Michal Ptaszek(链接为原文通道)</a>,仅供学习用途</p>
 <h1 id="RIOT的消息服务"><a href="#RIOT的消息服务" class="headerlink" title="RIOT的消息服务"></a>RIOT的消息服务</h1><p>我们将RIOT消息服务Riot messaging service简写为RMS.</p>
 <p>若以高层划分，服务之间的通信可以被分为两组：</p>
 <ul>
@@ -411,10 +409,12 @@
 <p>RMSR的架构如下：</p>
 <p><img src="/content/images/2017/11/RMS_RoutingTier.jpg" alt="RMS_RoutingTier"></p>
 <h1 id="消息发布"><a href="#消息发布" class="headerlink" title="消息发布"></a>消息发布</h1><p>RMS消息传输使用的是JSON格式，以下是一个实例：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</div><div class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</div><div class="line">   <span class="attr">"version"</span>: <span class="string">"2016-10-12 09:33:43.1245"</span>,</div><div class="line">   <span class="attr">"recipients"</span>: [<span class="string">"3029B94E-412F-484C-B4E7-BD01073EA629"</span>],</div><div class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</span><br><span class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</span><br><span class="line">   <span class="attr">"version"</span>: <span class="string">"2016-10-12 09:33:43.1245"</span>,</span><br><span class="line">   <span class="attr">"recipients"</span>: [<span class="string">"3029B94E-412F-484C-B4E7-BD01073EA629"</span>],</span><br><span class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>每条消息都是以resource和service作为标志符，他们都遵循RESTful的格式。</p>
 <p>当RMSR接收到上述消息后将会对其进行解析，将recipients域移除后转发至对应的客户端连接的RMSE服务器，最后再转发至对应的客户端。</p>
-<p>客户端将会接收到如下信息：<br><figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</div><div class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</div><div class="line">   <span class="attr">"version"</span>: <span class="string">"2015-10-12 09:33:43.1245"</span>,</div><div class="line">   <span class="attr">"timestamp"</span>: <span class="number">1444677045952</span>,</div><div class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>客户端将会接收到如下信息：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="attr">"resource"</span>: <span class="string">"clubs/v1/clubs/665632A9-EF44-41CB-BF03-01F2BA533FE7"</span>,</span><br><span class="line">   <span class="attr">"service"</span>: <span class="string">"https://clubs.na.lol.riotgames.com"</span>,</span><br><span class="line">   <span class="attr">"version"</span>: <span class="string">"2015-10-12 09:33:43.1245"</span>,</span><br><span class="line">   <span class="attr">"timestamp"</span>: <span class="number">1444677045952</span>,</span><br><span class="line">   <span class="attr">"payload"</span>: <span class="string">"&#123;\"method\": \"GET\"&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>RESTful的消息传输使该过程变的简单并灵活，很轻松就可以添加或删除新的服务，这对大型游戏的开发是很有益的。</p>
 <h1 id="实际实现"><a href="#实际实现" class="headerlink" title="实际实现"></a>实际实现</h1><p>拳头公司使用Erlang实现了整个RMS，Erlang的各种好处巴拉巴拉，总之就是写起来简单适用于游戏。</p>
 <p>RMS被打包部署为Docker镜像，保证了更好的隔离性和可移植性，简化了部署和调试过程，以及与操作系统的分离。</p>
@@ -605,9 +605,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -728,7 +728,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

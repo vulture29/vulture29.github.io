@@ -79,24 +79,22 @@
 
 
 
-<meta name="description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoo">
+<meta name="description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https:&#x2F;&#x2F;www.ibm.com&#x2F;developerworks&#x2F;cn&#x2F;opensource&#x2F;os-cn-hadoo">
 <meta name="keywords" content="distributed system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="收集MapReduce和Spark的Metrics">
-<meta property="og:url" content="http://vulture29.github.io/2018/03/13/metrics-mapreduce-spark/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2018&#x2F;03&#x2F;13&#x2F;metrics-mapreduce-spark&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoo">
+<meta property="og:description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https:&#x2F;&#x2F;www.ibm.com&#x2F;developerworks&#x2F;cn&#x2F;opensource&#x2F;os-cn-hadoo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/yarn_arch.png">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/sample_resource_manager.png">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/rest_resource_manager.png">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/sample_spark.png">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/03/rest_spark.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;03&#x2F;yarn_arch.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;03&#x2F;sample_resource_manager.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;03&#x2F;rest_resource_manager.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;03&#x2F;sample_spark.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;03&#x2F;rest_spark.png">
 <meta property="og:updated_time" content="2018-03-13T17:30:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="收集MapReduce和Spark的Metrics">
-<meta name="twitter:description" content="随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoo">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2018/03/yarn_arch.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;03&#x2F;yarn_arch.png">
 
 
 
@@ -188,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -198,7 +196,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -208,7 +206,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -218,7 +216,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -228,7 +226,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -238,7 +236,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -361,9 +359,9 @@
       
 
       
-        <p>随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考<a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/</a></p>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>可参考:<br><a href="http://blog.csdn.net/v_july_v/article/details/6637014" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/6637014</a></p>
-<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark的最大特点就是引入了RDD，可参考<br><a href="http://blog.csdn.net/u011204847/article/details/51010205" target="_blank" rel="external">http://blog.csdn.net/u011204847/article/details/51010205</a></p>
+        <p>随着大数据的普及，MapReduce和Spark也被运用的越来越广泛，有些时候我们为了更好的了解我们的历史执行记录，甚至分析我们的历史，我们需要获取平台的metrics.本篇内容针对MapReduce v2，也就是Yarn，关于新旧版本MapReduce区别以及Yarn介绍可参考<a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/</a></p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>可参考:<br><a href="http://blog.csdn.net/v_july_v/article/details/6637014" target="_blank" rel="noopener">http://blog.csdn.net/v_july_v/article/details/6637014</a></p>
+<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark的最大特点就是引入了RDD，可参考<br><a href="http://blog.csdn.net/u011204847/article/details/51010205" target="_blank" rel="noopener">http://blog.csdn.net/u011204847/article/details/51010205</a></p>
 <h1 id="数据收集"><a href="#数据收集" class="headerlink" title="数据收集"></a>数据收集</h1><h2 id="MapReduce-1"><a href="#MapReduce-1" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>MapReduce的架构图如下：<br><img src="/content/images/2018/03/yarn_arch.png" alt="yarn_arch"><br>资源管理器(Resource Manager)全局管理所有应用程序计算资源的分配，每一个应用的 ApplicationMaster 负责相应的调度和协调，NodeManager 是每一台机器框架的代理，是执行应用程序的容器，监控应用程序的资源使用情况 (CPU，内存，硬盘，网络 ) 并且向调度器汇报。当一个任务完成后，该任务的具体执行的log，例如average map time, average shuffle time传至history server保存。</p>
 <p>我们获取MapReduce系统的metrics本质上就是获取这几个服务的metrics。</p>
 <ul>
@@ -371,7 +369,7 @@
 <li>node manager的默认端口号是8042，我们可以通过与resource manager类似的方式获取数据</li>
 <li>history server的默认端口号是19888</li>
 </ul>
-<p>具体api链接可参考<a href="https://hadoop.apache.org/docs/r2.4.1/hadoop-yarn/hadoop-yarn-site/WebServicesIntro.html" target="_blank" rel="external">yarn官方文档</a></p>
+<p>具体api链接可参考<a href="https://hadoop.apache.org/docs/r2.4.1/hadoop-yarn/hadoop-yarn-site/WebServicesIntro.html" target="_blank" rel="noopener">yarn官方文档</a></p>
 <h2 id="Spark-1"><a href="#Spark-1" class="headerlink" title="Spark"></a>Spark</h2><p>与MapReduce类似，Spark也提供了Web UI和RESTful两种方式来获取数据，值得一提的是，已运行完的application将统一存在history server里，而每一个正在运行的application占用一个端口号显示其context</p>
 <ul>
 <li>history server的默认端口号是18080<ul>
@@ -381,7 +379,7 @@
 </li>
 <li>context的默认起始端口号为4000，即第一个运行的任务占用4000端口，第二个占用4001，以此类推</li>
 </ul>
-<p>我们还可以访问每个spark application更细节的metrics，例如job，task，stage信息。具体api链接可参考<a href="https://spark.apache.org/docs/latest/monitoring.html" target="_blank" rel="external">Spark官方文档</a></p>
+<p>我们还可以访问每个spark application更细节的metrics，例如job，task，stage信息。具体api链接可参考<a href="https://spark.apache.org/docs/latest/monitoring.html" target="_blank" rel="noopener">Spark官方文档</a></p>
 
       
     </div>
@@ -556,9 +554,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -679,7 +677,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

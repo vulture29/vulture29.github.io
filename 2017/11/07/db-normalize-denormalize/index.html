@@ -83,16 +83,14 @@
 <meta name="keywords" content="random">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库的规范化和反规范化">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;07&#x2F;db-normalize-denormalize&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/db_sample.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;db_sample.png">
 <meta property="og:updated_time" content="2017-11-22T17:23:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库的规范化和反规范化">
-<meta name="twitter:description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/db_sample.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;db_sample.png">
 
 
 
@@ -184,7 +182,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -194,7 +192,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -204,7 +202,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -214,7 +212,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -224,7 +222,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -234,7 +232,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -389,99 +387,93 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">城市</th>
-<th style="text-align:center">省份</th>
-<th style="text-align:center">缩写</th>
+<th align="center">城市</th>
+<th align="center">省份</th>
+<th align="center">缩写</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">长沙</td>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<tbody><tr>
+<td align="center">长沙</td>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
 <tr>
-<td style="text-align:center">邵阳</td>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<td align="center">邵阳</td>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
 <tr>
-<td style="text-align:center">株洲</td>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<td align="center">株洲</td>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
 <tr>
-<td style="text-align:center">岳阳</td>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<td align="center">岳阳</td>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
 <tr>
-<td style="text-align:center">湘潭</td>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<td align="center">湘潭</td>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
 <tr>
-<td style="text-align:center">凤凰</td>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<td align="center">凤凰</td>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>我们可以看到其实后两项出现了重复，利用数据库的规范化我们可以把数据库优化为如下的两个:</p>
 <p>城市省份表</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">城市</th>
-<th style="text-align:center">省份</th>
+<th align="center">城市</th>
+<th align="center">省份</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">长沙</td>
-<td style="text-align:center">湖南</td>
+<tbody><tr>
+<td align="center">长沙</td>
+<td align="center">湖南</td>
 </tr>
 <tr>
-<td style="text-align:center">邵阳</td>
-<td style="text-align:center">湖南</td>
+<td align="center">邵阳</td>
+<td align="center">湖南</td>
 </tr>
 <tr>
-<td style="text-align:center">株洲</td>
-<td style="text-align:center">湖南</td>
+<td align="center">株洲</td>
+<td align="center">湖南</td>
 </tr>
 <tr>
-<td style="text-align:center">岳阳</td>
-<td style="text-align:center">湖南</td>
+<td align="center">岳阳</td>
+<td align="center">湖南</td>
 </tr>
 <tr>
-<td style="text-align:center">湘潭</td>
-<td style="text-align:center">湖南</td>
+<td align="center">湘潭</td>
+<td align="center">湖南</td>
 </tr>
 <tr>
-<td style="text-align:center">凤凰</td>
-<td style="text-align:center">湖南</td>
+<td align="center">凤凰</td>
+<td align="center">湖南</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>省份缩写表</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">省份</th>
-<th style="text-align:center">缩写</th>
+<th align="center">省份</th>
+<th align="center">缩写</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">湖南</td>
-<td style="text-align:center">湘</td>
+<tbody><tr>
+<td align="center">湖南</td>
+<td align="center">湘</td>
 </tr>
 <tr>
-<td style="text-align:center">XX</td>
-<td style="text-align:center">X</td>
+<td align="center">XX</td>
+<td align="center">X</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>优化过后我们可以明显发现我们的数据库变的更加的精简    <u>some text</u></p>
 <ul>
 <li>完整性</li>
@@ -654,9 +646,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -761,7 +753,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

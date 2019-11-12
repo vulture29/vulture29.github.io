@@ -83,16 +83,14 @@
 <meta name="keywords" content="game">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LOL中的Determinism（一）">
-<meta property="og:url" content="http://vulture29.github.io/2018/07/05/determinism1/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2018&#x2F;07&#x2F;05&#x2F;determinism1&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="本文原作者Rick Hoskinson(链接为原文通道),仅供学习用途 介绍这篇博客系列将介绍英雄联盟中的Determinism故障恢复，这个功能的目的是将游戏的进度随时保存，也可以回到过去的某一个时间点继续开始游戏。在比赛时难免会有突发状况，甚至还可能会触发了游戏的某个bug。在这个时候如果不想重赛，determinism就发挥作用了。可以读取游戏在异常状态之前的进度然后从该进度开始玩，避免了彻">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2018/07/Determinism_intro_workflow.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;07&#x2F;Determinism_intro_workflow.png">
 <meta property="og:updated_time" content="2018-07-05T04:35:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LOL中的Determinism（一）">
-<meta name="twitter:description" content="本文原作者Rick Hoskinson(链接为原文通道),仅供学习用途 介绍这篇博客系列将介绍英雄联盟中的Determinism故障恢复，这个功能的目的是将游戏的进度随时保存，也可以回到过去的某一个时间点继续开始游戏。在比赛时难免会有突发状况，甚至还可能会触发了游戏的某个bug。在这个时候如果不想重赛，determinism就发挥作用了。可以读取游戏在异常状态之前的进度然后从该进度开始玩，避免了彻">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2018/07/Determinism_intro_workflow.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2018&#x2F;07&#x2F;Determinism_intro_workflow.png">
 
 
 
@@ -184,7 +182,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -194,7 +192,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -204,7 +202,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -214,7 +212,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -224,7 +222,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -234,7 +232,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -379,13 +377,13 @@
       
 
       
-        <p>本文原作者<a href="https://engineering.riotgames.com/news/determinism-league-legends-introduction" target="_blank" rel="external">Rick Hoskinson(链接为原文通道)</a>,仅供学习用途</p>
+        <p>本文原作者<a href="https://engineering.riotgames.com/news/determinism-league-legends-introduction" target="_blank" rel="noopener">Rick Hoskinson(链接为原文通道)</a>,仅供学习用途</p>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>这篇博客系列将介绍英雄联盟中的Determinism故障恢复，这个功能的目的是将游戏的进度随时保存，也可以回到过去的某一个时间点继续开始游戏。在比赛时难免会有突发状况，甚至还可能会触发了游戏的某个bug。在这个时候如果不想重赛，determinism就发挥作用了。可以读取游戏在异常状态之前的进度然后从该进度开始玩，避免了彻底重赛。这个博客系列将分为4个部分，此篇为第一部分：</p>
 <ul>
-<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="external">第一部分：介绍</a></li>
-<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="external">第二部分：实现</a></li>
-<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="external">第三部分：同步时钟</a></li>
-<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="external">第四部分：修复Divergences</a></li>
+<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="noopener">第一部分：介绍</a></li>
+<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="noopener">第二部分：实现</a></li>
+<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="noopener">第三部分：同步时钟</a></li>
+<li><a href="http://xingyaohuang.com/2018/07/05/determinism1" target="_blank" rel="noopener">第四部分：修复Divergences</a></li>
 </ul>
 <p>负责这个功能的项目叫做ChronoBreak，但是determinism的灵感来自于另一款测试工具 Delta Checker，Delta Checker可以通过一系列重复的输入值对游戏进行测试。</p>
 <h1 id="从-Delta-Checker-到-ChronoBreak"><a href="#从-Delta-Checker-到-ChronoBreak" class="headerlink" title="从 Delta Checker 到 ChronoBreak"></a>从 Delta Checker 到 ChronoBreak</h1><p>一些游戏的bug是否应该影响比赛，甚至导致重赛呢？LOL团队16年仔细分析了这个问题。毫无疑问，重赛对于观众和电竞选手都是不好的体验。LOL团队高度重视这个问题并开始寻求解决方案。</p>
@@ -575,9 +573,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -698,7 +696,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

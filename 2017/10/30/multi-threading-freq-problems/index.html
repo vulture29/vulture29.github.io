@@ -83,14 +83,12 @@
 <meta name="keywords" content="operating system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多道程序并发 - 死锁，信号量，生产者消费者">
-<meta property="og:url" content="http://vulture29.github.io/2017/10/30/multi-threading-freq-problems/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;10&#x2F;30&#x2F;multi-threading-freq-problems&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-22T17:23:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多道程序并发 - 死锁，信号量，生产者消费者">
-<meta name="twitter:description" content="临界区是一段代码，在这段代码中进程将访问共享资源，当另外一个进程已经在这段代码中运行时，这个进程就不能在这段代码中运行 饥饿指一个可运行的进程尽管能继续执行，但被调度器无限期忽视，而不能被调度器执行的情况 死锁两个或者两个以上的进程因其中每个进程都在等待其他进程做完某些事情而不能继续执行 死锁的条件 互斥 占有且等待 非抢占(可预防)  活锁两个或者两个以上的进程为了响应其他进程中的变化而继续改变">
 
 
 
@@ -182,7 +180,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -192,7 +190,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -202,7 +200,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -212,7 +210,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -222,7 +220,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -232,7 +230,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -417,8 +415,10 @@
 </ul>
 </li>
 </ul>
-<p>Producer<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (free_bp.is_empty())</div><div class="line">    cond_wait(cond_freebp_empty, lock_bp)</div><div class="line">buffer &lt;- free_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... produce data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">data_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_databp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure></p>
-<p>Consumer<br><figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">while (data_bp.is_empty())</div><div class="line">    cond_wait(cond_databp_empty, lock_bp)</div><div class="line">buffer &lt;- data_bp.get_buffer()</div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div><div class="line"></div><div class="line">... consume data <span class="keyword">in</span> buffer ...</div><div class="line"></div><div class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></div><div class="line">free_bp.add_buffer(buffer)</div><div class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_freebp_empty)</span></span></div><div class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></div></pre></td></tr></table></figure></p>
+<p>Producer</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></span><br><span class="line">while (free_bp.is_empty())</span><br><span class="line">    cond_wait(cond_freebp_empty, lock_bp)</span><br><span class="line">buffer &lt;- free_bp.get_buffer()</span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></span><br><span class="line"></span><br><span class="line">... produce data <span class="keyword">in</span> buffer ...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></span><br><span class="line">data_bp.add_buffer(buffer)</span><br><span class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_databp_empty)</span></span></span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></span><br></pre></td></tr></table></figure>
+<p>Consumer</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></span><br><span class="line">while (data_bp.is_empty())</span><br><span class="line">    cond_wait(cond_databp_empty, lock_bp)</span><br><span class="line">buffer &lt;- data_bp.get_buffer()</span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></span><br><span class="line"></span><br><span class="line">... consume data <span class="keyword">in</span> buffer ...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">lock</span><span class="params">(lock_bp)</span></span></span><br><span class="line">free_bp.add_buffer(buffer)</span><br><span class="line"><span class="function"><span class="title">cond_signal</span><span class="params">(cond_freebp_empty)</span></span></span><br><span class="line"><span class="function"><span class="title">unlock</span><span class="params">(lock_bp)</span></span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -593,9 +593,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -716,7 +716,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

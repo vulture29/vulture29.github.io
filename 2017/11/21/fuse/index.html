@@ -83,16 +83,14 @@
 <meta name="keywords" content="operating system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于FUSE实现一个文件系统">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/21/fuse/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;21&#x2F;fuse&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="FUSE文件系统是一种用来存储和组织计算机文件、目录及其包含的数据的方法，它使文件、目录以及数据的查找和访问得到简化。FUSE（Filesystem in Userspace）是用户级文件系统连接到Linux内核的接口。 使用FUSE我们不需要进行内核级的编程而可以直接创建操作系统。  三大模块 内核模块 Libfuse模块 用户程序模块    fuse内核实现VFS接口，传递给libfuse，再">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/fuse.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;fuse.png">
 <meta property="og:updated_time" content="2017-11-23T16:39:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于FUSE实现一个文件系统">
-<meta name="twitter:description" content="FUSE文件系统是一种用来存储和组织计算机文件、目录及其包含的数据的方法，它使文件、目录以及数据的查找和访问得到简化。FUSE（Filesystem in Userspace）是用户级文件系统连接到Linux内核的接口。 使用FUSE我们不需要进行内核级的编程而可以直接创建操作系统。  三大模块 内核模块 Libfuse模块 用户程序模块    fuse内核实现VFS接口，传递给libfuse，再">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/fuse.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;fuse.png">
 
 
 
@@ -184,7 +182,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -194,7 +192,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -204,7 +202,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -214,7 +212,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -224,7 +222,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -234,7 +232,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -401,7 +399,9 @@
 </ul>
 <p>fuse内核实现VFS接口，传递给libfuse，再传递值用户程序接口进行实现操作</p>
 <p><img src="/content/images/2017/11/fuse.png" alt="fuse_arch"></p>
-<p>要使用FUSE来创建一个文件系统，需要声明一个fuse_operations类型的结构变量，并将其传递给fuse_main函数。fuse_operations结构中有一个指针，指向在执行适当操作时需要调用的函数。<br><figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">fuse_operations</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> (*getattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct stat *);</div><div class="line">    <span class="keyword">int</span> (*readlink) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</div><div class="line">    <span class="keyword">int</span> (*getdir) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">fuse_dirh_t</span>, <span class="keyword">fuse_dirfil_t</span>);</div><div class="line">    <span class="keyword">int</span> (*mknod) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">mode_t</span>, <span class="keyword">dev_t</span>);</div><div class="line">    <span class="keyword">int</span> (*mkdir) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">mode_t</span>);</div><div class="line">    <span class="keyword">int</span> (*unlink) (<span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">    <span class="keyword">int</span> (*rmdir) (<span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">    <span class="keyword">int</span> (*symlink) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">    <span class="keyword">int</span> (*rename) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">    <span class="keyword">int</span> (*link) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">    <span class="keyword">int</span> (*chmod) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">mode_t</span>);</div><div class="line">    <span class="keyword">int</span> (*chown) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">uid_t</span>, <span class="keyword">gid_t</span>);</div><div class="line">    <span class="keyword">int</span> (*truncate) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">off_t</span>);</div><div class="line">    <span class="keyword">int</span> (*utime) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct utimbuf *);</div><div class="line">    <span class="keyword">int</span> (*open) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct fuse_file_info *);</div><div class="line">    <span class="keyword">int</span> (*read) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>, <span class="keyword">off_t</span>, struct fuse_file_info *);</div><div class="line">    <span class="keyword">int</span> (*write) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>, <span class="keyword">off_t</span>,struct fuse_file_info *);</div><div class="line">    <span class="keyword">int</span> (*statfs) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct statfs *);</div><div class="line">    <span class="keyword">int</span> (*flush) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct fuse_file_info *);</div><div class="line">    <span class="keyword">int</span> (*release) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct fuse_file_info *);</div><div class="line">    <span class="keyword">int</span> (*fsync) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">int</span>, struct fuse_file_info *);</div><div class="line">    <span class="keyword">int</span> (*setxattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>, <span class="keyword">int</span>);</div><div class="line">    <span class="keyword">int</span> (*getxattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</div><div class="line">    <span class="keyword">int</span> (*listxattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</div><div class="line">    <span class="keyword">int</span> (*removexattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>要使用FUSE来创建一个文件系统，需要声明一个fuse_operations类型的结构变量，并将其传递给fuse_main函数。fuse_operations结构中有一个指针，指向在执行适当操作时需要调用的函数。</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">fuse_operations</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> (*getattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct stat *);</span><br><span class="line">    <span class="keyword">int</span> (*readlink) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*getdir) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">fuse_dirh_t</span>, <span class="keyword">fuse_dirfil_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*mknod) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">mode_t</span>, <span class="keyword">dev_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">mkdir</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">mode_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*unlink) (<span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">rmdir</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">    <span class="keyword">int</span> (*symlink) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">    <span class="keyword">int</span> (*rename) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">    <span class="keyword">int</span> (*link) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">    <span class="keyword">int</span> (*chmod) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">mode_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*chown) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">uid_t</span>, <span class="keyword">gid_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*truncate) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">off_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*utime) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct utimbuf *);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">open</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct fuse_file_info *);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">read</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>, <span class="keyword">off_t</span>, struct fuse_file_info *);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">write</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>, <span class="keyword">off_t</span>,struct fuse_file_info *);</span><br><span class="line">    <span class="keyword">int</span> (*statfs) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct statfs *);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">flush</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct fuse_file_info *);</span><br><span class="line">    <span class="keyword">int</span> (*<span class="built_in">release</span>) (<span class="keyword">const</span> <span class="keyword">char</span> *, struct fuse_file_info *);</span><br><span class="line">    <span class="keyword">int</span> (*fsync) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">int</span>, struct fuse_file_info *);</span><br><span class="line">    <span class="keyword">int</span> (*setxattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">size_t</span>, <span class="keyword">int</span>);</span><br><span class="line">    <span class="keyword">int</span> (*getxattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*listxattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">char</span> *, <span class="keyword">size_t</span>);</span><br><span class="line">    <span class="keyword">int</span> (*removexattr) (<span class="keyword">const</span> <span class="keyword">char</span> *, <span class="keyword">const</span> <span class="keyword">char</span> *);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h1 id="用户程序实现"><a href="#用户程序实现" class="headerlink" title="用户程序实现"></a>用户程序实现</h1><ul>
 <li>获取参数(strtol)</li>
 <li>分配空间</li>
@@ -626,9 +626,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -749,7 +749,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

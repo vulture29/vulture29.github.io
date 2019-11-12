@@ -79,22 +79,20 @@
 
 
 
-<meta name="description" content="NVIDIA CUDA 编程学习本篇我们来学习CUDA编程，首先我们明确一下几个名词的相互关系：  GPU:  Graphics processing unit GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构 GPU适合大规模并行计算，而CPU适合逻辑控制串行运算 CPU与GPU架构对">
+<meta name="description" content="NVIDIA CUDA 编程学习本篇我们来学习CUDA编程，首先我们明确一下几个名词的相互关系：  GPU:  Graphics processing unit  GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构  GPU适合大规模并行计算，而CPU适合逻辑控制串行运算  CPU与GPU">
 <meta name="keywords" content="parallel system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并行系统学习之路（三） ---- CUDA学习">
-<meta property="og:url" content="http://vulture29.github.io/2017/09/22/并行系统学习之路3/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;09&#x2F;22&#x2F;%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF3&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="NVIDIA CUDA 编程学习本篇我们来学习CUDA编程，首先我们明确一下几个名词的相互关系：  GPU:  Graphics processing unit GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构 GPU适合大规模并行计算，而CPU适合逻辑控制串行运算 CPU与GPU架构对">
+<meta property="og:description" content="NVIDIA CUDA 编程学习本篇我们来学习CUDA编程，首先我们明确一下几个名词的相互关系：  GPU:  Graphics processing unit  GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构  GPU适合大规模并行计算，而CPU适合逻辑控制串行运算  CPU与GPU">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/09/cpu_gpu_arch.png">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/09/thread_batching.png">
-<meta property="og:image" content="http://vulture29.github.io/content/images/2017/09/cuda_memory.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;09&#x2F;cpu_gpu_arch.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;09&#x2F;thread_batching.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;09&#x2F;cuda_memory.png">
 <meta property="og:updated_time" content="2017-11-22T17:25:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并行系统学习之路（三） ---- CUDA学习">
-<meta name="twitter:description" content="NVIDIA CUDA 编程学习本篇我们来学习CUDA编程，首先我们明确一下几个名词的相互关系：  GPU:  Graphics processing unit GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构 GPU适合大规模并行计算，而CPU适合逻辑控制串行运算 CPU与GPU架构对">
-<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/09/cpu_gpu_arch.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;09&#x2F;cpu_gpu_arch.png">
 
 
 
@@ -186,7 +184,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -196,7 +194,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -206,7 +204,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -216,7 +214,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -226,7 +224,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -236,7 +234,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -277,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/09/22/并行系统学习之路3/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/09/22/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
@@ -347,8 +345,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/22/并行系统学习之路3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/22/并行系统学习之路3/" itemprop="commentsCount"></span>
+                <a href="/2017/09/22/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/22/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -385,9 +383,12 @@
 <ul>
 <li><p>GPU:</p>
 <ul>
-<li>Graphics processing unit</li>
-<li>GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构</li>
-<li>GPU适合大规模并行计算，而CPU适合逻辑控制串行运算</li>
+<li><p>Graphics processing unit</p>
+</li>
+<li><p>GPU和CPU一样也是计算机的计算单位，但是他们的设计目标有很大不同，GPU专注于计算，它有有更多的ALU，而CPU为了处理各种计算机指令需要许多其他的复杂结构</p>
+</li>
+<li><p>GPU适合大规模并行计算，而CPU适合逻辑控制串行运算</p>
+</li>
 <li><p>CPU与GPU架构对比</p>
 <p><img src="/content/images/2017/09/cpu_gpu_arch.png" alt=""></p>
 </li>
@@ -430,29 +431,27 @@
 <h2 id="CUDA中的三种函数"><a href="#CUDA中的三种函数" class="headerlink" title="CUDA中的三种函数"></a>CUDA中的三种函数</h2><table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">执行地点</th>
-<th style="text-align:left">调用地点</th>
+<th align="center"></th>
+<th align="center">执行地点</th>
+<th align="left">调用地点</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>__device__ float DeviceFunc()</code></td>
-<td style="text-align:center">device</td>
-<td style="text-align:left">device</td>
+<tbody><tr>
+<td align="center"><code>__device__ float DeviceFunc()</code></td>
+<td align="center">device</td>
+<td align="left">device</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>__global__ void  KernelFunc()</code></td>
-<td style="text-align:center">device</td>
-<td style="text-align:left">host</td>
+<td align="center"><code>__global__ void  KernelFunc()</code></td>
+<td align="center">device</td>
+<td align="left">host</td>
 </tr>
 <tr>
-<td style="text-align:center"><code>__host__   float HostFunc()</code></td>
-<td style="text-align:center">host</td>
-<td style="text-align:left">host</td>
+<td align="center"><code>__host__   float HostFunc()</code></td>
+<td align="center">host</td>
+<td align="left">host</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="CUDA-模型下的内存空间分配"><a href="#CUDA-模型下的内存空间分配" class="headerlink" title="CUDA 模型下的内存空间分配"></a>CUDA 模型下的内存空间分配</h2><p><img src="/content/images/2017/09/cuda_memory.png" alt=""></p>
 <ul>
 <li>每个线程可以<ul>
@@ -477,15 +476,18 @@
 </li>
 </ul>
 <h2 id="调用Kernel函数实例"><a href="#调用Kernel函数实例" class="headerlink" title="调用Kernel函数实例"></a>调用Kernel函数实例</h2><p>调用Kernel函数是必须指定config：</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><div class="line">__global__ void KernelFunc(...);</div><div class="line">dim3 DimGrid(<span class="number">100</span>, <span class="number">50</span>); <span class="comment">// 5000 thread blocks</span></div><div class="line">dim3 DimBlock(<span class="number">4</span>, <span class="number">8</span>, <span class="number">8</span>); <span class="comment">// 256 threads per block size_t SharedMemBytes = 64; // 64 bytes of shared memory KernelFunc&lt;&lt;&lt; DimGrid, DimBlock, SharedMemBytes &gt;&gt;&gt;(...);</span></div></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">__global__ <span class="built_in">void</span> KernelFunc(...);</span><br><span class="line">dim3 DimGrid(<span class="number">100</span>, <span class="number">50</span>); <span class="comment">// 5000 thread blocks</span></span><br><span class="line">dim3 DimBlock(<span class="number">4</span>, <span class="number">8</span>, <span class="number">8</span>); <span class="comment">// 256 threads per block size_t SharedMemBytes = 64; // 64 bytes of shared memory KernelFunc&lt;&lt;&lt; DimGrid, DimBlock, SharedMemBytes &gt;&gt;&gt;(...);</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>所有Kernel函数调用都是异步的（除非显式堵塞）</li>
 <li>Kernel函数允许递归</li>
 </ul>
 <p>下面是一个实例，该实例把一个数组里的所有值自增了1</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">incrArrayOnDevice</span><span class="params">(<span class="keyword">float</span> *a, <span class="keyword">int</span> N)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">int</span> idx = blockIdx.x*blockDim.x + threadIdx.x;</div><div class="line">  <span class="keyword">if</span> (idx&lt;N) a[idx] = a[idx]+<span class="number">1.f</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">float</span> *a_h, *a_d; <span class="keyword">int</span> i, N=<span class="number">10</span>;</div><div class="line">  <span class="keyword">size_t</span> size = N*<span class="keyword">sizeof</span>(<span class="keyword">float</span>);</div><div class="line">  a_h = (<span class="keyword">float</span> *)<span class="built_in">malloc</span>(size);</div><div class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;N; i++) a_h[i] = (<span class="keyword">float</span>)i;</div><div class="line"></div><div class="line">  <span class="comment">// allocate array on device</span></div><div class="line">  cudaMalloc((<span class="keyword">void</span> **) &amp;a_d, size);</div><div class="line"></div><div class="line">  <span class="comment">// copy data from host to device</span></div><div class="line">  cudaMemcpy(a_d, a_h, <span class="keyword">sizeof</span>(<span class="keyword">float</span>)*N, cudaMemcpyHostToDevice);</div><div class="line"></div><div class="line">  <span class="comment">// do calculation on device:</span></div><div class="line">  <span class="comment">// Part 1 of 2. Compute execution configuration</span></div><div class="line">  <span class="keyword">int</span> blockSize = <span class="number">4</span>;</div><div class="line">  <span class="keyword">int</span> nBlocks = N/blockSize + (N%blockSize == <span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="comment">// Part 2 of 2. Call incrementArrayOnDevice kernel</span></div><div class="line">  incrArrayOnDevice &lt;&lt;&lt; nBlocks, blockSize &gt;&gt;&gt; (a_d, N);</div><div class="line"></div><div class="line">  <span class="comment">// Retrieve result from device and store in b_h</span></div><div class="line">  cudaMemcpy(a_h, a_d, <span class="keyword">sizeof</span>(<span class="keyword">float</span>)*N, cudaMemcpyDeviceToHost);</div><div class="line"></div><div class="line">  <span class="comment">// cleanup</span></div><div class="line">  <span class="built_in">free</span>(a_h);</div><div class="line">  cudaFree(a_d);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">__global__ void incr<span class="constructor">ArrayOnDevice(<span class="params">float</span> <span class="operator">*</span><span class="params">a</span>, <span class="params">int</span> N)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">int</span> idx = blockIdx.x*blockDim.x + threadIdx.x;</span><br><span class="line">  <span class="keyword">if</span> (idx&lt;N) a<span class="literal">[<span class="identifier">idx</span>]</span> = a<span class="literal">[<span class="identifier">idx</span>]</span>+<span class="number">1.</span>f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main<span class="literal">()</span> &#123;</span><br><span class="line">  <span class="built_in">float</span> *a_h, *a_d; <span class="built_in">int</span> i, N=<span class="number">10</span>;</span><br><span class="line">  size_t size = N*sizeof(<span class="built_in">float</span>);</span><br><span class="line">  a_h = (<span class="built_in">float</span> *)malloc(size);</span><br><span class="line">  for (i=<span class="number">0</span>; i&lt;N; i++) a_h<span class="literal">[<span class="identifier">i</span>]</span> = (<span class="built_in">float</span>)i;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// allocate array on device</span></span><br><span class="line">  cuda<span class="constructor">Malloc((<span class="params">void</span> <span class="operator">**</span>)</span> &amp;a_d, size);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// copy data from host to device</span></span><br><span class="line">  cuda<span class="constructor">Memcpy(<span class="params">a_d</span>, <span class="params">a_h</span>, <span class="params">sizeof</span>(<span class="params">float</span>)</span>*N, cudaMemcpyHostToDevice);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// do calculation on device:</span></span><br><span class="line">  <span class="comment">// Part 1 of 2. Compute execution configuration</span></span><br><span class="line">  <span class="built_in">int</span> blockSize = <span class="number">4</span>;</span><br><span class="line">  <span class="built_in">int</span> nBlocks = N/blockSize + (N%blockSize<span class="operator"> == </span><span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Part 2 of 2. Call incrementArrayOnDevice kernel</span></span><br><span class="line">  incrArrayOnDevice &lt;&lt;&lt; nBlocks, blockSize &gt;&gt;&gt; (a_d, N);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Retrieve result from device and store in b_h</span></span><br><span class="line">  cuda<span class="constructor">Memcpy(<span class="params">a_h</span>, <span class="params">a_d</span>, <span class="params">sizeof</span>(<span class="params">float</span>)</span>*N, cudaMemcpyDeviceToHost);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// cleanup</span></span><br><span class="line">  free(a_h);</span><br><span class="line">  cuda<span class="constructor">Free(<span class="params">a_d</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <!-- ## CUDA程序的编译过程
 未仔细研究，待补充 -->
+
 <h2 id="硬件执行模型"><a href="#硬件执行模型" class="headerlink" title="硬件执行模型"></a>硬件执行模型</h2><ul>
 <li>在grid里，每一个block会被分成warp，每一个warp将由一个多处理器(SM)执行<ul>
 <li>device每次只执行一个grid</li>
@@ -519,7 +521,7 @@
 <li>Grid = 一组执行kernel的block</li>
 <li>Block = 一组SIMD的线程，他们可以执行kernel function以及通过shared memory交流</li>
 </ul>
-<h2 id="实例-–-使用Leibniz公式求π值"><a href="#实例-–-使用Leibniz公式求π值" class="headerlink" title="实例 – 使用Leibniz公式求π值"></a>实例 – 使用Leibniz公式求π值</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mytime.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> THREADS 512</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_BLOCKS 64</span></div><div class="line"></div><div class="line"><span class="comment">// find the nearest 2 power</span></div><div class="line">__<span class="function">device__ <span class="keyword">int</span> <span class="title">NearestPowerOf2</span> <span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!n) <span class="keyword">return</span> n;  <span class="comment">//(0 == 2^0)</span></div><div class="line"></div><div class="line">  <span class="keyword">int</span> x = <span class="number">1</span>;</div><div class="line">  <span class="keyword">while</span>(x &lt; n)</div><div class="line">    &#123;</div><div class="line">      x &lt;&lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">return</span> x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// GPU kernel, we know: THREADS == blockDim.x</span></div><div class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">integrate</span><span class="params">(<span class="keyword">int</span> *n, <span class="keyword">int</span> *blocks, <span class="keyword">double</span> *gsum)</span> </span>&#123;</div><div class="line">  <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> bid = blockDim.x * blockIdx.x + threadIdx.x;</div><div class="line">  <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> tid = threadIdx.x;</div><div class="line">  <span class="keyword">double</span> sum;</div><div class="line">  <span class="keyword">int</span> i;</div><div class="line">  <span class="keyword">int</span> nTotalThreads;</div><div class="line">  __shared__ <span class="keyword">double</span> ssum[THREADS];</div><div class="line"></div><div class="line">  sum = <span class="number">0.0</span>;</div><div class="line">  <span class="keyword">for</span> (i = bid ; i &lt; *n; i += blockDim.x * *blocks) &#123;</div><div class="line">    sum += powf(<span class="number">-1</span>, i) / (<span class="number">2</span>*i + <span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  ssum[tid] = sum * <span class="number">4</span>;</div><div class="line">  <span class="comment">// block reduction</span></div><div class="line">  __syncthreads();</div><div class="line">  nTotalThreads = NearestPowerOf2(blockDim.x/<span class="number">2</span>);</div><div class="line">  <span class="keyword">for</span> (i = nTotalThreads; i &gt; <span class="number">0</span>; i &gt;&gt;= <span class="number">1</span>) &#123; <span class="comment">/* per block */</span></div><div class="line">    <span class="keyword">if</span> (tid &lt; i)</div><div class="line">      <span class="keyword">if</span>(tid+i &lt; blockDim.x)</div><div class="line">        ssum[tid] += ssum[tid + i];</div><div class="line">    __syncthreads();</div><div class="line">  &#125;</div><div class="line">  gsum[bid] = ssum[tid];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// number of threads must be a power of 2</span></div><div class="line">__<span class="function">global__ <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">global_reduce</span><span class="params">(<span class="keyword">int</span> *n, <span class="keyword">int</span> *blocks, <span class="keyword">double</span> *gsum)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    __shared__ <span class="keyword">double</span> ssum[THREADS];</div><div class="line">    <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> tid = threadIdx.x;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">int</span> nTotalThreads;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (tid &lt; *blocks)</div><div class="line">      ssum[tid] = gsum[tid * THREADS];</div><div class="line">    <span class="keyword">else</span></div><div class="line">      ssum[tid] = <span class="number">0.0</span>;</div><div class="line">    __syncthreads();</div><div class="line">    nTotalThreads = NearestPowerOf2(blockDim.x/<span class="number">2</span>);</div><div class="line">    <span class="keyword">for</span> (i = nTotalThreads; i &gt; <span class="number">0</span>; i &gt;&gt;= <span class="number">1</span>) &#123; <span class="comment">/* per block */</span></div><div class="line">        <span class="keyword">if</span> (tid &lt; i)</div><div class="line">          <span class="keyword">if</span>(tid+i &lt; blockDim.x)</div><div class="line">            ssum[tid] += ssum[tid + i];</div><div class="line">        __syncthreads();</div><div class="line">    &#125;</div><div class="line">    gsum[tid] = ssum[tid];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> n, blocks;</div><div class="line">  <span class="keyword">int</span> *n_d, *blocks_d; <span class="comment">// device copy</span></div><div class="line">  <span class="keyword">double</span> PI25DT = <span class="number">3.141592653589793238462643</span>;</div><div class="line">  <span class="keyword">double</span> pi;</div><div class="line">  <span class="keyword">double</span> *mypi_d; <span class="comment">// device copy of pi</span></div><div class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">startwtime</span>, <span class="title">endwtime</span>, <span class="title">diffwtime</span>;</span></div><div class="line"></div><div class="line">  <span class="comment">// Allocate memory on GPU</span></div><div class="line">  cudaMalloc( (<span class="keyword">void</span> **) &amp;n_d, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span> );</div><div class="line">  cudaMalloc( (<span class="keyword">void</span> **) &amp;blocks_d, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span> );</div><div class="line">  cudaMalloc( (<span class="keyword">void</span> **) &amp;mypi_d, <span class="keyword">sizeof</span>(<span class="keyword">double</span>) * THREADS * MAX_BLOCKS );</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Enter the number of intervals: (0 quits) "</span>);fflush(<span class="built_in">stdout</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Enter the number of blocks: (&lt;=%d) "</span>, MAX_BLOCKS);fflush(<span class="built_in">stdout</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;blocks);</div><div class="line"></div><div class="line">    gettimeofday(&amp;startwtime, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span> || blocks &gt; MAX_BLOCKS)</div><div class="line">      <span class="keyword">break</span>;</div><div class="line"></div><div class="line">    <span class="comment">// copy from CPU to GPU</span></div><div class="line">    cudaMemcpy( n_d, &amp;n, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span>, cudaMemcpyHostToDevice );</div><div class="line">    cudaMemcpy( blocks_d, &amp;blocks, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span>, cudaMemcpyHostToDevice );</div><div class="line"></div><div class="line">    integrate&lt;&lt;&lt; blocks, THREADS &gt;&gt;&gt;(n_d, blocks_d, mypi_d);</div><div class="line">    <span class="keyword">if</span> (blocks &gt; <span class="number">1</span>)</div><div class="line">      global_reduce&lt;&lt;&lt; <span class="number">1</span>, <span class="number">512</span> &gt;&gt;&gt;(n_d, blocks_d, mypi_d);</div><div class="line">    <span class="comment">// copy back from GPU to CPU</span></div><div class="line">    cudaMemcpy( &amp;pi, mypi_d, <span class="keyword">sizeof</span>(<span class="keyword">double</span>) * <span class="number">1</span>, cudaMemcpyDeviceToHost );</div><div class="line"></div><div class="line">    gettimeofday(&amp;endwtime, <span class="literal">NULL</span>);</div><div class="line">    MINUS_UTIME(diffwtime, endwtime, startwtime);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"pi is approximately %.16f, Error is %.16f\n"</span>,</div><div class="line">	   pi, <span class="built_in">fabs</span>(pi - PI25DT));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"wall clock time = %d.%06d\n"</span>,</div><div class="line">	   diffwtime.tv_sec, diffwtime.tv_usec);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// free GPU memory</span></div><div class="line">  cudaFree(n_d);</div><div class="line">  cudaFree(mypi_d);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="实例-–-使用Leibniz公式求π值"><a href="#实例-–-使用Leibniz公式求π值" class="headerlink" title="实例 – 使用Leibniz公式求π值"></a>实例 – 使用Leibniz公式求π值</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mytime.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> THREADS 512</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_BLOCKS 64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// find the nearest 2 power</span></span><br><span class="line">__<span class="function">device__ <span class="keyword">int</span> <span class="title">NearestPowerOf2</span> <span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!n) <span class="keyword">return</span> n;  <span class="comment">//(0 == 2^0)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(x &lt; n)</span><br><span class="line">    &#123;</span><br><span class="line">      x &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// GPU kernel, we know: THREADS == blockDim.x</span></span><br><span class="line">__<span class="function">global__ <span class="keyword">void</span> <span class="title">integrate</span><span class="params">(<span class="keyword">int</span> *n, <span class="keyword">int</span> *blocks, <span class="keyword">double</span> *gsum)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> bid = blockDim.x * blockIdx.x + threadIdx.x;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> tid = threadIdx.x;</span><br><span class="line">  <span class="keyword">double</span> sum;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="keyword">int</span> nTotalThreads;</span><br><span class="line">  __shared__ <span class="keyword">double</span> ssum[THREADS];</span><br><span class="line"></span><br><span class="line">  sum = <span class="number">0.0</span>;</span><br><span class="line">  <span class="keyword">for</span> (i = bid ; i &lt; *n; i += blockDim.x * *blocks) &#123;</span><br><span class="line">    sum += powf(<span class="number">-1</span>, i) / (<span class="number">2</span>*i + <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ssum[tid] = sum * <span class="number">4</span>;</span><br><span class="line">  <span class="comment">// block reduction</span></span><br><span class="line">  __syncthreads();</span><br><span class="line">  nTotalThreads = NearestPowerOf2(blockDim.x/<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> (i = nTotalThreads; i &gt; <span class="number">0</span>; i &gt;&gt;= <span class="number">1</span>) &#123; <span class="comment">/* per block */</span></span><br><span class="line">    <span class="keyword">if</span> (tid &lt; i)</span><br><span class="line">      <span class="keyword">if</span>(tid+i &lt; blockDim.x)</span><br><span class="line">        ssum[tid] += ssum[tid + i];</span><br><span class="line">    __syncthreads();</span><br><span class="line">  &#125;</span><br><span class="line">  gsum[bid] = ssum[tid];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// number of threads must be a power of 2</span></span><br><span class="line">__<span class="function">global__ <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">global_reduce</span><span class="params">(<span class="keyword">int</span> *n, <span class="keyword">int</span> *blocks, <span class="keyword">double</span> *gsum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    __shared__ <span class="keyword">double</span> ssum[THREADS];</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> tid = threadIdx.x;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> nTotalThreads;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (tid &lt; *blocks)</span><br><span class="line">      ssum[tid] = gsum[tid * THREADS];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      ssum[tid] = <span class="number">0.0</span>;</span><br><span class="line">    __syncthreads();</span><br><span class="line">    nTotalThreads = NearestPowerOf2(blockDim.x/<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = nTotalThreads; i &gt; <span class="number">0</span>; i &gt;&gt;= <span class="number">1</span>) &#123; <span class="comment">/* per block */</span></span><br><span class="line">        <span class="keyword">if</span> (tid &lt; i)</span><br><span class="line">          <span class="keyword">if</span>(tid+i &lt; blockDim.x)</span><br><span class="line">            ssum[tid] += ssum[tid + i];</span><br><span class="line">        __syncthreads();</span><br><span class="line">    &#125;</span><br><span class="line">    gsum[tid] = ssum[tid];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n, blocks;</span><br><span class="line">  <span class="keyword">int</span> *n_d, *blocks_d; <span class="comment">// device copy</span></span><br><span class="line">  <span class="keyword">double</span> PI25DT = <span class="number">3.141592653589793238462643</span>;</span><br><span class="line">  <span class="keyword">double</span> pi;</span><br><span class="line">  <span class="keyword">double</span> *mypi_d; <span class="comment">// device copy of pi</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">startwtime</span>, <span class="title">endwtime</span>, <span class="title">diffwtime</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Allocate memory on GPU</span></span><br><span class="line">  cudaMalloc( (<span class="keyword">void</span> **) &amp;n_d, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span> );</span><br><span class="line">  cudaMalloc( (<span class="keyword">void</span> **) &amp;blocks_d, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span> );</span><br><span class="line">  cudaMalloc( (<span class="keyword">void</span> **) &amp;mypi_d, <span class="keyword">sizeof</span>(<span class="keyword">double</span>) * THREADS * MAX_BLOCKS );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Enter the number of intervals: (0 quits) "</span>);fflush(<span class="built_in">stdout</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Enter the number of blocks: (&lt;=%d) "</span>, MAX_BLOCKS);fflush(<span class="built_in">stdout</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;blocks);</span><br><span class="line"></span><br><span class="line">    gettimeofday(&amp;startwtime, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span> || blocks &gt; MAX_BLOCKS)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// copy from CPU to GPU</span></span><br><span class="line">    cudaMemcpy( n_d, &amp;n, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span>, cudaMemcpyHostToDevice );</span><br><span class="line">    cudaMemcpy( blocks_d, &amp;blocks, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">1</span>, cudaMemcpyHostToDevice );</span><br><span class="line"></span><br><span class="line">    integrate&lt;&lt;&lt; blocks, THREADS &gt;&gt;&gt;(n_d, blocks_d, mypi_d);</span><br><span class="line">    <span class="keyword">if</span> (blocks &gt; <span class="number">1</span>)</span><br><span class="line">      global_reduce&lt;&lt;&lt; <span class="number">1</span>, <span class="number">512</span> &gt;&gt;&gt;(n_d, blocks_d, mypi_d);</span><br><span class="line">    <span class="comment">// copy back from GPU to CPU</span></span><br><span class="line">    cudaMemcpy( &amp;pi, mypi_d, <span class="keyword">sizeof</span>(<span class="keyword">double</span>) * <span class="number">1</span>, cudaMemcpyDeviceToHost );</span><br><span class="line"></span><br><span class="line">    gettimeofday(&amp;endwtime, <span class="literal">NULL</span>);</span><br><span class="line">    MINUS_UTIME(diffwtime, endwtime, startwtime);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"pi is approximately %.16f, Error is %.16f\n"</span>,</span><br><span class="line">	   pi, <span class="built_in">fabs</span>(pi - PI25DT));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"wall clock time = %d.%06d\n"</span>,</span><br><span class="line">	   diffwtime.tv_sec, diffwtime.tv_usec);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// free GPU memory</span></span><br><span class="line">  cudaFree(n_d);</span><br><span class="line">  cudaFree(mypi_d);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -594,7 +596,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/08/socket基本用法/" rel="next" title="socket基本用法">
+              <a href="/2017/09/08/socket%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="next" title="socket基本用法">
                 <i class="fa fa-chevron-left"></i> socket基本用法
               </a>
             
@@ -604,7 +606,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/03/并行系统学习之路4/" rel="prev" title="并行系统学习之路（四） ---- OpenMP学习">
+              <a href="/2017/10/03/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF4/" rel="prev" title="并行系统学习之路（四） ---- OpenMP学习">
                 并行系统学习之路（四） ---- OpenMP学习 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -694,9 +696,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -817,7 +819,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

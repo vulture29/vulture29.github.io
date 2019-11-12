@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="cpp," />
+  <meta name="keywords" content="algorithm," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
-<meta name="keywords" content="cpp">
+<meta name="description" content="本文由2019.10面试经历总结而来。 常见的数据结构  数组 vector容器 链表 栈 哈希表 跳表 二叉树 堆 队列 图  经典算法和方法  各种排序算法 二分法 递归 BFS，DFS 贪心算法 回溯算法 分治 动态规划  常见的数据结构数组内存连续的线性表，用来存储相同类型的数据线性表：每个数据前后只有一个数据相连，比如链表，队列，栈随机访问 vector容器与数组类似，支持动态扩容，实现">
+<meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++读书笔记（四）">
-<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;01&#x2F;eff-cpp4&#x2F;index.html">
+<meta property="og:title" content="算法基础学习结构梳理">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;%E7%AE%97%E6%B3%952&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="条款18: 让接口容易被正确使用，不易被误用 “促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容 获得大小时全部用size而不是偶尔有length 如果和int类似，就要是他的行为（比如加减）和int一样   “组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任 shared_ptr支持定制型删除器，消除了”cross-DLL problem”，">
+<meta property="og:description" content="本文由2019.10面试经历总结而来。 常见的数据结构  数组 vector容器 链表 栈 哈希表 跳表 二叉树 堆 队列 图  经典算法和方法  各种排序算法 二分法 递归 BFS，DFS 贪心算法 回溯算法 分治 动态规划  常见的数据结构数组内存连续的线性表，用来存储相同类型的数据线性表：每个数据前后只有一个数据相连，比如链表，队列，栈随机访问 vector容器与数组类似，支持动态扩容，实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-22T17:23:31.000Z">
+<meta property="og:updated_time" content="2019-11-10T03:42:06.923Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/01/eff-cpp4/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2019/11/10/算法2/"/>
 
 
 
 
 
-  <title>Effective C++读书笔记（四） | Xingyao Huang's Blog</title>
+  <title>算法基础学习结构梳理 | Xingyao Huang's Blog</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/11/01/eff-cpp4/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2019/11/10/%E7%AE%97%E6%B3%952/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Effective C++读书笔记（四）</h1>
+          <h1 class="post-title" itemprop="name headline">算法基础学习结构梳理</h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T21:11:18+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-10T11:40:08+08:00">
+                2019-11-10
               </time>
             
 
@@ -330,17 +330,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/reading-notes/" itemprop="url" rel="index">
-                    <span itemprop="name">reading notes</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -352,8 +341,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/01/eff-cpp4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/11/01/eff-cpp4/" itemprop="commentsCount"></span>
+                <a href="/2019/11/10/%E7%AE%97%E6%B3%952/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/10/%E7%AE%97%E6%B3%952/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -386,70 +375,62 @@
       
 
       
-        <h1 id="条款18-让接口容易被正确使用，不易被误用"><a href="#条款18-让接口容易被正确使用，不易被误用" class="headerlink" title="条款18: 让接口容易被正确使用，不易被误用"></a>条款18: 让接口容易被正确使用，不易被误用</h1><ul>
-<li>“促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容<ul>
-<li>获得大小时全部用size而不是偶尔有length</li>
-<li>如果和int类似，就要是他的行为（比如加减）和int一样</li>
-</ul>
-</li>
-<li>“组织误用”的办法包括建立新类型，限制类型上的操作，舒服对象值，以及消除客户的资源管理责任</li>
-<li>shared_ptr支持定制型删除器，消除了”cross-DLL problem”，可用来接触互斥锁<ul>
-<li>cross-DLL problem: 对象在DLL中被new创建，却在另一个DLL中内delete销毁</li>
-</ul>
-</li>
-</ul>
-<h1 id="条款19：-设计class犹如设计type"><a href="#条款19：-设计class犹如设计type" class="headerlink" title="条款19： 设计class犹如设计type"></a>条款19： 设计class犹如设计type</h1><p>设计class需要面对的问题：</p>
+        <p>本文由2019.10面试经历总结而来。</p>
+<p>常见的数据结构</p>
 <ul>
-<li>新type的对象应该如何被创建和销毁？<ul>
-<li>构造函数和析构函数</li>
+<li>数组</li>
+<li>vector容器</li>
+<li>链表</li>
+<li>栈</li>
+<li>哈希表</li>
+<li>跳表</li>
+<li>二叉树</li>
+<li>堆</li>
+<li>队列</li>
+<li>图</li>
 </ul>
-</li>
-<li>对象的初始化和对象的赋值该有什么样的差别？</li>
-<li>新对象如果被passed by value(按值传递)，意味着什么？<ul>
-<li>copy构造函数</li>
+<p>经典算法和方法</p>
+<ul>
+<li>各种排序算法</li>
+<li>二分法</li>
+<li>递归</li>
+<li>BFS，DFS</li>
+<li>贪心算法</li>
+<li>回溯算法</li>
+<li>分治</li>
+<li>动态规划</li>
 </ul>
-</li>
-<li>什么是新type的”合法值”？</li>
-<li>新type需要遵循某种继承关系吗？</li>
-<li>新type需要什么样的转换？</li>
-<li>什么样的操作符和函数对新type是合理的？</li>
-<li>什么样的标准函数应该驳回(private)？</li>
-<li>与type有关系的其他class或type？</li>
-<li>什么是新type的”未声明接口”？</li>
-<li>新type有多一般化?（是否应该直接定义template）</li>
-<li>真的需要定义这样的一个type吗？</li>
+<p>常见的数据结构<br>数组<br>内存连续的线性表，用来存储相同类型的数据<br>线性表：每个数据前后只有一个数据相连，比如链表，队列，栈<br>随机访问</p>
+<p>vector容器<br>与数组类似，支持动态扩容，实现分为arraylist和linkedlist，一般来说arraylist访问效率高，linkedlist插入删除效率高（需分场景），常用的为arraylist</p>
+<p>链表<br>链表相关代码注意事项：</p>
+<ul>
+<li>链表为空的处理</li>
+<li>链表长度为一或二时的处理</li>
+<li>头尾节点的处理</li>
+<li>可使用哨兵法简化一些特殊情况的处理</li>
 </ul>
-<h1 id="条款20-宁以pass-by-reference-to-const替换pass-by-value"><a href="#条款20-宁以pass-by-reference-to-const替换pass-by-value" class="headerlink" title="条款20: 宁以pass-by-reference-to-const替换pass-by-value"></a>条款20: 宁以pass-by-reference-to-const替换pass-by-value</h1><ul>
-<li>尽量以pass-by-reference-to-const替换pass-by-value。前者通常比较高效，并可避免<ul>
-<li>切割问题: 若传入对象是子类但传入类型是父类类型，由于调用的copy构造函数是父类的，会导致在函数内对象只含有对象的父类部分</li>
+<p>栈<br>先进后出</p>
+<h1 id="栈数组的实现"><a href="#栈数组的实现" class="headerlink" title="栈数组的实现"></a>栈数组的实现</h1><p>class MyStack:<br>    self.items = [] # 数据<br>    self.size = 0   # 容量<br>    self.top = 0    # 当前元素index</p>
+<p>经典场景：函数调用</p>
+<p>队列<br>先进先出</p>
+<h1 id="队列数组的实现"><a href="#队列数组的实现" class="headerlink" title="队列数组的实现"></a>队列数组的实现</h1><p>class MyQueue:<br>    self.items = [] # 数据<br>    self.head = 0   # 头index<br>    self.tail = 0   # 尾index</p>
+<p>经典场景：生产者消费者模型</p>
+<p>哈希表<br>散列函数选择，装载印子影响扩容效率<br>散列冲突解决方法：开放寻址，拉链法<br>与链表配合使用可实现LRU</p>
+<p>跳表<br>多级链表<br>Redis中SortedSet实现方法</p>
+<p>二叉树<br>特殊的二叉树：满二叉树，完全二叉树，可以用数组存储</p>
+<p>堆<br>由完全二叉树实现，分为最大堆和最小堆，python heapq是最小堆，可用于实现堆排序，优先队列</p>
+<h1 id="heapq常用方法"><a href="#heapq常用方法" class="headerlink" title="heapq常用方法"></a>heapq常用方法</h1><p>heapq.heapify(x)<br>heapq.heappush(heap, item)<br>heapq.heappop(heap, item)<br>heapq.heappushpop(heap, item)<br>heapq.heapreplace(heap, item)</p>
+<p>图<br>表示方法：邻接表，邻接矩阵</p>
+<p>经典算法和方法<br>各种排序算法<br>评价标准：时间复杂度、是否原地排序(空间复杂度)、是否稳定排序、元素移动次数<br>冒泡排序<br>插入排序：每次插入新元素，遍历查找应该插入的位置<br>选择排序：每次从未排序区间找到最小元素放到已排序区间的末尾，非稳定排序<br>归并排序：分治，down-top，把数组分成前后两部分，对前后两部分分别排序，再合并有序数组，非原地排序<br>快速排序：分治，top-down，选择pivot，把数组分成三部分，再对pivot左右两部分排序<br>桶排序：分成n个桶，遍历一编数组放入桶，再在桶内部排序。要求：要可以分桶，要考虑桶均匀性<br>基数排序(radix sort)：按照每一位数排序一遍。要求：可以分割出”‘位”进行比较，位之间有递进关系</p>
+<p>二分法<br>递归实现和循环实现<br>要求：依赖顺序表结构，针对有序数据，不适合数据量太小或太大的情况<br>二分查找变体：</p>
+<ul>
+<li>第一个值等于给定值的元素</li>
+<li>最后一个值等于给定值的元素</li>
+<li>第一个大于等于给定值的元素</li>
+<li>最后一个大于等于给定值的元素</li>
 </ul>
-</li>
-<li>具体情况具体分析，有些时候（例如STL）使用pass-by-value比较合适</li>
-</ul>
-<h1 id="条款21-必须返回对象时，不要返回其reference"><a href="#条款21-必须返回对象时，不要返回其reference" class="headerlink" title="条款21: 必须返回对象时，不要返回其reference"></a>条款21: 必须返回对象时，不要返回其reference</h1><ul>
-<li>不要返回指针或者引用指向local stack对象或者heap-allocated对象，或返回指针或者引用指向一个local static对象而有可能同时需要多个这样的对象。<ul>
-<li>local stack: local stack对象在函数退出之前会被销毁</li>
-<li>heap-allocated: 无法反之内存泄露，无法每次都delete</li>
-<li>local static对象: 多个对象的local static对象引用都指向同一个</li>
-</ul>
-</li>
-</ul>
-<h1 id="条款22-将成员变量声明为private"><a href="#条款22-将成员变量声明为private" class="headerlink" title="条款22: 将成员变量声明为private"></a>条款22: 将成员变量声明为private</h1><ul>
-<li>尽可能的把成员变量声明为private<ul>
-<li>赋予客户访问数据的一致性</li>
-<li>细微划分访问控制</li>
-<li>实现封装</li>
-</ul>
-</li>
-<li>protected并不比public更具封装性</li>
-</ul>
-<h1 id="条款23：-宁以non-member、non-friend、替换member函数"><a href="#条款23：-宁以non-member、non-friend、替换member函数" class="headerlink" title="条款23： 宁以non-member、non-friend、替换member函数"></a>条款23： 宁以non-member、non-friend、替换member函数</h1><ul>
-<li>提高封装性：不增加能够访问class内之private成分的函数数量</li>
-<li>提高包裹弹性(packaging flexibility): 可以使该non-member函数位于一个namespace内(namespace可跨越多个源码文件)，符合C++标准程序库的组织方式</li>
-<li>机能扩展性: 由于此类便利函数放在多个头文件但属于同一namespace，客户可以扩展这一组函数</li>
-</ul>
-<h1 id="条款24：-若所有参数皆需类型转换，应为此采用non-member函数"><a href="#条款24：-若所有参数皆需类型转换，应为此采用non-member函数" class="headerlink" title="条款24： 若所有参数皆需类型转换，应为此采用non-member函数"></a>条款24： 若所有参数皆需类型转换，应为此采用non-member函数</h1><p>例子：class有理数和int类型数相乘，即使定义了member operator函数，却不能满足交换律。使用non-member函数或许是个更好的选择</p>
-<h1 id="条款25-考虑写出一个不抛异常的swap函数"><a href="#条款25-考虑写出一个不抛异常的swap函数" class="headerlink" title="条款25: 考虑写出一个不抛异常的swap函数"></a>条款25: 考虑写出一个不抛异常的swap函数</h1><p>（以后补充）</p>
+<p>递归<br>父问题分为小问题的组合+最小问题的解法<br>防止堆栈溢出</p>
+<p>BFS，DFS<br>贪心算法<br>分治<br>回溯算法<br>动态规划</p>
 
       
     </div>
@@ -496,7 +477,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/cpp/" rel="tag"># cpp</a>
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
           
         </div>
       
@@ -524,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/30/multi-threading-freq-problems/" rel="next" title="多道程序并发 - 死锁，信号量，生产者消费者">
-                <i class="fa fa-chevron-left"></i> 多道程序并发 - 死锁，信号量，生产者消费者
+              <a href="/2018/07/05/determinism2/" rel="next" title="LOL中的Determinism（二）">
+                <i class="fa fa-chevron-left"></i> LOL中的Determinism（二）
               </a>
             
           </div>
@@ -533,10 +514,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/03/riot-msg-svs/" rel="prev" title="RIOT消息服务 - Riot messaging service">
-                RIOT消息服务 - Riot messaging service <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -727,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#条款18-让接口容易被正确使用，不易被误用"><span class="nav-number">1.</span> <span class="nav-text">条款18: 让接口容易被正确使用，不易被误用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款19：-设计class犹如设计type"><span class="nav-number">2.</span> <span class="nav-text">条款19： 设计class犹如设计type</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款20-宁以pass-by-reference-to-const替换pass-by-value"><span class="nav-number">3.</span> <span class="nav-text">条款20: 宁以pass-by-reference-to-const替换pass-by-value</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款21-必须返回对象时，不要返回其reference"><span class="nav-number">4.</span> <span class="nav-text">条款21: 必须返回对象时，不要返回其reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款22-将成员变量声明为private"><span class="nav-number">5.</span> <span class="nav-text">条款22: 将成员变量声明为private</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款23：-宁以non-member、non-friend、替换member函数"><span class="nav-number">6.</span> <span class="nav-text">条款23： 宁以non-member、non-friend、替换member函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款24：-若所有参数皆需类型转换，应为此采用non-member函数"><span class="nav-number">7.</span> <span class="nav-text">条款24： 若所有参数皆需类型转换，应为此采用non-member函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条款25-考虑写出一个不抛异常的swap函数"><span class="nav-number">8.</span> <span class="nav-text">条款25: 考虑写出一个不抛异常的swap函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#栈数组的实现"><span class="nav-number">1.</span> <span class="nav-text">栈数组的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#队列数组的实现"><span class="nav-number">2.</span> <span class="nav-text">队列数组的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heapq常用方法"><span class="nav-number">3.</span> <span class="nav-text">heapq常用方法</span></a></li></ol></div>
             
 
           </div>

@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性 dynamic_cast(expression): 安全向下转型，可用于检测继承体系 此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的pointe">
+<meta name="description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性  dynamic_cast(expression): 安全向下转型，可用于检测继承体系  此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的poin">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective C++读书笔记（五）">
-<meta property="og:url" content="http://vulture29.github.io/2017/11/05/eff-cpp5/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;05&#x2F;eff-cpp5&#x2F;index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性 dynamic_cast(expression): 安全向下转型，可用于检测继承体系 此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的pointe">
+<meta property="og:description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性  dynamic_cast(expression): 安全向下转型，可用于检测继承体系  此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的poin">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-22T17:23:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++读书笔记（五）">
-<meta name="twitter:description" content="条款26: 尽可能延后变量定义式的出现时间 增加程序的清晰度 改善程序效率：只进行必要的操作  条款27: 尽量少做转型操作四种新式转型:  const_cast(expression): 可移除const特性 dynamic_cast(expression): 安全向下转型，可用于检测继承体系 此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的pointe">
 
 
 
@@ -182,7 +180,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -192,7 +190,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -202,7 +200,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -212,7 +210,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -222,7 +220,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -232,7 +230,7 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/" rel="section">
+          <a href="/board/%20" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
             
@@ -394,20 +392,26 @@
 </ul>
 <h1 id="条款27-尽量少做转型操作"><a href="#条款27-尽量少做转型操作" class="headerlink" title="条款27: 尽量少做转型操作"></a>条款27: 尽量少做转型操作</h1><p>四种新式转型:</p>
 <ul>
-<li>const_cast<t>(expression): 可移除const特性</t></li>
-<li>dynamic_cast<t>(expression): 安全向下转型，可用于检测继承体系<ul>
+<li><p>const_cast<T>(expression): 可移除const特性</p>
+</li>
+<li><p>dynamic_cast<T>(expression): 安全向下转型，可用于检测继承体系</p>
+<ul>
 <li>此转型的目的是需要执行一个derived class操作函数，而手里只有一个指向base的pointer或reference，只能靠这个来处理对象</li>
 <li>dynamic的执行速度很慢，尽量避免</li>
 </ul>
-</t></li>
-<li>reinterpret_cast<t>(expression): 低级转型，实际动作可能取决于编译器。（用的较少）</t></li>
-<li><p>static_cast<t>(expression): 强迫隐式转换，各种转型(和reinterpret_cast相比相对安全)</t></p>
+</li>
+<li><p>reinterpret_cast<T>(expression): 低级转型，实际动作可能取决于编译器。（用的较少）</p>
+</li>
+<li><p>static_cast<T>(expression): 强迫隐式转换，各种转型(和reinterpret_cast相比相对安全)</p>
 </li>
 <li><p>在c++中，一个对象在转型时会计算一个偏移量，这样对象就可能拥有一个以上的地址，而对象的布局方式和地址计算方式随编译器的不同而不同，所以有些”由于知道对象如何布局”而设计的转型可能不会在所有平台都适用</p>
 </li>
-<li>转型会创建一个副本！如果想对对象本身调用转型后的操作不能直接转型再调用！</li>
-<li>如果转型是必要的，尽量将其隐藏于某个函数背后。客户随后可以调用该函数，而不需将转型放进他们自己的代码内</li>
-<li>宁肯使用C++-style(新式转型)，不要使用旧式转型。前者容易辨别并有着分门别类的职责</li>
+<li><p>转型会创建一个副本！如果想对对象本身调用转型后的操作不能直接转型再调用！</p>
+</li>
+<li><p>如果转型是必要的，尽量将其隐藏于某个函数背后。客户随后可以调用该函数，而不需将转型放进他们自己的代码内</p>
+</li>
+<li><p>宁肯使用C++-style(新式转型)，不要使用旧式转型。前者容易辨别并有着分门别类的职责</p>
+</li>
 </ul>
 <h1 id="条款28-避免返回handles指向对象内部成分"><a href="#条款28-避免返回handles指向对象内部成分" class="headerlink" title="条款28: 避免返回handles指向对象内部成分"></a>条款28: 避免返回handles指向对象内部成分</h1><ul>
 <li>如果对象的一个get函数返回了一个私有成员变量的普通指针/引用，客户可以修改私有成员变量的值，这是不合理的</li>
@@ -597,9 +601,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,7 +724,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
