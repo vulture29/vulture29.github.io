@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/1.jpg?v=5.1.3">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="cpp," />
+  <meta name="keywords" content="cpp,">
 
 
 
@@ -83,12 +83,14 @@
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective C++读书笔记（六）">
-<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;08&#x2F;eff-cpp6&#x2F;index.html">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/08/eff-cpp6/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-22T17:23:40.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective C++读书笔记（六）">
+<meta name="twitter:description" content="条款32: 确定你的public继承塑模出is-a关系 public继承意味着is-a模型，适用于base classes身上的每一件事情一定适用于derived classes身上 可能会因为软件设计目的的不同而改变，有些情况需要具体情况具体分析  条款33： 避免遮掩继承而来的名称 derived classes内的名称会遮掩base classes内的名称。若derived内覆盖了base">
 
 
 
@@ -118,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/08/eff-cpp6/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/08/eff-cpp6/">
 
 
 
@@ -152,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xingyao Huang's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -180,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -190,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -200,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -210,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -220,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,9 +232,9 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/%20" rel="section">
+          <a href="/board/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
             留言
           </a>
@@ -275,7 +277,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/1.jpg">
     </span>
 
@@ -311,7 +313,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -365,7 +367,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -439,14 +441,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -503,7 +505,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/12/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF5/" rel="prev" title="并行系统学习之路（五） ---- Cache探索">
+              <a href="/2017/11/12/并行系统学习之路5/" rel="prev" title="并行系统学习之路（五） ---- Cache探索">
                 并行系统学习之路（五） ---- Cache探索 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -580,9 +582,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/1.jpg"
-                alt="Xingyao Huang" />
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Xingyao Huang">
             
               <p class="site-author-name" itemprop="name">Xingyao Huang</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -593,9 +593,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

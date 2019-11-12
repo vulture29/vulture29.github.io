@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/1.jpg?v=5.1.3">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="random," />
+  <meta name="keywords" content="random,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="如果用过Unix系统，相信对下面这三个命令绝对不陌生 .&#x2F;configuremakemake install  这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。 调试环境 - .&#x2F;configure这个脚本通常是用来调试环境，使得当前的操作系统满足安装软件的基本条件。脚本的成功运行保证了所有的依赖环境或包都是可用的，或者会提示用户哪些东西是需">
+<meta name="description" content="如果用过Unix系统，相信对下面这三个命令绝对不陌生./configuremakemake install 这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。 调试环境 - ./configure这个脚本通常是用来调试环境，使得当前的操作系统满足安装软件的基本条件。脚本的成功运行保证了所有的依赖环境或包都是可用的，或者会提示用户哪些东西是需要但">
 <meta name="keywords" content="random">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Configure, make, make install背后的原理">
-<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;10&#x2F;30&#x2F;config-make-install&#x2F;index.html">
+<meta property="og:url" content="http://vulture29.github.io/2017/10/30/config-make-install/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="如果用过Unix系统，相信对下面这三个命令绝对不陌生 .&#x2F;configuremakemake install  这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。 调试环境 - .&#x2F;configure这个脚本通常是用来调试环境，使得当前的操作系统满足安装软件的基本条件。脚本的成功运行保证了所有的依赖环境或包都是可用的，或者会提示用户哪些东西是需">
+<meta property="og:description" content="如果用过Unix系统，相信对下面这三个命令绝对不陌生./configuremakemake install 这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。 调试环境 - ./configure这个脚本通常是用来调试环境，使得当前的操作系统满足安装软件的基本条件。脚本的成功运行保证了所有的依赖环境或包都是可用的，或者会提示用户哪些东西是需要但">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-22T17:22:58.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Configure, make, make install背后的原理">
+<meta name="twitter:description" content="如果用过Unix系统，相信对下面这三个命令绝对不陌生./configuremakemake install 这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。 调试环境 - ./configure这个脚本通常是用来调试环境，使得当前的操作系统满足安装软件的基本条件。脚本的成功运行保证了所有的依赖环境或包都是可用的，或者会提示用户哪些东西是需要但">
 
 
 
@@ -118,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/10/30/config-make-install/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/10/30/config-make-install/">
 
 
 
@@ -152,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xingyao Huang's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -180,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -190,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -200,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -210,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -220,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,9 +232,9 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/%20" rel="section">
+          <a href="/board/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
             留言
           </a>
@@ -275,7 +277,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/1.jpg">
     </span>
 
@@ -311,7 +313,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -354,7 +356,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -375,9 +377,7 @@
       
 
       
-        <p>如果用过Unix系统，相信对下面这三个命令绝对不陌生</p>
-<figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> install</span><br></pre></td></tr></table></figure>
-
+        <p>如果用过Unix系统，相信对下面这三个命令绝对不陌生<br><figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> install</span><br></pre></td></tr></table></figure></p>
 <p>这三条命令通常用于使用源代码安装一个软件，但是这三条命令的执行过程背后到底是什么呢？本文将讨论这一问题。</p>
 <h1 id="调试环境-configure"><a href="#调试环境-configure" class="headerlink" title="调试环境 - ./configure"></a>调试环境 - <code>./configure</code></h1><p>这个脚本通常是用来调试环境，使得当前的操作系统满足安装软件的基本条件。脚本的成功运行保证了所有的依赖环境或包都是可用的，或者会提示用户哪些东西是需要但是系统中没有的。</p>
 <p>Unix程序通常是用C写的，所以我们通常会用C编译器构建程序。在这种情况下，configure脚本将会确认系统中是有C编译器的并找出在哪里调用它。</p>
@@ -403,14 +403,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -544,9 +544,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/1.jpg"
-                alt="Xingyao Huang" />
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Xingyao Huang">
             
               <p class="site-author-name" itemprop="name">Xingyao Huang</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -557,9 +555,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

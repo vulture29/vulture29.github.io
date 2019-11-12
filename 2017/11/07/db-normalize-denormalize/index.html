@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/1.jpg?v=5.1.3">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="random," />
+  <meta name="keywords" content="random,">
 
 
 
@@ -83,14 +83,16 @@
 <meta name="keywords" content="random">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库的规范化和反规范化">
-<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;11&#x2F;07&#x2F;db-normalize-denormalize&#x2F;index.html">
+<meta property="og:url" content="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
 <meta property="og:description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;db_sample.png">
+<meta property="og:image" content="http://vulture29.github.io/content/images/2017/11/db_sample.png">
 <meta property="og:updated_time" content="2017-11-22T17:23:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;content&#x2F;images&#x2F;2017&#x2F;11&#x2F;db_sample.png">
+<meta name="twitter:title" content="数据库的规范化和反规范化">
+<meta name="twitter:description" content="最简单的SQL数据库中，所有的数据都在一张表内，这张表看起来大概是这样的：  然而，在现代工业界，数据库存储的数据比上面这张表要多的多的多的多。从而，有数据库的规范化和反规范化概念的出现，那么他们到底是什么，又有什么区别呢？规范化后的数据库通常会有多个表。数据通过一定的规则进行分割，从而分配到不同的表中去。分割的条件包括3NF,BCNF,等等。我们可以通过数据的依赖关系(Functional De">
+<meta name="twitter:image" content="http://vulture29.github.io/content/images/2017/11/db_sample.png">
 
 
 
@@ -120,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/11/07/db-normalize-denormalize/">
 
 
 
@@ -154,7 +156,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xingyao Huang's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -182,9 +184,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -192,9 +194,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -202,9 +204,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -212,9 +214,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -222,9 +224,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -232,9 +234,9 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/%20" rel="section">
+          <a href="/board/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
             留言
           </a>
@@ -277,7 +279,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/1.jpg">
     </span>
 
@@ -313,7 +315,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -356,7 +358,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -387,93 +389,99 @@
 <table>
 <thead>
 <tr>
-<th align="center">城市</th>
-<th align="center">省份</th>
-<th align="center">缩写</th>
+<th style="text-align:center">城市</th>
+<th style="text-align:center">省份</th>
+<th style="text-align:center">缩写</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">长沙</td>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<tbody>
+<tr>
+<td style="text-align:center">长沙</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
 <tr>
-<td align="center">邵阳</td>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<td style="text-align:center">邵阳</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
 <tr>
-<td align="center">株洲</td>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<td style="text-align:center">株洲</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
 <tr>
-<td align="center">岳阳</td>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<td style="text-align:center">岳阳</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
 <tr>
-<td align="center">湘潭</td>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<td style="text-align:center">湘潭</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
 <tr>
-<td align="center">凤凰</td>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<td style="text-align:center">凤凰</td>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>我们可以看到其实后两项出现了重复，利用数据库的规范化我们可以把数据库优化为如下的两个:</p>
 <p>城市省份表</p>
 <table>
 <thead>
 <tr>
-<th align="center">城市</th>
-<th align="center">省份</th>
+<th style="text-align:center">城市</th>
+<th style="text-align:center">省份</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">长沙</td>
-<td align="center">湖南</td>
+<tbody>
+<tr>
+<td style="text-align:center">长沙</td>
+<td style="text-align:center">湖南</td>
 </tr>
 <tr>
-<td align="center">邵阳</td>
-<td align="center">湖南</td>
+<td style="text-align:center">邵阳</td>
+<td style="text-align:center">湖南</td>
 </tr>
 <tr>
-<td align="center">株洲</td>
-<td align="center">湖南</td>
+<td style="text-align:center">株洲</td>
+<td style="text-align:center">湖南</td>
 </tr>
 <tr>
-<td align="center">岳阳</td>
-<td align="center">湖南</td>
+<td style="text-align:center">岳阳</td>
+<td style="text-align:center">湖南</td>
 </tr>
 <tr>
-<td align="center">湘潭</td>
-<td align="center">湖南</td>
+<td style="text-align:center">湘潭</td>
+<td style="text-align:center">湖南</td>
 </tr>
 <tr>
-<td align="center">凤凰</td>
-<td align="center">湖南</td>
+<td style="text-align:center">凤凰</td>
+<td style="text-align:center">湖南</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>省份缩写表</p>
 <table>
 <thead>
 <tr>
-<th align="center">省份</th>
-<th align="center">缩写</th>
+<th style="text-align:center">省份</th>
+<th style="text-align:center">缩写</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">湖南</td>
-<td align="center">湘</td>
+<tbody>
+<tr>
+<td style="text-align:center">湖南</td>
+<td style="text-align:center">湘</td>
 </tr>
 <tr>
-<td align="center">XX</td>
-<td align="center">X</td>
+<td style="text-align:center">XX</td>
+<td style="text-align:center">X</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>优化过后我们可以明显发现我们的数据库变的更加的精简    <u>some text</u></p>
 <ul>
 <li>完整性</li>
@@ -501,14 +509,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -633,9 +641,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/1.jpg"
-                alt="Xingyao Huang" />
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Xingyao Huang">
             
               <p class="site-author-name" itemprop="name">Xingyao Huang</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -646,9 +652,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

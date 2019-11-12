@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/1.jpg?v=5.1.3">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="algorithm," />
+  <meta name="keywords" content="algorithm,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="本文参考: https:&#x2F;&#x2F;discuss.leetcode.com&#x2F;topic&#x2F;50315&#x2F;a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
+<meta name="description" content="本文参考: https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
 <meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法 ---- 位操作小结">
-<meta property="og:url" content="http:&#x2F;&#x2F;vulture29.github.io&#x2F;2017&#x2F;09&#x2F;06&#x2F;%E7%AE%97%E6%B3%951&#x2F;index.html">
+<meta property="og:url" content="http://vulture29.github.io/2017/09/06/算法1/index.html">
 <meta property="og:site_name" content="Xingyao Huang&#39;s Blog">
-<meta property="og:description" content="本文参考: https:&#x2F;&#x2F;discuss.leetcode.com&#x2F;topic&#x2F;50315&#x2F;a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
+<meta property="og:description" content="本文参考: https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-22T17:26:01.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法 ---- 位操作小结">
+<meta name="twitter:description" content="本文参考: https://discuss.leetcode.com/topic/50315/a-summary-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently 介绍在计算机的实际操作中，位操作主要用于设备控制，许多Linux下的标志位，网络协议的标志位，差错控制与纠错控制，数据压缩优化，数据加密等等。现代编">
 
 
 
@@ -118,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://vulture29.github.io/2017/09/06/算法1/"/>
+  <link rel="canonical" href="http://vulture29.github.io/2017/09/06/算法1/">
 
 
 
@@ -152,7 +154,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xingyao Huang's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -180,9 +182,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -190,9 +192,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -200,9 +202,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -210,9 +212,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -220,9 +222,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,9 +232,9 @@
       
         
         <li class="menu-item menu-item-board">
-          <a href="/board/%20" rel="section">
+          <a href="/board/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
             留言
           </a>
@@ -271,11 +273,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/09/06/%E7%AE%97%E6%B3%951/">
+    <link itemprop="mainEntityOfPage" href="http://vulture29.github.io/2017/09/06/算法1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingyao Huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/1.jpg">
     </span>
 
@@ -311,7 +313,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -341,8 +343,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/06/%E7%AE%97%E6%B3%951/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/06/%E7%AE%97%E6%B3%951/" itemprop="commentsCount"></span>
+                <a href="/2017/09/06/算法1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/06/算法1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,7 +356,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -381,42 +383,44 @@
 <table>
 <thead>
 <tr>
-<th align="center">符号</th>
-<th align="center">描述</th>
-<th align="left">运算规则</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:left">运算规则</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">&amp;</td>
-<td align="center">与</td>
-<td align="left">两个位都为1时，结果才为1</td>
+<tbody>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">与</td>
+<td style="text-align:left">两个位都为1时，结果才为1</td>
 </tr>
 <tr>
-<td align="center">&#124;</td>
-<td align="center">或</td>
-<td align="left">两个位都为0时，结果才为0</td>
+<td style="text-align:center">&#124;</td>
+<td style="text-align:center">或</td>
+<td style="text-align:left">两个位都为0时，结果才为0</td>
 </tr>
 <tr>
-<td align="center">^</td>
-<td align="center">异或</td>
-<td align="left">两个位相同为0，相异为1</td>
+<td style="text-align:center">^</td>
+<td style="text-align:center">异或</td>
+<td style="text-align:left">两个位相同为0，相异为1</td>
 </tr>
 <tr>
-<td align="center">~</td>
-<td align="center">非</td>
-<td align="left">0变1，1变0</td>
+<td style="text-align:center">~</td>
+<td style="text-align:center">非</td>
+<td style="text-align:left">0变1，1变0</td>
 </tr>
 <tr>
-<td align="center">&lt;&lt;</td>
-<td align="center">左移</td>
-<td align="left">各二进位全部左移若干位，高位丢弃，低位补0</td>
+<td style="text-align:center">&lt;&lt;</td>
+<td style="text-align:center">左移</td>
+<td style="text-align:left">各二进位全部左移若干位，高位丢弃，低位补0</td>
 </tr>
 <tr>
-<td align="center">&gt;&gt;</td>
-<td align="center">右移</td>
-<td align="left">各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的补0（逻辑右移）</td>
+<td style="text-align:center">&gt;&gt;</td>
+<td style="text-align:center">右移</td>
+<td style="text-align:left">各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的补0（逻辑右移）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h3 id="位操作符基本用法"><a href="#位操作符基本用法" class="headerlink" title="位操作符基本用法"></a>位操作符基本用法</h3><ul>
 <li>并集 <code>A | B</code></li>
 <li>交集 <code>A &amp; B</code></li>
@@ -434,46 +438,40 @@
 <li>计算一个数以二进制表示时包含1的个数</li>
 </ul>
 <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> count_one(<span class="built_in">int</span> <span class="built_in">n</span>) &#123;</span><br><span class="line">    while(<span class="built_in">n</span>) &#123;</span><br><span class="line">        <span class="built_in">n</span> = <span class="built_in">n</span>&amp;(<span class="built_in">n</span>-<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">count</span>++;</span><br><span class="line">    &#125;</span><br><span class="line">    return <span class="built_in">count</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>检验一个数是否是4的幂</li>
 </ul>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">bool</span> isPowerOfFour(<span class="built_in">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">return</span> !(n&amp;(n<span class="number">-1</span>)) &amp;&amp; (n&amp;<span class="number">0x55555555</span>);</span><br><span class="line">    <span class="comment">//check the 1-bit location;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfFour</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !(n&amp;(n<span class="number">-1</span>)) &amp;&amp; (n&amp;<span class="number">0x55555555</span>);</span><br><span class="line">    <span class="comment">//check the 1-bit location;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="的使用技巧"><a href="#的使用技巧" class="headerlink" title="^ 的使用技巧"></a><code>^</code> 的使用技巧</h3><p>使用异或<code>^</code>可以移除出现偶数次的比特而保留出现过奇数次的比特，也可以用来保留不同的比特而移除相同的比特。</p>
 <p>两个例子：</p>
 <ul>
 <li>SUM OF TWO INTEGERS</li>
 </ul>
 <p>使用<code>^</code>和<code>&amp;</code>实现两个数相加</p>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> get<span class="constructor">Sum(<span class="params">int</span> <span class="params">a</span>, <span class="params">int</span> <span class="params">b</span>)</span> &#123;</span><br><span class="line">    return b==<span class="number">0</span>? a:get<span class="constructor">Sum(<span class="params">a</span>^<span class="params">b</span>, (<span class="params">a</span>&amp;<span class="params">b</span>)</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//be careful about the terminating condition;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b==<span class="number">0</span>? a:getSum(a^b, (a&amp;b)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//be careful about the terminating condition;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>MISSING NUMBER</li>
 </ul>
 <p>一个包含 0, 1, 2, …, n的数组, 找出连续数字中漏掉的一个. 比如说对于数组[0, 1, 3]，返回 2。</p>
 <figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        ret ^= i;</span><br><span class="line">        ret ^= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret^=nums.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="的使用技巧-1"><a href="#的使用技巧-1" class="headerlink" title="| 的使用技巧"></a><code>|</code> 的使用技巧</h3><p><code>|</code>用于尽可能的保留所有1比特。</p>
 <ul>
 <li>找出比指定数字小的最大2的幂次方</li>
 </ul>
 <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">long largest_power(long <span class="built_in">N</span>) &#123;</span><br><span class="line">    //changing all <span class="built_in">right</span> side bits to <span class="number">1</span>.</span><br><span class="line">    <span class="built_in">N</span> = <span class="built_in">N</span> | (<span class="built_in">N</span>&gt;&gt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">N</span> = <span class="built_in">N</span> | (<span class="built_in">N</span>&gt;&gt;<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">N</span> = <span class="built_in">N</span> | (<span class="built_in">N</span>&gt;&gt;<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">N</span> = <span class="built_in">N</span> | (<span class="built_in">N</span>&gt;&gt;<span class="number">8</span>);</span><br><span class="line">    <span class="built_in">N</span> = <span class="built_in">N</span> | (<span class="built_in">N</span>&gt;&gt;<span class="number">16</span>);</span><br><span class="line">    return (<span class="built_in">N</span>+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>REVERSE BITS – 翻转32比特的无符号数</li>
 </ul>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">uint</span>32_t reverseBits(<span class="built_in">uint</span>32_t n) &#123;</span><br><span class="line">    unsigned <span class="built_in">int</span> mask = <span class="number">1</span>&lt;&lt;<span class="number">31</span>, res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(n &amp; <span class="number">1</span>) res |= mask;</span><br><span class="line">        mask &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">uint</span>32_t reverseBits(<span class="built_in">uint</span>32_t n) &#123;</span><br><span class="line">	<span class="built_in">uint</span>32_t mask = <span class="number">1</span>, ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123;</span><br><span class="line">		ret &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(mask &amp; n) ret |= <span class="number">1</span>;</span><br><span class="line">		mask &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">uint32_t reverseBits(uint32_t n) &#123;</span><br><span class="line">    unsigned int mask = <span class="number">1</span>&lt;&lt;<span class="number">31</span>, res = <span class="number">0</span>;</span><br><span class="line">    for(int i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i) &#123;</span><br><span class="line">        if(n &amp; <span class="number">1</span>) res |= mask;</span><br><span class="line">        mask &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line">uint32_t reverseBits(uint32_t n) &#123;</span><br><span class="line">	uint32_t mask = <span class="number">1</span>, ret = <span class="number">0</span>;</span><br><span class="line">	for(int i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123;</span><br><span class="line">		ret &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		if(mask &amp; n) ret |= <span class="number">1</span>;</span><br><span class="line">		mask &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	return ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="amp-的使用技巧"><a href="#amp-的使用技巧" class="headerlink" title="&amp; 的使用技巧"></a><code>&amp;</code> 的使用技巧</h3><p>选择指定位置的比特</p>
 <p>反转整数的比特值：</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">x = ((x &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt; <span class="number">1</span>) | ((x &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xcccccccc</span>) &gt;&gt; <span class="number">2</span>) | ((x &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt; <span class="number">4</span>) | ((x &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xff00ff00</span>) &gt;&gt; <span class="number">8</span>) | ((x &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xffff0000</span>) &gt;&gt; <span class="number">16</span>) | ((x &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">x = ((x &amp; <span class="number">0xaaaaaaaa</span>) &gt;&gt; <span class="number">1</span>) | ((x &amp; <span class="number">0x55555555</span>) &lt;&lt; <span class="number">1</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xcccccccc</span>) &gt;&gt; <span class="number">2</span>) | ((x &amp; <span class="number">0x33333333</span>) &lt;&lt; <span class="number">2</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xf0f0f0f0</span>) &gt;&gt; <span class="number">4</span>) | ((x &amp; <span class="number">0x0f0f0f0f</span>) &lt;&lt; <span class="number">4</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xff00ff00</span>) &gt;&gt; <span class="number">8</span>) | ((x &amp; <span class="number">0x00ff00ff</span>) &lt;&lt; <span class="number">8</span>);</span><br><span class="line">x = ((x &amp; <span class="number">0xffff0000</span>) &gt;&gt; <span class="number">16</span>) | ((x &amp; <span class="number">0x0000ffff</span>) &lt;&lt; <span class="number">16</span>);</span><br></pre></td></tr></table></figure>
 <p>BITWISE AND OF NUMBERS RANGE</p>
 <p>给定范围[m, n]使得 0 &lt;= m &lt;= n &lt;= 2147483647, 返回范围内所有值按位的与操作之和。例如给定 [5, 7], 返回4.</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> rangeBitwiseAnd(<span class="built_in">int</span> m, <span class="built_in">int</span> n) &#123;</span><br><span class="line">    <span class="built_in">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m != n) &#123;</span><br><span class="line">        m &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        a++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m&lt;&lt;a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rangeBitwiseAnd</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(m != n) &#123;</span><br><span class="line">        m &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        a++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m&lt;&lt;a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>NUMBER OF 1 BITS</p>
 <p>求一个整数的转为二进制后含有1的比特位的个数（也称为汉明距离)</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> hammingWeight(<span class="built_in">uint</span>32_t n) &#123;</span><br><span class="line">	<span class="built_in">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(n) &#123;</span><br><span class="line">		n = n&amp;(n<span class="number">-1</span>);</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">int</span> hammingWeight(<span class="built_in">uint</span>32_t n) &#123;</span><br><span class="line">    ulong mask = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123; <span class="comment">//31 will not do, delicate;</span></span><br><span class="line">        <span class="keyword">if</span>(mask &amp; n) count++;</span><br><span class="line">        mask &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> hammingWeight(uint32_t <span class="built_in">n</span>) &#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="built_in">count</span> = <span class="number">0</span>;</span><br><span class="line">	while(<span class="built_in">n</span>) &#123;</span><br><span class="line">		<span class="built_in">n</span> = <span class="built_in">n</span>&amp;(<span class="built_in">n</span>-<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">count</span>++;</span><br><span class="line">	&#125;</span><br><span class="line">	return <span class="built_in">count</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">int</span> hammingWeight(uint32_t <span class="built_in">n</span>) &#123;</span><br><span class="line">    ulong mask = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">count</span> = <span class="number">0</span>;</span><br><span class="line">    for(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; ++i)&#123; //<span class="number">31</span> will <span class="built_in">not</span> do, delicate;</span><br><span class="line">        <span class="built_in">if</span>(mask &amp; <span class="built_in">n</span>) <span class="built_in">count</span>++;</span><br><span class="line">        mask &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    return <span class="built_in">count</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -494,14 +492,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Xingyao Huang 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.png" alt="Xingyao Huang 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -548,7 +546,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/05/%E5%B9%B6%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF2/" rel="next" title="并行系统学习之路（二） ---- MPI热身">
+              <a href="/2017/09/05/并行系统学习之路2/" rel="next" title="并行系统学习之路（二） ---- MPI热身">
                 <i class="fa fa-chevron-left"></i> 并行系统学习之路（二） ---- MPI热身
               </a>
             
@@ -558,7 +556,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/08/socket%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="prev" title="socket基本用法">
+              <a href="/2017/09/08/socket基本用法/" rel="prev" title="socket基本用法">
                 socket基本用法 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -635,9 +633,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/1.jpg"
-                alt="Xingyao Huang" />
+              <img class="site-author-image" itemprop="image" src="/images/1.jpg" alt="Xingyao Huang">
             
               <p class="site-author-name" itemprop="name">Xingyao Huang</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -648,9 +644,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
